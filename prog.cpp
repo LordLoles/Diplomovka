@@ -9,6 +9,10 @@ using namespace std;
 const int length = 2;
 const int colors = 4;
 
+vector<tuple<int, int, int>> allColorSubsets; //all possible lists of colors (triplets) that will be used on verteces
+long long nextLists = 0; //next indeces of color lists (allColorSubsets) to be used in nextPath() in decimal
+long long nextPathColoring = 0; //next indeces of colors in path (list of colors for path) to be used in nextColoring() in decimal
+
 
 vector<tuple<int, int, int>> getSubsetsOfLength3(int set[], int setLength)
 {
@@ -41,6 +45,7 @@ void printVectorTuple(vector<tuple<int, int, int>> vt)
     cout << endl;
 }
 
+//Converts number decimal (in decimal) to number in 'base', so its digits are stored in vector.
 vector<int> decimalToBase(int decimal, int base)
 {
     vector<int> res;
@@ -50,6 +55,11 @@ vector<int> decimalToBase(int decimal, int base)
     }
     reverse(res.begin(), res.end());
     return res;
+}
+
+vector<int> decimalToBase3(int decimal)
+{
+    return decimalToBase(decimal, 3);
 }
 
 vector<int> vectorToLength(vector<int> a, int length)
@@ -70,9 +80,6 @@ void printVector(vector <int> const &a)
     cout << endl;
 }
 
-vector<tuple<int, int, int>> allColorSubsets = getSubsetsOfLength3(getSetToLength(), colors); //all possible lists of colors (triplets) that will be used on verteces
-long long nextLists = 0; //next indeces of color lists (allColorSubsets) to be used in nextPath() in decimal
-
 vector<tuple<int, int, int>> nextPath()
 {
     vector<tuple<int, int, int>> res;
@@ -85,26 +92,66 @@ vector<tuple<int, int, int>> nextPath()
     return res;
 }
 
-vector<int> getColoring()
+vector<int> nextColoring(vector<tuple<int, int, int>> path)
 {
-    asi tak isto (podobne), ako nextpath()
+    vector<int> res;
+    vector<int> toFind = vectorToLength(decimalToBase3(nextPathColoring), length);
+    if (toFind.empty()) return vector<int>();
+    for (int i = 0; i < length; i++){
+        int color;
+        switch(toFind[i]) {
+            case 0:
+                color = get<0>(path[i]);
+                break;
+            case 1:
+                color = get<1>(path[i]);
+                break;
+            case 2:
+                color = get<2>(path[i]);
+                break;
+            default:
+                throw "Lists are only of length 3!";
+        }
+        res.push_back(color);
+    }
+    nextPathColoring++;
+    return res;
+}
+
+void resetColoring()
+{
+    nextPathColoring = 0;
+}
+
+bool chcekNonRepetitivness(vector<int> coloring)
+{
+    return true;
 }
 
 
 int main()
 {
+    allColorSubsets = getSubsetsOfLength3(getSetToLength(), colors);
     cout << "all subsets: ";
     printVectorTuple(allColorSubsets);
 
-    vector<tuple<int, int, int>> nowPath = nextPath();
+    vector<tuple<int, int, int>> nowPath;
+    vector<int> coloring;
 
-    while (!nowPath.empty())
+    while (!(nowPath = nextPath()).empty())
     {
+        resetColoring();
+        cout << endl;
+        cout << "path with lists: ";
         printVectorTuple(nowPath);
-
-
-
-        nowPath = nextPath();
+        while (!(coloring = nextColoring(nowPath)).empty())
+        {
+            cout << "coloring: ";
+            printVector(coloring);
+            if (!chcekNonRepetitivness(coloring))
+            {
+                cout << "COUNTEREXAMPLE! COUNTEREXAMPLE! COUNTEREXAMPLE! COUNTEREXAMPLE! COUNTEREXAMPLE! COUNTEREXAMPLE! " << endl;
+            }
+        }
     }
-
 }

@@ -1,16 +1,21 @@
-#ifndef COLORING_H
-#define COLORING_H
-
 #include <vector>
 #include <tuple>
 
-class Path
+#ifndef COLORING_H
+#define COLORING_H
+
+using namespace std;
+
+class Coloring
 {
     private:
-        vector<tuple<int, int, int>> coloring;
+        vector<int> coloring;
 
     public:
-        Path(vector<tuple<int, int, int>> col);
-        void printPath(vector<tuple<int, int, int>> vt);
+        Coloring();
+        Coloring(vector<int> &col);
+        void printColoring();
+        bool empty();
+        int size();
 };
 #endif

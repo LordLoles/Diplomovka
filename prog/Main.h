@@ -1,8 +1,10 @@
+#include <vector>
+#include <tuple>
+
 #ifndef UTILS_H
 #define UTILS_H
 
-#include <vector>
-#include <tuple>
+using namespace std;
 
 class Main
 {
@@ -10,6 +12,6 @@ class Main
 
     public:
     
-}
+};
 
 #endif

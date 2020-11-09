@@ -1,8 +1,10 @@
+#include <vector>
+#include <tuple>
+
 #ifndef PATH_H
 #define PATH_H
 
-#include <vector>
-#include <tuple>
+using namespace std;
 
 class Path
 {
@@ -10,9 +12,12 @@ class Path
         vector<tuple<int, int, int>> path;
 
     public:
-        Path(vector<tuple<int, int, int>> path_to_store);
-        static void printPath(vector<tuple<int, int, int>> vt);
+        Path();
+        Path(vector<tuple<int, int, int>> &path_to_store);
         void printPath();
+        tuple<int, int, int> at(int index);
+        bool empty();
+        int size();
 };
 
 #endif

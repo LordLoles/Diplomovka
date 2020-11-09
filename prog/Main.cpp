@@ -1,5 +1,7 @@
 #include "Main.h"
 #include "Utils.h"
+#include "Coloring.h"
+#include "Path.h"
 #include <iostream>
 #include <vector>
 #include <string>
@@ -14,36 +16,36 @@ const int colors = 4;
 vector<tuple<int, int, int>> allColorSubsets; //all possible lists of colors (triplets) that will be used on verteces
 long long nextLists = 0; //next indeces of color lists (allColorSubsets) to be used in nextPath() in decimal
 long long nextPathColoring = 0; //next indeces of colors in path (list of colors for path) to be used in nextColoring() in decimal
-Utils utils = new Utils();
+Utils* utils = new Utils();
 
-vector<tuple<int, int, int>> nextPath()
+Path* nextPath()
 {
     vector<tuple<int, int, int>> res;
-    vector<int> toFind = Utils::vectorToLength(Utils::decimalToBase(nextLists, allColorSubsets.size()), length);
-    if (toFind.empty()) return vector<tuple<int, int, int>>();
+    vector<int> toFind = utils->vectorToLength(utils->decimalToBase(nextLists, allColorSubsets.size()), length);
+    if (toFind.empty()) return new Path();
     for (int i = 0; i < length; i++){
         res.push_back(allColorSubsets[toFind[i]]);
     }
     nextLists++;
-    return res;
+    return new Path(res);
 }
 
-vector<int> nextColoring(vector<tuple<int, int, int>> path)
+Coloring* nextColoring(Path* path)
 {
     vector<int> res;
-    vector<int> toFind = Utils::vectorToLength(Utils::decimalToBase3(nextPathColoring), length);
-    if (toFind.empty()) return vector<int>();
+    vector<int> toFind = utils->vectorToLength(utils->decimalToBase3(nextPathColoring), length);
+    if (toFind.empty()) return new Coloring();
     for (int i = 0; i < length; i++){
         int color;
         switch(toFind[i]) {
             case 0:
-                color = get<0>(path[i]);
+                color = get<0>(path->at(i));
                 break;
             case 1:
-                color = get<1>(path[i]);
+                color = get<1>(path->at(i));
                 break;
             case 2:
-                color = get<2>(path[i]);
+                color = get<2>(path->at(i));
                 break;
             default:
                 throw "Lists are only of length 3!";
@@ -51,7 +53,7 @@ vector<int> nextColoring(vector<tuple<int, int, int>> path)
         res.push_back(color);
     }
     nextPathColoring++;
-    return res;
+    return new Coloring(res);
 }
 
 void resetColoring()
@@ -59,7 +61,7 @@ void resetColoring()
     nextPathColoring = 0;
 }
 
-bool chcekNonRepetitivness(vector<int> coloring)
+bool chcekNonRepetitivness(Coloring* coloring)
 {
     return true;
 }
@@ -67,27 +69,32 @@ bool chcekNonRepetitivness(vector<int> coloring)
 
 int main()
 {
-    allColorSubsets = Utils::getSubsetsOfLength3(Utils::getSetToLength(colors), colors);
+    int* setToColors = utils->getSetToLength(colors);
+    vector<tuple<int, int, int>> pathh = utils->getSubsetsOfLength3(setToColors, colors);
+    Path* allColorSubsets = new Path(pathh);
     cout << "all subsets: ";
-    Utils::printColoring(allColorSubsets);
+    allColorSubsets->printPath();
 
-    vector<tuple<int, int, int>> nowPath;
-    vector<int> coloring;
+    Path* nowPath = nextPath();
 
-    while (!(nowPath = nextPath()).empty())
+    while (!(nowPath->empty()))
     {
         resetColoring();
         cout << endl;
         cout << "path with lists: ";
-        Utils::printColoring(nowPath);
-        while (!(coloring = nextColoring(nowPath)).empty())
+        nowPath->printPath();
+
+        Coloring* coloring = nextColoring(nowPath);
+        while (!(coloring->empty()))
         {
             cout << "coloring: ";
-            Utils::printVector(coloring);
+            coloring->printColoring();
             if (!chcekNonRepetitivness(coloring))
             {
                 cout << "COUNTEREXAMPLE! COUNTEREXAMPLE! COUNTEREXAMPLE! COUNTEREXAMPLE! COUNTEREXAMPLE! COUNTEREXAMPLE! " << endl;
             }
+            coloring = nextColoring(nowPath);
         }
+        nowPath = nextPath();
     }
 }

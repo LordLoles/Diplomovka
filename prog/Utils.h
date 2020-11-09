@@ -1,13 +1,12 @@
-#ifndef UTILS_H
-#define UTILS_H
-
 #include <vector>
 #include <tuple>
+
+#ifndef MY_UTILS_H
+#define MY_UTILS_H
 
 class Utils
 {
     public:
-        Utils();
         
         vector<tuple<int, int, int>> getSubsetsOfLength3(int set[], int setLength);
         int* getSetToLength(int colors);

@@ -1,18 +1,34 @@
 #include "Coloring.h"
 #include <iostream>
+#include <vector>
+#include <tuple>
 
-using namespace Coloring;
 using namespace std;
 
 
-Coloring(vector<tuple<int, int, int>> col)
+Coloring::Coloring(vector<int> &col)
 {
     coloring = col;
 }
 
-void printColoring(vector<tuple<int, int, int>> vt)
+Coloring::Coloring()
 {
-    for (tuple<int, int, int> &list : vt)
-        cout << "[" << get<0>(list) << " "<< get<1>(list) << " "<< get<2>(list) << "] ";
+    coloring = vector<int>();
+}
+
+void Coloring::printColoring()
+{
+    for (int &vertex : coloring)
+        cout << vertex << " ";
     cout << endl;
+}
+
+bool Coloring::empty()
+{
+    return coloring.empty();
+}
+
+int Coloring::size()
+{
+    return coloring.size();
 }

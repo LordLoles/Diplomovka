@@ -4,9 +4,8 @@
 using namespace std;
 
 
-Utils::Utils(){}
 
-vector<tuple<int, int, int>> Utils::getSubsetsOfLength3(int set[], int setLength)
+vector<tuple<int, int, int>> Utils::getSubsetsOfLength3(int* set, int setLength)
 {
     vector<tuple<int, int, int>> res;
     int count = 0; //for testing

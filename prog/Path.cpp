@@ -4,19 +4,34 @@
 using namespace std;
 
 
-Path::Path(vector<tuple<int, int, int>> path_to_store)
+Path::Path(vector<tuple<int, int, int>> &path_to_store)
 {
     path = path_to_store;
 }
 
-void Path::printPath(vector<tuple<int, int, int>> vt)
+Path::Path()
 {
-    for (tuple<int, int, int> &list : vt)
-        cout << "[" << get<0>(list) << " "<< get<1>(list) << " "<< get<2>(list) << "] ";
-    cout << endl;
+    path = vector<tuple<int, int, int>>();
 }
 
 void Path::printPath()
 {
-    printPath(path);
+    for (tuple<int, int, int> &list : path)
+        cout << "[" << get<0>(list) << " "<< get<1>(list) << " "<< get<2>(list) << "] ";
+    cout << endl;
+}
+
+tuple<int, int, int> Path::at(int index)
+{
+    return path[index];
+}
+
+bool Path::empty()
+{
+    return path.empty();
+}
+
+int Path::size()
+{
+    return path.size();
 }

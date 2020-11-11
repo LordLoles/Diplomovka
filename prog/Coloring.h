@@ -15,6 +15,7 @@ class Coloring
         Coloring();
         Coloring(vector<int> &col);
         void printColoring();
+        int at(int index);
         bool empty();
         int size();
 };

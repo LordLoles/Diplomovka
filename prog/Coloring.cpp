@@ -23,6 +23,11 @@ void Coloring::printColoring()
     cout << endl;
 }
 
+int Coloring::at(int index)
+{
+    return coloring[index];
+}
+
 bool Coloring::empty()
 {
     return coloring.empty();

@@ -1,13 +1,15 @@
 #include <vector>
 #include <tuple>
+#include <algorithm>
 
 #ifndef MY_UTILS_H
 #define MY_UTILS_H
 
+using namespace std;
+
 class Utils
 {
     public:
-        
         vector<tuple<int, int, int>> getSubsetsOfLength3(int set[], int setLength);
         int* getSetToLength(int colors);
         vector<int> decimalToBase(int decimal, int base);

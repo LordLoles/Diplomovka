@@ -37,7 +37,7 @@ vector<int> Utils::decimalToBase(int decimal, int base)
         res.push_back(decimal % base);
         decimal /= base;
     }
-    reverse(res.begin(), res.end());
+    std::reverse(res.begin(), res.end());
     return res;
 }
 
@@ -51,7 +51,7 @@ vector<int> Utils::vectorToLength(vector<int> a, int length)
     if (a.size() == length) return a;
     if (a.size() > length) return vector<int>();
     vector<int> res = a;
-    reverse(res.begin(), res.end());
+    std::reverse(res.begin(), res.end());
     for (int i = res.size(); i < length; i++) res.push_back(0);
     reverse(res.begin(), res.end());
     return res;

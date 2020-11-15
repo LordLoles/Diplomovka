@@ -1,5 +1,5 @@
-#ifndef TESTPATH_H
-#define TESTPATH_H
+#ifndef TESTUTILS_H
+#define TESTUTILS_H
 
 #include "../prog/Utils.h"
 #include "../prog/Utils.cpp"
@@ -9,6 +9,7 @@
 
 using namespace std;
 
+
 class TestUtils
 {
     private:
@@ -16,8 +17,12 @@ class TestUtils
 
     public:
         void test_vectorToLength();
-        void test_getSetToLength();
-        void test_all();
+        void test_vectorToLength_2();
+        void test_getSetToLength(int length);
+        void test_decimalToBase();
+        void test_digitsToInt();
+        void test_all(int repeat = 3);
+        void test_getSubsetsOfLength3(int setSize);
 };
 
 #endif

@@ -79,9 +79,10 @@ bool chcekNonRepetitivness(Coloring* coloring)
 
 int main()
 {
-    int* setToColors = utils->getSetToLength(colors);
-    vector<tuple<int, int, int>> pathh = utils->getSubsetsOfLength3(setToColors, colors);
-    allColorSubsets = new Path(pathh);
+    vector<int> setToColors = utils->getSetToLength(colors);
+    vector<tuple<int, int, int>> pseudoPath = utils->getSubsetsOfLength3(setToColors);
+    cout << "subsets count = " << pseudoPath.size() << endl;
+    allColorSubsets = new Path(pseudoPath);
     cout << "all subsets: ";
     allColorSubsets->printPath();
     cout << "size " << allColorSubsets->size() << endl;

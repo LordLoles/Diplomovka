@@ -36,6 +36,16 @@ void TestColoring::test_at_full()
             cout << "should have correct values" << endl;
 }
 
+void test_copy()
+{
+    cout << "TODO test_copy" << endl;
+}
+
+void test_equals()
+{
+    cout << "TODO test_equals" << endl;
+}
+
 void TestColoring::test_all()
 {
     cout << "Testing Coloring..." << endl;
@@ -43,4 +53,6 @@ void TestColoring::test_all()
     test_size_2();
     test_empty_1();
     test_at_full();
+    test_copy();
+    test_equals();
 }

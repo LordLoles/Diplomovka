@@ -21,8 +21,8 @@ class TestUtils
         void test_getSetToLength(int length);
         void test_decimalToBase();
         void test_digitsToInt();
-        void test_all(int repeat = 3);
         void test_getSubsetsOfLength3(int setSize);
+        void test_all(int repeat = 3);
 };
 
 #endif

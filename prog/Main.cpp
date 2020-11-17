@@ -66,13 +66,42 @@ void resetColoring()
     nextPathColoring = 0;
 }
 
-bool chcekNonRepetitivnessAtIndex(Coloring* coloring, int index)
+//Checks equality on positions from (index - (2*size)) to (index - size) of the given coloring and positions from (index - size) to (index)
+//O(n)
+bool checkEqualityOnIndexWithSize(Coloring* coloring, int index, int size)
 {
+    int pos1 = index - (2*size);
+    int pos2 = index - size;
+    for (int i = 0; i < size; i++)
+    {
+        if (coloring->at(pos1) != coloring->at(pos2)) return false;
+        pos1++;
+        pos2++;
+    }
     return true;
 }
 
-bool chcekNonRepetitivness(Coloring* coloring)
+//Check nonrepetitivness for all-sized subcolorings ending on index
+//O(n^2)
+bool checkNonRepetitivnessOnIndex(Coloring* coloring, int index)
 {
+    for (int i = 1; i < index/2; i++)
+    {
+        if (!checkEqualityOnIndexWithSize(coloring, index, i))
+            return false;
+    }
+    return true;
+}
+
+//Check nonrepetitivness on whole coloring
+//O(n^3)
+bool checkNonRepetitivness(Coloring* coloring)
+{
+    for (int i = 2; i < coloring->size(); i++)
+    {
+        if (!checkNonRepetitivnessOnIndex(coloring, i))
+            return false;
+    }
     return true;
 }
 
@@ -103,7 +132,7 @@ int main()
         {
             cout << "coloring: ";
             coloring->printColoring();
-            if (!chcekNonRepetitivness(coloring))
+            if (!checkNonRepetitivness(coloring))
             {
                 cout << "COUNTEREXAMPLE! COUNTEREXAMPLE! COUNTEREXAMPLE! COUNTEREXAMPLE! COUNTEREXAMPLE! COUNTEREXAMPLE! " << endl;
             }

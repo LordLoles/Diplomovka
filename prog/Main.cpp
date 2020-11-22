@@ -2,9 +2,11 @@
 #include "Utils.h"
 #include "Coloring.h"
 #include "Path.h"
-#include "Utils.cpp"        // needed for visual studio code
-#include "Coloring.cpp"     // needed for visual studio code
-#include "Path.cpp"         // needed for visual studio code
+#include "NonRepetitiveness.h"
+#include "Utils.cpp"                // needed for visual studio code
+#include "Coloring.cpp"             // needed for visual studio code
+#include "Path.cpp"                 // needed for visual studio code
+#include "NonRepetitiveness.cpp"    // needed for visual studio code
 #include <iostream>
 #include <vector>
 #include <string>
@@ -19,6 +21,7 @@ Path* allColorSubsets; //all possible lists of colors (triplets) that will be us
 long long nextLists = 0; //next indeces of color lists (allColorSubsets) to be used in nextPath() in decimal
 long long nextPathColoring = 0; //next indeces of colors in path (list of colors for path) to be used in nextColoring() in decimal
 Utils* utils = new Utils();
+NonRepetitiveness* nonRepetitiveness = new NonRepetitiveness();
 
 Path* nextPath()
 {
@@ -66,45 +69,6 @@ void resetColoring()
     nextPathColoring = 0;
 }
 
-//Checks equality on positions from (index - (2*size)) to (index - size) of the given coloring and positions from (index - size) to (index)
-//O(n)
-bool checkEqualityOnIndexWithSize(Coloring* coloring, int index, int size)
-{
-    int pos1 = index - (2*size);
-    int pos2 = index - size;
-    for (int i = 0; i < size; i++)
-    {
-        if (coloring->at(pos1) != coloring->at(pos2)) return false;
-        pos1++;
-        pos2++;
-    }
-    return true;
-}
-
-//Check nonrepetitivness for all-sized subcolorings ending on index
-//O(n^2)
-bool checkNonRepetitivnessOnIndex(Coloring* coloring, int index)
-{
-    for (int i = 1; i < index/2; i++)
-    {
-        if (!checkEqualityOnIndexWithSize(coloring, index, i))
-            return false;
-    }
-    return true;
-}
-
-//Check nonrepetitivness on whole coloring
-//O(n^3)
-bool checkNonRepetitivness(Coloring* coloring)
-{
-    for (int i = 2; i < coloring->size(); i++)
-    {
-        if (!checkNonRepetitivnessOnIndex(coloring, i))
-            return false;
-    }
-    return true;
-}
-
 
 int main()
 {
@@ -132,7 +96,7 @@ int main()
         {
             cout << "coloring: ";
             coloring->printColoring();
-            if (!checkNonRepetitivness(coloring))
+            if (!nonRepetitiveness->checkNonRepetitiveness(coloring))
             {
                 cout << "COUNTEREXAMPLE! COUNTEREXAMPLE! COUNTEREXAMPLE! COUNTEREXAMPLE! COUNTEREXAMPLE! COUNTEREXAMPLE! " << endl;
             }

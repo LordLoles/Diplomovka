@@ -1,3 +1,4 @@
+#pragma once
 #ifndef TESTCOLORING_H
 #define TESTCOLORING_H
 

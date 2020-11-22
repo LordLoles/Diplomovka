@@ -6,10 +6,11 @@
 			"label": "C/C++: g++.exe build active file",
 			"command": "D:\\MinGW32\\bin\\g++.exe",
 			"args": [
+				"fgjkjhhd",
 				"-g",
 				"${file}",
 				"-o",
-				"${fileDirname}\\${fileBasenameNoExtension}.exe"
+				"${workspaceFolder}\\${fileBasenameNoExtension}.exe"
 			],
 			"options": {
 				"cwd": "D:\\MinGW32\\bin"
@@ -21,7 +22,7 @@
 				"kind": "build",
 				"isDefault": true
 			},
-			"detail": "compiler: D:\\MinGW32\\bin\\g++.exe"
+			"detail": "compiler: D:\\MinGW32\\bin\\g++.exe",
 		}
 	]
 }

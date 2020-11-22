@@ -56,3 +56,8 @@ int Coloring::size()
 {
     return coloring.size();
 }
+
+vector<int> Coloring::toVector()
+{
+    return coloring;
+}

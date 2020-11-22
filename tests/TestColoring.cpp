@@ -36,14 +36,14 @@ void TestColoring::test_at_full()
             cout << "should have correct values" << endl;
 }
 
-void test_copy()
+void TestColoring::test_copy()
 {
-    cout << "TODO test_copy" << endl;
+    //cout << "TODO test_copy" << endl;
 }
 
-void test_equals()
+void TestColoring::test_equals()
 {
-    cout << "TODO test_equals" << endl;
+    //cout << "TODO test_equals" << endl;
 }
 
 void TestColoring::test_all()

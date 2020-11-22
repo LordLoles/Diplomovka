@@ -1,8 +1,10 @@
-#include <vector>
-#include <tuple>
+#pragma once
 
 #ifndef COLORING_H
 #define COLORING_H
+
+#include <vector>
+#include <tuple>
 
 using namespace std;
 
@@ -20,5 +22,6 @@ class Coloring
         int at(int index);
         bool empty();
         int size();
+        vector<int> toVector();
 };
 #endif

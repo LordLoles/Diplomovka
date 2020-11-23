@@ -2,11 +2,10 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
-			"type": "cppbuild",
+			"type": "process",
 			"label": "C/C++: g++.exe build active file",
 			"command": "D:\\MinGW32\\bin\\g++.exe",
 			"args": [
-				"fgjkjhhd",
 				"-g",
 				"${file}",
 				"-o",

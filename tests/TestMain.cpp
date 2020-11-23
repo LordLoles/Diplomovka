@@ -16,9 +16,7 @@ int main()
 {
     testPath.test_all();
     testColoroing.test_all();
-    cout << "Testing Nonness..." << endl;
     testUtils.test_all(10);
-    cout << "Testing Nonness..." << endl;
     testNonRepetitiveness.test_all(10, 200, 10);
 
     cout << "Testing ended" << endl;

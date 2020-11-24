@@ -12,9 +12,6 @@ using namespace std;
 
 class TestUtils
 {
-    private:
-        Utils* utils = new Utils();
-
     public:
         void test_vectorToLength();
         void test_vectorToLength_2();

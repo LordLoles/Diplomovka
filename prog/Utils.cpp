@@ -6,7 +6,7 @@ using namespace std;
 
 //Returns all subsets of the set "set".
 //Input set really needs to be a set, so the output will be a set again.
-vector<tuple<int, int, int>> Utils::getSubsetsOfLength3(vector<int> set)
+vector<tuple<int, int, int>> getSubsetsOfLength3(vector<int> set)
 {
     vector<tuple<int, int, int>> res = vector<tuple<int, int, int>>();
     int setLength = set.size();
@@ -23,7 +23,7 @@ vector<tuple<int, int, int>> Utils::getSubsetsOfLength3(vector<int> set)
 }
 
 //Returns set containing numbers from 0 to "colors".
-vector<int> Utils::getSetToLength(int colors){
+vector<int> getSetToLength(int colors){
     vector<int> numbers = vector<int>(colors);
     for(int i = 0; i < colors; i++){
         numbers[i] = i;
@@ -32,7 +32,7 @@ vector<int> Utils::getSetToLength(int colors){
 }
 
 //Converts number decimal (in decimal) to number in 'base', so its digits are stored in vector.
-vector<int> Utils::decimalToBase(int decimal, int base)
+vector<int> decimalToBase(int decimal, int base)
 {
     vector<int> res;
     while (decimal > 0){
@@ -44,14 +44,14 @@ vector<int> Utils::decimalToBase(int decimal, int base)
 }
 
 //Converts number decimal (in decimal) to number in base of 3, so its digits are stored in vector.
-vector<int> Utils::decimalToBase3(int decimal)
+vector<int> decimalToBase3(int decimal)
 {
     return decimalToBase(decimal, 3);
 }
 
 
 //Converts vector to have legth "length" filling the start of it with zeroes. If the initial vector is greater than "length", then empty vector is returned.
-vector<int> Utils::vectorToLength(vector<int> a, int length)
+vector<int> vectorToLength(vector<int> a, int length)
 {
     if (a.size() == length) return a;
     if (a.size() > length) return vector<int>();
@@ -63,7 +63,7 @@ vector<int> Utils::vectorToLength(vector<int> a, int length)
 }
 
 //Prints vector of integers.
-void Utils::printVector(vector <int> const &a)
+void printVector(vector <int> const &a)
 {
     for(int i=0; i < a.size(); i++)
         cout << a.at(i) << ' ';
@@ -71,7 +71,7 @@ void Utils::printVector(vector <int> const &a)
 }
 
 //Converts digits of number stored in vector "digits" to int with those numbers on respective positions.
-int Utils::digitsToInt(vector<int> digits)
+int digitsToInt(vector<int> digits)
 {
     int result = 0;
     int multiply = 1;

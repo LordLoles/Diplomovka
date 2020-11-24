@@ -5,7 +5,7 @@ using namespace std;
 
 
 
-//Checks equality on positions from (index - (2*size)) to (index - size) of the given coloring and positions from (index - size) to (index)
+//Checks equality of the given coloring on positions from (index - (2*size)) to (index - size) and positions from (index - size) to (index)
 //O(n)
 bool NonRepetitiveness::checkEqualityOnIndexWithSize(Coloring* coloring, int index, int size)
 {

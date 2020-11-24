@@ -1,0 +1,5 @@
+testy - jednoduche
+triedu Utils - zrus triedu - ako je uz spravene NonRepetitiveness
+Odstran memory leak na nextColoring, uprav konstruktor na Coloring (ako je na nextPath, Path)
+pouvazuj nad tou vetou o farbach
+pouvauj nad moznostou nevracania tej cesty v nextPath(), ktora nesplna tu vetu o farbach... pripadne ju nejako mudru ani negeneruj.

@@ -13,9 +13,10 @@ class Path
 
     public:
         Path();
-        Path(vector<tuple<int, int, int>> &path_to_store);
+        Path(const vector<tuple<int, int, int>> &path_to_store);
+        Path(vector<tuple<int, int, int>> && path_to_store);
         void printPath();
-        tuple<int, int, int> at(int index);
+        tuple<int, int, int> at(int index) const;
         bool empty();
         int size();
 };

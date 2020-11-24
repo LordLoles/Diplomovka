@@ -4,15 +4,12 @@
 using namespace std;
 
 
-Path::Path(vector<tuple<int, int, int>> &path_to_store)
-{
-    path = path_to_store;
-}
+Path::Path(const vector<tuple<int, int, int>> &path_to_store) : path(path_to_store) { }
 
-Path::Path()
-{
-    path = vector<tuple<int, int, int>>();
-}
+Path::Path() { }
+
+Path::Path(vector<tuple<int, int, int>> && path_to_store) : path(path_to_store) { }
+
 
 void Path::printPath()
 {
@@ -21,7 +18,7 @@ void Path::printPath()
     cout << endl;
 }
 
-tuple<int, int, int> Path::at(int index)
+tuple<int, int, int> Path::at(int index) const
 {
     return path[index];
 }

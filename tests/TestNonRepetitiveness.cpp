@@ -39,7 +39,7 @@ void TestNonRepetitiveness::test_equality_funtion_not_equals(Coloring* coloring,
 void TestNonRepetitiveness::test_all(int colors, int maxLength, int repeat)
 {
     cout << "Testing NonRepetitiveness..." << endl;
-    srand(time(NULL));
+    srand(seed);
 
     for (int i = 0; i < repeat; i++)
     {

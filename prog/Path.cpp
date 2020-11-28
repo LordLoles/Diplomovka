@@ -4,9 +4,9 @@
 using namespace std;
 
 
-Path::Path(const vector<tuple<int, int, int>> &path_to_store) : path(path_to_store) { }
-
 Path::Path() { }
+
+Path::Path(const vector<tuple<int, int, int>> &path_to_store) : path(path_to_store) { }
 
 Path::Path(vector<tuple<int, int, int>> && path_to_store) : path(path_to_store) { }
 

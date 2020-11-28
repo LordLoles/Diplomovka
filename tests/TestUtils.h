@@ -10,7 +10,7 @@
 using namespace std;
 
 
-class TestUtils
+class TestUtils //namespace
 {
     public:
         void test_vectorToLength();

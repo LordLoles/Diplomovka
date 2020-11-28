@@ -6,14 +6,15 @@ using namespace std;
 
 
 //Checks equality of the given coloring on positions from (index - (2*size)) to (index - size) and positions from (index - size) to (index)
+//Returns true, if those two parts are equal
 //O(n)
-bool NonRepetitiveness::checkEqualityOnIndexWithSize(Coloring* coloring, int index, int size)
+bool checkEqualityOnIndexWithSize(Coloring coloring, int index, int size)
 {
     int pos1 = index - (2*size);
     int pos2 = index - size;
     for (int i = 0; i < size; i++)
     {
-        if (coloring->at(pos1) != coloring->at(pos2)) return false;
+        if (coloring.at(pos1) != coloring.at(pos2)) return false;
         pos1++;
         pos2++;
     }
@@ -22,7 +23,7 @@ bool NonRepetitiveness::checkEqualityOnIndexWithSize(Coloring* coloring, int ind
 
 //Check nonrepetitiveness for all-sized subcolorings ending on index
 //O(n^2)
-bool NonRepetitiveness::checkNonRepetitivenessOnIndex(Coloring* coloring, int index)
+bool checkNonRepetitivenessOnIndex(Coloring coloring, int index)
 {
     for (int i = 1; i < index/2; i++)
     {
@@ -34,9 +35,9 @@ bool NonRepetitiveness::checkNonRepetitivenessOnIndex(Coloring* coloring, int in
 
 //Check nonrepetitiveness on whole coloring
 //O(n^3)
-bool NonRepetitiveness::checkNonRepetitiveness(Coloring* coloring)
+bool checkNonRepetitiveness(Coloring coloring)
 {
-    for (int i = 2; i < coloring->size(); i++)
+    for (int i = 2; i < coloring.size(); i++)
     {
         if (!checkNonRepetitivenessOnIndex(coloring, i))
             return false;

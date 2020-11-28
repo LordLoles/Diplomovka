@@ -16,8 +16,8 @@ int main()
 {
     testPath.test_all();
     testColoroing.test_all();
-    testUtils.test_all(10);
-    testNonRepetitiveness.test_all(10, 200, 10);
+    testUtils.test_all();
+    testNonRepetitiveness.test_all(10, 200);
 
     cout << "Testing ended" << endl;
     return 0;

@@ -14,6 +14,7 @@ class TestNonRepetitiveness
 {
     private:
         NonRepetitiveness* nonRepetitiveness = new NonRepetitiveness();
+        const unsigned int seed = 8903206840471783;
 
     public:
         void test_equality_funtion_equals(Coloring* coloring);

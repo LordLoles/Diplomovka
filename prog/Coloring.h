@@ -15,7 +15,8 @@ class Coloring
 
     public:
         Coloring();
-        Coloring(vector<int> &col);
+        Coloring(const vector<int> &col);
+        Coloring(vector<int> &&col);
         void printColoring();
         Coloring* copy(int from, int to); //unused
         bool equals(Coloring* another); //unused

@@ -1,20 +1,16 @@
 #include "Coloring.h"
 #include <iostream>
 #include <vector>
-#include <tuple>
 
 using namespace std;
 
 
-Coloring::Coloring(vector<int> &col)
-{
-    coloring = col;
-}
+Coloring::Coloring() { }
 
-Coloring::Coloring()
-{
-    coloring = vector<int>();
-}
+Coloring::Coloring(const vector<int> &col) : coloring (col) { }
+
+Coloring::Coloring(vector<int> &&col) : coloring (col) { }
+
 
 void Coloring::printColoring()
 {

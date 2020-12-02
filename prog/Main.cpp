@@ -2,15 +2,15 @@
 #include "Utils.h"
 #include "Coloring.h"
 #include "Path.h"
-#include "NextPathGenerator.h"
-#include "NextColoringGenerator.h"
+#include "PathGenerator.h"
+#include "ColoringGenerator.h"
 #include "NonRepetitiveness.h"
 #include "Utils.cpp"                // needed for visual studio code
 #include "Coloring.cpp"             // needed for visual studio code
 #include "Path.cpp"                 // needed for visual studio code
 #include "NonRepetitiveness.cpp"    // needed for visual studio code
-#include "NextPathGenerator.cpp"    // needed for visual studio code
-#include "NextColoringGenerator.cpp"    // needed for visual studio code
+#include "PathGenerator.cpp"    // needed for visual studio code
+#include "ColoringGenerator.cpp"    // needed for visual studio code
 #include <iostream>
 #include <vector>
 #include <string>
@@ -27,9 +27,9 @@ int main()
 {
     bool found;
 
-    NextPathGenerator npg = NextPathGenerator(length, colors);
+    PathGenerator pathGen = PathGenerator(length, colors);
 
-    Path nowPath = npg.nextPath();
+    Path nowPath = pathGen.nextPath();
 
     while (!(nowPath.empty()))
     {
@@ -38,23 +38,25 @@ int main()
         //cout << "path with lists: ";
         nowPath.printPath();
         
-        NextColoringGenerator ncg = NextColoringGenerator(length, nowPath);
+        ColoringGenerator coloringGen = ColoringGenerator(nowPath);
 
-        Coloring coloring = ncg.nextColoring();
+        Coloring coloring = coloringGen.nextColoring();
+
         while (!(coloring.empty()))
         {
             //cout << "coloring: ";
-            //coloring.printColoring();
-            if (!checkNonRepetitiveness(coloring))
+            coloring.printColoring();
+            if (checkNonRepetitiveness(coloring)) //this coloring is non-repetitive
             {
                 found = true;
+                break;
             }
-            coloring = ncg.nextColoring();
+            coloring = coloringGen.nextColoring();
         }
         if (!found)
         {
             cout << "COUNTEREXAMPLE! COUNTEREXAMPLE! COUNTEREXAMPLE! COUNTEREXAMPLE! COUNTEREXAMPLE! COUNTEREXAMPLE! " << endl;
         }
-        nowPath = npg.nextPath();
+        nowPath = pathGen.nextPath();
     }
 }

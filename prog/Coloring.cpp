@@ -14,9 +14,15 @@ Coloring::Coloring(vector<int> &&col) : coloring (col) { }
 
 void Coloring::printColoring()
 {
+    cout << to_string() << endl;
+}
+
+string Coloring::to_string()
+{
+    string result = "";
     for (int &vertex : coloring)
-        cout << vertex << " ";
-    cout << endl;
+        result += std::to_string(vertex) + " ";
+    return result;
 }
 
 Coloring* Coloring::copy(int from, int to)

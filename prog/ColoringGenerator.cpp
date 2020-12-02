@@ -1,16 +1,17 @@
-#include "NextColoringGenerator.h"
+#include "ColoringGenerator.h"
 #include <iostream>
 
 using namespace std;
 
 
-NextColoringGenerator::NextColoringGenerator(int lengthOfPath, Path & path_to_work_on) : path(path_to_work_on), length(lengthOfPath)
-{
-    resetColoring();
-}
+ColoringGenerator::ColoringGenerator(Path path_to_work_on) 
+    : path(path_to_work_on)
+    , length(path_to_work_on.size())
+    , nextPathColoring (0)
+{ }
 
 
-Coloring NextColoringGenerator::nextColoring()
+Coloring ColoringGenerator::nextColoring()
 {
     vector<int> res;
     vector<int> toFind = vectorToLength(decimalToBase3(nextPathColoring), length);
@@ -34,9 +35,4 @@ Coloring NextColoringGenerator::nextColoring()
     }
     nextPathColoring++;
     return Coloring(res);
-}
-
-void NextColoringGenerator::resetColoring()
-{
-    nextPathColoring = 0;
 }

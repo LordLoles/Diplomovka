@@ -1,5 +1,5 @@
-#ifndef NEXTPATHGENERATOR_H
-#define NEXTPATHGENERATOR_H
+#ifndef PATHGENERATOR_H
+#define PATHGENERATOR_H
 
 #include <vector>
 #include <tuple>
@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class NextPathGenerator
+class PathGenerator
 {
     private:
         int length;
@@ -17,7 +17,7 @@ class NextPathGenerator
         Path allColorSubsets; //all possible lists of colors (triplets) that will be used on verteces  -------not really a Path -> just to store it nicely-------
 
     public:
-        NextPathGenerator(int lengthOfPath, int colorsInPath);
+        PathGenerator(int lengthOfPath, int colorsInPath);
         Path nextPath();
 };
 

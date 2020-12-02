@@ -1,14 +1,15 @@
-#include "NextPathGenerator.h"
+#include "PathGenerator.h"
 #include <iostream>
 
 using namespace std;
 
 
-NextPathGenerator::NextPathGenerator(int lengthOfPath, int colorsInPath) 
+PathGenerator::PathGenerator(int lengthOfPath, int colorsInPath) 
     : nextLists(0)
     , length (lengthOfPath)
     , allColorSubsets (Path(getSubsetsOfLength3(getSetToLength(colorsInPath))))
 {
+    if (colorsInPath < 3) throw "There need to be at least 3 colors!";
     /*cout << "subsets count = " << pseudoPath.size() << endl;
     cout << "all subsets: ";
     allColorSubsets.printPath();
@@ -16,7 +17,7 @@ NextPathGenerator::NextPathGenerator(int lengthOfPath, int colorsInPath)
 }
 
 
-Path NextPathGenerator::nextPath()
+Path PathGenerator::nextPath()
 {
     //cout << "nextPath start";
     vector<tuple<int, int, int>> res;

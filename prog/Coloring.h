@@ -18,6 +18,7 @@ class Coloring
         Coloring(const vector<int> &col);
         Coloring(vector<int> &&col);
         void printColoring();
+        string to_string();
         Coloring* copy(int from, int to); //unused
         bool equals(Coloring* another); //unused
         int at(int index);

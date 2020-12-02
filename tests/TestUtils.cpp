@@ -91,7 +91,7 @@ void TestUtils::test_all(int repeat)
     test_decimalToBase();
     test_digitsToInt();
 
-    srand(5103206840471783);
+    srand(40087711);
 
     for (int i = 0; i < repeat; i++)
     {

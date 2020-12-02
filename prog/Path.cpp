@@ -13,9 +13,15 @@ Path::Path(vector<tuple<int, int, int>> && path_to_store) : path(path_to_store) 
 
 void Path::printPath()
 {
+    cout << to_string() << endl;
+}
+
+string Path::to_string()
+{
+    string result = "";
     for (tuple<int, int, int> &list : path)
-        cout << "[" << get<0>(list) << " "<< get<1>(list) << " "<< get<2>(list) << "] ";
-    cout << endl;
+        result += (string)"[" + std::to_string(get<0>(list)) + (string)" " + std::to_string(get<1>(list)) + (string)" " + std::to_string(get<2>(list)) + (string)"] ";
+    return result;
 }
 
 tuple<int, int, int> Path::at(int index) const

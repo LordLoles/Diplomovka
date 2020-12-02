@@ -4,41 +4,70 @@
 #include <tuple>
 #include <stdlib.h>
 #include <time.h>
+#include "../prog/NonRepetitiveness.h"
+#include "../prog/NonRepetitiveness.cpp"
 
 using namespace std;
 
 
-void TestNonRepetitiveness::test_equality_funtion_equals(Coloring* coloring)
+void TestNonRepetitiveness::test_equality_on_0100()
 {
-    vector<int> col = coloring->toVector();
+    Coloring testing = Coloring({0, 1, 0, 0});
+    if (checkEqualityOnIndexWithSize(testing, 1, 1)) {cout << "test_equality_on_0100: should not equal, index 1, size 1, col "; testing.printColoring();}
+    if (checkEqualityOnIndexWithSize(testing, 2, 1)) {cout << "test_equality_on_0100: should not equal, index 2, size 1, col "; testing.printColoring();}
+    if (!checkEqualityOnIndexWithSize(testing, 3, 1)) {cout << "test_equality_on_0100: should equal, index 3, size 1, col "; testing.printColoring();}
+    if (checkEqualityOnIndexWithSize(testing, 3, 2)) {cout << "test_equality_on_0100: should not equal, index 3, size 2, col "; testing.printColoring();}
+}
+
+void TestNonRepetitiveness::test_equality_funtion_equals(Coloring coloring)
+{
+    vector<int> col = coloring.toVector();
     vector<int> copy = col;
     col.insert(col.end(), copy.begin(), copy.end());
-    Coloring* testing = new Coloring(col);
-    if (!nonRepetitiveness->checkEqualityOnIndexWithSize(testing, testing->size(), testing->size()/2))
+    Coloring testing = Coloring(col);
+
+    if (!checkEqualityOnIndexWithSize(testing, testing.size()-1, testing.size()/2))
     {
-        cout << "The coloring should be equal in half. Size is " << testing->size() << ", half at " << (testing->size()/2) << " coloring: ";
-        testing->printColoring();
+        cout << "The coloring should be equal in half. Size is " << testing.size() << ", half at " << (testing.size()/2) << " coloring: ";
+        testing.printColoring();
     }
 }
 
 //Test for no equality, where two halfs differs on positions "pos". Each position needs to be a lower number than colorings size.
-void TestNonRepetitiveness::test_equality_funtion_not_equals(Coloring* coloring, vector<int> pos)
+void TestNonRepetitiveness::test_equality_funtion_not_equals(Coloring coloring, vector<int> pos)
 {
-    vector<int> col = coloring->toVector();
+    vector<int> col = coloring.toVector();
     vector<int> copy = col;
     col.insert(col.end(), copy.begin(), copy.end());
     for (int j = 0; j < pos.size(); j++) col[pos[j]]++;
-    Coloring* testing = new Coloring(col);
-    if (nonRepetitiveness->checkEqualityOnIndexWithSize(testing, testing->size(), testing->size()/2))
+    Coloring testing = Coloring(col);
+
+    if (checkEqualityOnIndexWithSize(testing, testing.size(), testing.size()/2))
     {
-        cout << "The coloring should not equal in half. Size is " << testing->size() << ", half at " << (testing->size()/2) << " coloring: ";
-        testing->printColoring();
+        cout << "The coloring should not equal in half. Size is " << testing.size() << ", half at " << (testing.size()/2) << " coloring: ";
+        testing.printColoring();
     }
+}
+
+void TestNonRepetitiveness::test_nonrepetitiveness_on_index(Coloring coloring)
+{
+    cout << "not implemented yet" << endl;
+}
+
+void TestNonRepetitiveness::test_nonrepetitiveness(Coloring coloring)
+{
+    cout << "not implemented yet" << endl;
 }
 
 void TestNonRepetitiveness::test_all(int colors, int maxLength, int repeat)
 {
     cout << "Testing NonRepetitiveness..." << endl;
+
+    test_equality_on_0100();
+
+
+
+
     srand(seed);
 
     for (int i = 0; i < repeat; i++)
@@ -46,7 +75,7 @@ void TestNonRepetitiveness::test_all(int colors, int maxLength, int repeat)
         int length = rand() % maxLength;
         vector<int> v;
         for (int j = 0; j < length; j++) v.push_back(rand() % colors);
-        Coloring* col = new Coloring(v);
+        Coloring col = Coloring(v);
 
         test_equality_funtion_equals(col);
 

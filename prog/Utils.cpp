@@ -35,10 +35,12 @@ vector<int> getSetToLength(int colors){
 vector<int> decimalToBase(int decimal, int base)
 {
     vector<int> res;
-    while (decimal > 0){
+    if ((base < 2) && (decimal >= base)) return res; //cover small base, so it can be used with the program also
+    do {
         res.push_back(decimal % base);
         decimal /= base;
     }
+    while (decimal > 0);
     std::reverse(res.begin(), res.end());
     return res;
 }
@@ -53,6 +55,7 @@ vector<int> decimalToBase3(int decimal)
 //Converts vector to have legth "length" filling the start of it with zeroes. If the initial vector is greater than "length", then empty vector is returned.
 vector<int> vectorToLength(vector<int> a, int length)
 {
+    if (a.empty()) return vector<int>();
     if (a.size() == length) return a;
     if (a.size() > length) return vector<int>();
     vector<int> res = a;

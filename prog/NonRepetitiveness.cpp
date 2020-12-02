@@ -4,14 +4,13 @@
 using namespace std;
 
 
-
 //Checks equality of the given coloring on positions from (index - (2*size)) to (index - size) and positions from (index - size) to (index)
 //Returns true, if those two parts are equal
 //O(n)
 bool checkEqualityOnIndexWithSize(Coloring coloring, int index, int size)
 {
-    int pos1 = index - (2*size);
-    int pos2 = index - size;
+    int pos1 = index - (2*size) + 1;
+    int pos2 = index - size + 1;
     for (int i = 0; i < size; i++)
     {
         if (coloring.at(pos1) != coloring.at(pos2)) return false;
@@ -25,9 +24,9 @@ bool checkEqualityOnIndexWithSize(Coloring coloring, int index, int size)
 //O(n^2)
 bool checkNonRepetitivenessOnIndex(Coloring coloring, int index)
 {
-    for (int i = 1; i < index/2; i++)
+    for (int i = 1; i <= index/2; i++)
     {
-        if (!checkEqualityOnIndexWithSize(coloring, index, i))
+        if (checkEqualityOnIndexWithSize(coloring, index, i))
             return false;
     }
     return true;

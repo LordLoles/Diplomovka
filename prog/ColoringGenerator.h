@@ -1,5 +1,5 @@
-#ifndef NEXTCOLORINGGENERATOR_H
-#define NEXTCOLORINGGENERATOR_H
+#ifndef COLORINGGENERATOR_H
+#define COLORINGGENERATOR_H
 
 #include <vector>
 #include "Path.h"
@@ -10,17 +10,16 @@
 
 using namespace std;
 
-class NextColoringGenerator
+class ColoringGenerator
 {
     private:
         int length;
         long long nextPathColoring; //next indeces of colors in path (list of colors for path) to be used in nextColoring() in decimal
-        Path & path;
+        Path path;
 
     public:
-        NextColoringGenerator(int lengthOfPath, Path & path);
+        ColoringGenerator(Path path);
         Coloring nextColoring();
-        void resetColoring();
 };
 
 #endif

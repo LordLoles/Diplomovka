@@ -60,7 +60,7 @@ void TestPathGenerator::test_4_colors()
 
 void TestPathGenerator::test_all()
 {
-    cout << "Testing NextPathGenerator..." << endl;
+    cout << "Testing PathGenerator..." << endl;
     test_2_colors();
     test_3_colors();
     test_4_colors();

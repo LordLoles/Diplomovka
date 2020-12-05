@@ -10,7 +10,7 @@
 using namespace std;
 
 
-void TestNonRepetitiveness::test_equality_on_0100()
+void TestNonRepetitiveness::test_equality_funtion()
 {
     Coloring testing = Coloring({0, 1, 0, 0});
     if (checkEqualityOnIndexWithSize(testing, 1, 1)) {cout << "test_equality_on_0100: should not equal, index 1, size 1, col "; testing.printColoring();}
@@ -18,6 +18,31 @@ void TestNonRepetitiveness::test_equality_on_0100()
     if (!checkEqualityOnIndexWithSize(testing, 3, 1)) {cout << "test_equality_on_0100: should equal, index 3, size 1, col "; testing.printColoring();}
     if (checkEqualityOnIndexWithSize(testing, 3, 2)) {cout << "test_equality_on_0100: should not equal, index 3, size 2, col "; testing.printColoring();}
 }
+
+void TestNonRepetitiveness::test_nonrepetitiveness_on_index()
+{
+    Coloring testing = Coloring({0, 1, 0, 0});
+    if (!checkNonRepetitivenessOnIndex(testing, 0)) {cout << "test_nonrepetitiveness_on_index: should be nonrepetitive, index 0, col "; testing.printColoring();}
+    if (!checkNonRepetitivenessOnIndex(testing, 1)) {cout << "test_nonrepetitiveness_on_index: should be nonrepetitive, index 1, col "; testing.printColoring();}
+    if (!checkNonRepetitivenessOnIndex(testing, 2)) {cout << "test_nonrepetitiveness_on_index: should be nonrepetitive, index 2, col "; testing.printColoring();}
+    if (checkNonRepetitivenessOnIndex(testing, 3)) {cout << "test_nonrepetitiveness_on_index: should be repetitive, index 2, col "; testing.printColoring();}
+}
+
+void TestNonRepetitiveness::test_nonrepetitiveness()
+{
+    Coloring testing = Coloring({0, 1, 0, 0});
+    if (checkNonRepetitiveness(testing)) {cout << "test_nonrepetitiveness: should be repetitive, col "; testing.printColoring();}
+    
+    testing = Coloring({0, 1, 0, 2});
+    if (!checkNonRepetitiveness(testing)) {cout << "test_nonrepetitiveness: should be nonrepetitive, col "; testing.printColoring();}
+
+    testing = Coloring({5});
+    if (!checkNonRepetitiveness(testing)) {cout << "test_nonrepetitiveness: should be nonrepetitive, col "; testing.printColoring();}
+
+    testing = Coloring({0, 1, 0, 2, 1, 0, 2});
+    if (checkNonRepetitiveness(testing)) {cout << "test_nonrepetitiveness: should be repetitive, col "; testing.printColoring();}
+}
+
 
 void TestNonRepetitiveness::test_equality_funtion_equals(Coloring coloring)
 {
@@ -49,22 +74,13 @@ void TestNonRepetitiveness::test_equality_funtion_not_equals(Coloring coloring, 
     }
 }
 
-void TestNonRepetitiveness::test_nonrepetitiveness_on_index(Coloring coloring)
-{
-    cout << "not implemented yet" << endl;
-}
-
-void TestNonRepetitiveness::test_nonrepetitiveness(Coloring coloring)
-{
-    cout << "not implemented yet" << endl;
-}
-
 void TestNonRepetitiveness::test_all(int colors, int maxLength, int repeat)
 {
     cout << "Testing NonRepetitiveness..." << endl;
 
-    test_equality_on_0100();
-
+    test_equality_funtion();
+    test_nonrepetitiveness_on_index();
+    test_nonrepetitiveness();
 
 
 

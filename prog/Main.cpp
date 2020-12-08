@@ -19,8 +19,9 @@
 using namespace std;
 
 
-const int length = 4;
+const int length = 8; //skus constexpr
 const int colors = 4;
+//constexpr si daj do noveho suboru konstant, potom pouzivaj v generatoroch
 
 
 int main()
@@ -30,22 +31,24 @@ int main()
     PathGenerator pathGen = PathGenerator(length, colors);
 
     Path nowPath = pathGen.nextPath();
+    //TODO pozmen Path na array<int, length> (pole intov dlzky length - bude treba ten constexpr)
 
     while (!(nowPath.empty()))
     {
         found = false;
         //cout << endl;
         //cout << "path with lists: ";
-        nowPath.printPath();
+        //nowPath.printPath();
         
         ColoringGenerator coloringGen = ColoringGenerator(nowPath);
 
         Coloring coloring = coloringGen.nextColoring();
+        //TODO aj coloring by slo na array<int, length>, ale musis si pamatat momentalnu dlzku
 
         while (!(coloring.empty()))
         {
             //cout << "coloring: ";
-            coloring.printColoring();
+            //coloring.printColoring();
             if (checkNonRepetitiveness(coloring)) //this coloring is non-repetitive
             {
                 found = true;

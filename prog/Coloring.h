@@ -17,13 +17,13 @@ class Coloring
         Coloring();
         Coloring(const vector<int> &col);
         Coloring(vector<int> &&col);
-        void printColoring();
-        string to_string();
-        Coloring* copy(int from, int to); //unused
-        bool equals(Coloring* another); //unused
-        int at(int index);
-        bool empty();
-        int size();
-        vector<int> toVector();
+        void printColoring() const;
+        string to_string() const;
+        Coloring* copy(int from, int to) const; //unused
+        bool equals(Coloring* another) const; //unused
+        int at(int index) const;
+        bool empty() const;
+        int size() const;
+        vector<int> toVector() const;
 };
 #endif

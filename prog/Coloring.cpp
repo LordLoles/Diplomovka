@@ -12,20 +12,20 @@ Coloring::Coloring(const vector<int> &col) : coloring (col) { }
 Coloring::Coloring(vector<int> &&col) : coloring (col) { }
 
 
-void Coloring::printColoring()
+void Coloring::printColoring() const
 {
     cout << to_string() << endl;
 }
 
-string Coloring::to_string()
+string Coloring::to_string() const
 {
     string result = "";
-    for (int &vertex : coloring)
+    for (const int &vertex : coloring)
         result += std::to_string(vertex) + " ";
     return result;
 }
 
-Coloring* Coloring::copy(int from, int to)
+Coloring* Coloring::copy(int from, int to) const
 {
     vector<int>::const_iterator first = coloring.begin() + from;
     vector<int>::const_iterator last = coloring.begin() + to;
@@ -33,7 +33,7 @@ Coloring* Coloring::copy(int from, int to)
     return new Coloring(newVec);
 }
 
-bool Coloring::equals(Coloring* another)
+bool Coloring::equals(Coloring* another) const
 {
     if (size() != another->size()) return false;
 
@@ -44,22 +44,22 @@ bool Coloring::equals(Coloring* another)
     return true;
 }
 
-int Coloring::at(int index)
+int Coloring::at(int index) const
 {
     return coloring[index];
 }
 
-bool Coloring::empty()
+bool Coloring::empty() const
 {
     return coloring.empty();
 }
 
-int Coloring::size()
+int Coloring::size() const
 {
     return coloring.size();
 }
 
-vector<int> Coloring::toVector()
+vector<int> Coloring::toVector() const
 {
     return coloring;
 }

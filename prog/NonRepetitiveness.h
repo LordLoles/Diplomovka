@@ -8,8 +8,8 @@
 
 using namespace std;
 
-bool checkEqualityOnIndexWithSize(Coloring* coloring, int index, int size);
-bool checkNonRepetitivenessOnIndex(Coloring* coloring, int index);
-bool checkNonRepetitiveness(Coloring* coloring);
+bool checkEqualityOnIndexWithSize(const Coloring & coloring, int index, int size);
+bool checkNonRepetitivenessOnIndex(const Coloring & coloring, int index);
+bool checkNonRepetitiveness(const Coloring & coloring);
 
 #endif

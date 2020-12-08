@@ -18,6 +18,7 @@ Coloring ColoringGenerator::nextColoring()
     if (toFind.empty()) return Coloring();
     for (int i = 0; i < length; i++){
         int color;
+        //TODO skus Array dlzky 3 namiesto tuplu
         switch(toFind[i]) {
             case 0:
                 color = get<0>(path.at(i));

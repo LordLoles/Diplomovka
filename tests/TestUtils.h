@@ -2,7 +2,6 @@
 #define TESTUTILS_H
 
 #include "../prog/Utils.h"
-#include "../prog/Utils.cpp"
 #include <iostream>
 #include <vector>
 #include <tuple>

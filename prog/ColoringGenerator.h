@@ -3,9 +3,7 @@
 
 #include <vector>
 #include "Path.h"
-//#include "Path.cpp"
 #include "Coloring.h"
-//#include "Coloring.cpp"
 #include "Utils.h"
 
 using namespace std;

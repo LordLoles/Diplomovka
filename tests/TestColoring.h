@@ -3,7 +3,6 @@
 #define TESTCOLORING_H
 
 #include "../prog/Coloring.h"
-#include "../prog/Coloring.cpp"
 #include <iostream>
 #include <vector>
 #include <tuple>

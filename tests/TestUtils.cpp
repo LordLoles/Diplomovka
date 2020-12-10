@@ -1,9 +1,10 @@
-#include "TestUtils.h"
 #include <iostream>
 #include <vector>
 #include <tuple>
 #include <stdlib.h>
 #include <time.h>
+#include "../prog/Path.h"
+#include "TestUtils.h"
 
 using namespace std;
 
@@ -79,7 +80,7 @@ void TestUtils::test_getSubsetsOfLength3(int setSize)
     if (pseudoPath.size() != count)
     {
         cout << "subsets size = " << pseudoPath.size() << ", but should be " << count << " for setSize " << setSize << " and path " << endl;
-        (new Path(pseudoPath))->printPath();
+        (Path(pseudoPath)).printPath();
     }
 }
 

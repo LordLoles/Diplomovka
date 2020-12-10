@@ -5,7 +5,6 @@
 #include <stdlib.h>
 #include <time.h>
 #include "../prog/NonRepetitiveness.h"
-#include "../prog/NonRepetitiveness.cpp"
 
 using namespace std;
 

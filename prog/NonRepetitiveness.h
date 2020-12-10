@@ -4,7 +4,6 @@
 #define NONREPETITIVENESS_H
 
 #include "Coloring.h"
-//#include "Coloring.cpp"
 
 using namespace std;
 

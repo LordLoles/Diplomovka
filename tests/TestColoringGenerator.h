@@ -2,7 +2,6 @@
 #define TESTCOLORINGGENERATOR_H
 
 #include "../prog/ColoringGenerator.h"
-#include "../prog/ColoringGenerator.cpp"
 #include <iostream>
 #include <vector>
 #include <tuple>

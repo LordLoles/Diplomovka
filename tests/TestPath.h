@@ -2,7 +2,6 @@
 #define TESTPATH_H
 
 #include "../prog/Path.h"
-#include "../prog/Path.cpp"
 #include <iostream>
 #include <vector>
 #include <tuple>

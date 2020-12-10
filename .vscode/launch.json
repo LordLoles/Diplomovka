@@ -14,10 +14,10 @@
             "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,
-            "preLaunchTask": "C/C++: g++.exe build active file"
+            "preLaunchTask": "C/C++ -O3 g++ build active file"
         },
         {
-            "name": "g++.exe - Build and debug active file",
+            "name": "Debug",
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/${fileBasenameNoExtension}.exe",//"${fileDirname}\\${fileBasenameNoExtension}.exe",

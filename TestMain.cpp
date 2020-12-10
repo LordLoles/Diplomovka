@@ -1,15 +1,9 @@
-#include "TestPath.h"
-#include "TestPath.cpp"
-#include "TestColoring.h"
-#include "TestColoring.cpp"
-#include "TestUtils.h"
-#include "TestUtils.cpp"
-#include "TestNonRepetitiveness.h"
-#include "TestNonRepetitiveness.cpp"
-#include "TestPathGenerator.h"
-#include "TestPathGenerator.cpp"
-#include "TestColoringGenerator.h"
-#include "TestColoringGenerator.cpp"
+#include "./tests/TestPath.h"
+#include "./tests//TestColoring.h"
+#include "./tests/TestUtils.h"
+#include "./tests/TestNonRepetitiveness.h"
+#include "./tests/TestPathGenerator.h"
+#include "./tests/TestColoringGenerator.h"
 
 TestPath testPath;
 TestColoring testColoroing;

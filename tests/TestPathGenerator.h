@@ -2,7 +2,6 @@
 #define TESTPATHGENERATOR_H
 
 #include "../prog/PathGenerator.h"
-#include "../prog/PathGenerator.cpp"
 #include <iostream>
 #include <vector>
 #include <tuple>

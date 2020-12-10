@@ -1,16 +1,10 @@
 #include "Main.h"
-#include "Utils.h"
-#include "Coloring.h"
-#include "Path.h"
-#include "PathGenerator.h"
-#include "ColoringGenerator.h"
-#include "NonRepetitiveness.h"
-#include "Utils.cpp"                // needed for visual studio code
-#include "Coloring.cpp"             // needed for visual studio code
-#include "Path.cpp"                 // needed for visual studio code
-#include "NonRepetitiveness.cpp"    // needed for visual studio code
-#include "PathGenerator.cpp"    // needed for visual studio code
-#include "ColoringGenerator.cpp"    // needed for visual studio code
+#include "./prog/Utils.h"
+#include "./prog/Coloring.h"
+#include "./prog/Path.h"
+#include "./prog/PathGenerator.h"
+#include "./prog/ColoringGenerator.h"
+#include "./prog/NonRepetitiveness.h"
 #include <iostream>
 #include <vector>
 #include <string>
@@ -19,7 +13,7 @@
 using namespace std;
 
 
-const int length = 8; //skus constexpr
+const int length = 2; //skus constexpr
 const int colors = 4;
 //constexpr si daj do noveho suboru konstant, potom pouzivaj v generatoroch
 

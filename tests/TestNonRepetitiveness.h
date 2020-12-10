@@ -4,6 +4,8 @@
 #define TESTNONREPETITIVENESS_H
 
 #include <iostream>
+#include <vector>
+#include "../prog/Coloring.h"
 
 using namespace std;
 

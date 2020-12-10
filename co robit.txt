@@ -1,3 +1,4 @@
 testy - jednoduche
 pouvazuj nad tou vetou o farbach
 pouvauj nad moznostou nevracania tej cesty v nextPath(), ktora nesplna tu vetu o farbach... pripadne ju nejako mudro ani negeneruj.
+TODO komenty

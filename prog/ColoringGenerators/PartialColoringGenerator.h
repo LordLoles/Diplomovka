@@ -19,6 +19,7 @@ class PartialColoringGenerator
         PartialColoringGenerator(Path path);
         Coloring nextColoring();
         Coloring skipColoring();
+        bool isFullColoring();
         //TODO iny generator, ktory hned kontroluje (alebo vracia ciastocne farbenia?) ci je repeticia - nagenerujem prve dve farby farbenia 0 0 a treba skoncit.
         //asi ciastocne farbenie, vrati -> 0, 00, 000, 0000, 0001, 0002, 0003, 001, 0010, ... 
         //funkcia skip - preskoci podvetvy farbenia -> farbenie 00, zavolam skip, dalsie farbenie 01 (neprejde synov 000, 0000, 0001, ...)

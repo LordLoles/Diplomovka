@@ -1,6 +1,7 @@
 #include "Coloring.h"
 #include <iostream>
 #include <vector>
+#include "./ToStringPatch.h"
 
 using namespace std;
 

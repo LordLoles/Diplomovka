@@ -12,8 +12,8 @@ class TestPath
 {
     private:
         vector<tuple<int, int, int>> input = {{1,2,3}, {5,1,2}, {3,5,14}, {251,15,1244}};
-        Path* fullPath = new Path(input);
-        Path* emptyPath = new Path();
+        Path fullPath = Path(input);
+        Path emptyPath = Path();
 
     public:
         void test_size_1();

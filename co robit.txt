@@ -2,3 +2,5 @@ testy - jednoduche
 pouvazuj nad tou vetou o farbach
 pouvauj nad moznostou nevracania tej cesty v nextPath(), ktora nesplna tu vetu o farbach... pripadne ju nejako mudro ani negeneruj.
 TODO komenty
+
+TODO pouzivat constexpr, aby bola path velkost dopredu znama -> potom sa neda testovat Path, neda sa vytvarat nejaky pomocny objekt Path s inou velkostou

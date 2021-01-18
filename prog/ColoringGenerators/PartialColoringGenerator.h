@@ -1,5 +1,5 @@
-#ifndef PARTIALANDSKIPPINGCOLORINGGENERATOR_H
-#define PARTIALANDSKIPPINGCOLORINGGENERATOR_H
+#ifndef PARTIALCOLORINGGENERATOR_H
+#define PARTIALCOLORINGGENERATOR_H
 
 #include <vector>
 #include "../Path.h"
@@ -8,15 +8,15 @@
 
 using namespace std;
 
-class PartialAndSkippingColoringGenerator
+class PartialColoringGenerator
 {
     private:
         int length;
-        long long nextPathColoring; //next indeces of colors in path (list of colors for path) to be used in nextColoring() in decimal
         Path path;
+        Coloring lastResult;
 
     public:
-        PartialAndSkippingColoringGenerator(Path path);
+        PartialColoringGenerator(Path path);
         Coloring nextColoring();
         Coloring skipColoring();
         //TODO iny generator, ktory hned kontroluje (alebo vracia ciastocne farbenia?) ci je repeticia - nagenerujem prve dve farby farbenia 0 0 a treba skoncit.

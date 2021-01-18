@@ -12,6 +12,8 @@ Coloring::Coloring(const vector<int> &col) : coloring (col) { }
 
 Coloring::Coloring(vector<int> &&col) : coloring (col) { }
 
+Coloring::Coloring(int length) : coloring (vector<int>(length, 0)) { }
+
 
 void Coloring::printColoring() const
 {

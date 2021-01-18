@@ -13,14 +13,15 @@ class TestColoring
 {
     private:
         vector<int> input = {1, 2, 3, 5, 1, 2, 3, 5, 14, 251, 15, 1244};
-        Coloring* fullColoring = new Coloring(input);
-        Coloring* emptyColoring = new Coloring();
+        Coloring fullColoring = Coloring(input);
+        Coloring emptyColoring = Coloring();
 
     public:
         void test_size_1();
         void test_size_2();
         void test_empty_1();
         void test_empty_2();
+        void test_full_of_zeroes();
         void test_at_full();
         void test_copy();
         void test_equals();

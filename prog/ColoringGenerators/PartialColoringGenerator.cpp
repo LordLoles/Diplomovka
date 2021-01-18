@@ -1,20 +1,20 @@
-#include "AllAndWholeColoringGenerator.h"
+#include "PartialColoringGenerator.h"
 #include <iostream>
 
 using namespace std;
 
 
-AllAndWholeColoringGenerator::AllAndWholeColoringGenerator(Path path_to_work_on) 
+PartialColoringGenerator::PartialColoringGenerator(Path path_to_work_on) 
     : path(path_to_work_on)
     , length(path_to_work_on.size())
-    , nextPathColoring (0)
+    , lastResult(Coloring())
 { }
 
 
-Coloring AllAndWholeColoringGenerator::nextColoring()
+Coloring PartialColoringGenerator::nextColoring()
 {
     vector<int> res;
-    vector<int> toFind = vectorToLength(decimalToBase3(nextPathColoring), length);
+    vector<int> toFind = {0};//
     if (toFind.empty()) return Coloring();
     for (int i = 0; i < length; i++){
         int color;
@@ -34,6 +34,5 @@ Coloring AllAndWholeColoringGenerator::nextColoring()
         }
         res.push_back(color);
     }
-    nextPathColoring++;
     return Coloring(res);
 }

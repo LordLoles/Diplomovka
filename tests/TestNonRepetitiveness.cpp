@@ -35,7 +35,7 @@ void TestNonRepetitiveness::test_nonrepetitiveness()
     testing = Coloring({0, 1, 0, 2});
     if (!checkNonRepetitiveness(testing)) {cout << "test_nonrepetitiveness: should be nonrepetitive, col "; testing.printColoring();}
 
-    testing = Coloring({5});
+    testing = Coloring(vector<int>{5});
     if (!checkNonRepetitiveness(testing)) {cout << "test_nonrepetitiveness: should be nonrepetitive, col "; testing.printColoring();}
 
     testing = Coloring({0, 1, 0, 2, 1, 0, 2});

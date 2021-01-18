@@ -17,6 +17,7 @@ class Coloring
         Coloring();
         Coloring(const vector<int> &col);
         Coloring(vector<int> &&col);
+        Coloring(int length);
         void printColoring() const;
         string to_string() const;
         Coloring* copy(int from, int to) const; //unused

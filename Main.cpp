@@ -3,7 +3,7 @@
 #include "./prog/Coloring.h"
 #include "./prog/Path.h"
 #include "./prog/PathGenerator.h"
-#include "./prog/ColoringGenerators/AllAndWholeColoringGenerator.h"
+#include "./prog/ColoringGenerators/WholeColoringGenerator.h"
 #include "./prog/NonRepetitiveness.h"
 #include "./prog/Consts.h"
 #include <iostream>
@@ -30,7 +30,7 @@ int main()
         cout << "path with lists: ";
         nowPath.printPath();
 
-        AllAndWholeColoringGenerator coloringGenerator = AllAndWholeColoringGenerator(nowPath);
+        WholeColoringGenerator coloringGenerator = WholeColoringGenerator(nowPath);
 
         Coloring coloring = coloringGenerator.nextColoring();
         //TODO aj coloring by slo na array<int, length>, ale musis si pamatat momentalnu dlzku

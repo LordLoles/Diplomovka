@@ -1,16 +1,16 @@
-#ifndef TESTCOLORINGGENERATOR_H
-#define TESTCOLORINGGENERATOR_H
+#ifndef TESTWHOLECOLORINGGENERATOR_H
+#define TESTWHOLECOLORINGGENERATOR_H
 
 #include <iostream>
 #include <vector>
 #include <tuple>
 #include "../prog/Coloring.h"
-#include "../prog/ColoringGenerators/AllAndWholeColoringGenerator.h"
+#include "../prog/ColoringGenerators/WholeColoringGenerator.h"
 
 using namespace std;
 
 
-class TestColoringGenerator //namespace
+class TestWholeColoringGenerator //namespace
 {
     public:
         void test_empty_path();

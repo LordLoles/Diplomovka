@@ -1,4 +1,4 @@
-#include "TestColoringGenerator.h"
+#include "TestWholeColoringGenerator.h"
 #include <iostream>
 #include <vector>
 #include <tuple>
@@ -8,9 +8,9 @@
 using namespace std;
 
 
-void TestColoringGenerator::test_empty_path()
+void TestWholeColoringGenerator::test_empty_path()
 {
-    AllAndWholeColoringGenerator coloringGen = AllAndWholeColoringGenerator(Path());
+    WholeColoringGenerator coloringGen = WholeColoringGenerator(Path());
     Coloring col;
 
     col = coloringGen.nextColoring();
@@ -20,9 +20,9 @@ void TestColoringGenerator::test_empty_path()
 }
 
 
-void TestColoringGenerator::test_1_sized_path()
+void TestWholeColoringGenerator::test_1_sized_path()
 {
-    AllAndWholeColoringGenerator coloringGen = AllAndWholeColoringGenerator(Path({{0, 1, 2}}));
+    WholeColoringGenerator coloringGen = WholeColoringGenerator(Path({{0, 1, 2}}));
     Coloring col;
     
     col = coloringGen.nextColoring();
@@ -41,9 +41,9 @@ void TestColoringGenerator::test_1_sized_path()
     if (!col.empty()) {cout << "test_1_sized_path: coloring should be empty "; col.printColoring();}
 }
 
-void TestColoringGenerator::test_2_sized_path()
+void TestWholeColoringGenerator::test_2_sized_path()
 {
-    AllAndWholeColoringGenerator coloringGen = AllAndWholeColoringGenerator(Path({{0, 1, 2}, {0, 1, 2}}));
+    WholeColoringGenerator coloringGen = WholeColoringGenerator(Path({{0, 1, 2}, {0, 1, 2}}));
     Coloring col;
 
     col = coloringGen.nextColoring();
@@ -87,7 +87,7 @@ void TestColoringGenerator::test_2_sized_path()
     if (!col.empty()) {cout << "test_2_sized_path: coloring should be empty "; col.printColoring();}
 }
 
-void TestColoringGenerator::test_all()
+void TestWholeColoringGenerator::test_all()
 {
     cout << "Testing ColoringGenerator..." << endl;
 

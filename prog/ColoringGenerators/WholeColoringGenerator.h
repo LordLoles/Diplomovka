@@ -1,5 +1,5 @@
-#ifndef ALLANDWHOLECOLORINGGENERATOR_H
-#define ALLANDWHOLECOLORINGGENERATOR_H
+#ifndef WHOLECOLORINGGENERATOR_H
+#define WHOLECOLORINGGENERATOR_H
 
 #include <vector>
 #include "../Path.h"
@@ -8,7 +8,7 @@
 
 using namespace std;
 
-class AllAndWholeColoringGenerator
+class WholeColoringGenerator
 {
     private:
         int length;
@@ -16,7 +16,7 @@ class AllAndWholeColoringGenerator
         Path path;
 
     public:
-        AllAndWholeColoringGenerator(Path path);
+        WholeColoringGenerator(Path path);
         Coloring nextColoring();
 };
 

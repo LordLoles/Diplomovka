@@ -1,11 +1,11 @@
 #ifndef TESTCOLORINGGENERATOR_H
 #define TESTCOLORINGGENERATOR_H
 
-#include "../prog/ColoringGenerator.h"
 #include <iostream>
 #include <vector>
 #include <tuple>
 #include "../prog/Coloring.h"
+#include "../prog/ColoringGenerators/AllAndWholeColoringGenerator.h"
 
 using namespace std;
 

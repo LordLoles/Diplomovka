@@ -1,17 +1,17 @@
-#include "ColoringGenerator.h"
+#include "PartialAndSkippingColoringGenerator.h"
 #include <iostream>
 
 using namespace std;
 
 
-ColoringGenerator::ColoringGenerator(Path path_to_work_on) 
+PartialAndSkippingColoringGenerator::PartialAndSkippingColoringGenerator(Path path_to_work_on) 
     : path(path_to_work_on)
     , length(path_to_work_on.size())
     , nextPathColoring (0)
 { }
 
 
-Coloring ColoringGenerator::nextColoring()
+Coloring PartialAndSkippingColoringGenerator::nextColoring()
 {
     vector<int> res;
     vector<int> toFind = vectorToLength(decimalToBase3(nextPathColoring), length);

@@ -8,6 +8,7 @@
 			"args": [
 				"-g",
 				"${workspaceFolder}\\prog\\**.cpp",
+				"${workspaceFolder}\\prog\\ColoringGenerators\\**.cpp",
 				"${workspaceFolder}\\tests\\**.cpp",
 				"${file}",
 				"-o",
@@ -32,6 +33,7 @@
 			"args": [
 				"-O3",
 				"${workspaceFolder}\\prog\\**.cpp",
+				"${workspaceFolder}\\prog\\ColoringGenerators\\**.cpp",
 				"${workspaceFolder}\\tests\\**.cpp",
 				"${file}",
 				"-o",

@@ -10,7 +10,7 @@ using namespace std;
 
 void TestColoringGenerator::test_empty_path()
 {
-    ColoringGenerator coloringGen = ColoringGenerator(Path());
+    AllAndWholeColoringGenerator coloringGen = AllAndWholeColoringGenerator(Path());
     Coloring col;
 
     col = coloringGen.nextColoring();
@@ -22,7 +22,7 @@ void TestColoringGenerator::test_empty_path()
 
 void TestColoringGenerator::test_1_sized_path()
 {
-    ColoringGenerator coloringGen = ColoringGenerator(Path({{0, 1, 2}}));
+    AllAndWholeColoringGenerator coloringGen = AllAndWholeColoringGenerator(Path({{0, 1, 2}}));
     Coloring col;
     
     col = coloringGen.nextColoring();
@@ -43,7 +43,7 @@ void TestColoringGenerator::test_1_sized_path()
 
 void TestColoringGenerator::test_2_sized_path()
 {
-    ColoringGenerator coloringGen = ColoringGenerator(Path({{0, 1, 2}, {0, 1, 2}}));
+    AllAndWholeColoringGenerator coloringGen = AllAndWholeColoringGenerator(Path({{0, 1, 2}, {0, 1, 2}}));
     Coloring col;
 
     col = coloringGen.nextColoring();

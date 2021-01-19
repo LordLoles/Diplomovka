@@ -11,12 +11,21 @@ using namespace std;
 class PartialColoringGenerator
 {
     private:
-        int length;
+        int fullLength;
         Path path;
         Coloring lastResult;
+        vector<int> colorIndeces;
+
+        bool canIncrement(Coloring col);
+        Coloring increment(Coloring col);
+        bool canBeEnlarged(Coloring col);
+        Coloring enlarge(Coloring col);
+        Coloring shrink(Coloring col);
+        Coloring shrinkUntilCanIncrement(Coloring col);
 
     public:
         PartialColoringGenerator(Path path);
+        Coloring initialColoring();
         Coloring nextColoring();
         Coloring skipColoring();
         bool isFullColoring();

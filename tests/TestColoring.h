@@ -25,6 +25,9 @@ class TestColoring
         void test_at_full();
         void test_copy();
         void test_equals();
+        void test_push_back();
+        void test_pop_back();
+        void test_set();
         void test_all();
 };
 

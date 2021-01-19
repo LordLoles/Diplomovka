@@ -47,12 +47,27 @@ void TestColoring::test_at_full()
 
 void TestColoring::test_copy()
 {
-    //cout << "TODO test_copy" << endl;
+    cout << "TODO test_copy" << endl;
 }
 
 void TestColoring::test_equals()
 {
-    //cout << "TODO test_equals" << endl;
+    cout << "TODO test_equals" << endl;
+}
+
+void TestColoring::test_push_back()
+{
+    cout << "TODO test_push_back" << endl;
+}
+
+void TestColoring::test_pop_back()
+{
+    cout << "TODO test_pop_back" << endl;
+}
+
+void TestColoring::test_set()
+{
+    cout << "TODO test_set" << endl;
 }
 
 void TestColoring::test_all()
@@ -66,4 +81,6 @@ void TestColoring::test_all()
     test_at_full();
     test_copy();
     test_equals();
+    test_push_back();
+    test_set();
 }

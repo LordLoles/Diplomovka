@@ -28,21 +28,21 @@ string Coloring::to_string() const
     return result;
 }
 
-Coloring* Coloring::copy(int from, int to) const
+Coloring Coloring::copy(int from, int to) const
 {
     vector<int>::const_iterator first = coloring.begin() + from;
     vector<int>::const_iterator last = coloring.begin() + to;
     vector<int> newVec(first, last);
-    return new Coloring(newVec);
+    return Coloring(newVec);
 }
 
-bool Coloring::equals(Coloring* another) const
+bool Coloring::equals(Coloring another) const
 {
-    if (size() != another->size()) return false;
+    if (size() != another.size()) return false;
 
     for (int i = 0; i < size(); i++)
     {
-        if (at(i) != another->at(i)) return false;
+        if (at(i) != another.at(i)) return false;
     }
     return true;
 }
@@ -65,4 +65,26 @@ int Coloring::size() const
 vector<int> Coloring::toVector() const
 {
     return coloring;
+}
+
+Coloring Coloring::push_back(int i) const
+{
+    vector<int> res = toVector();
+    res.push_back(i);
+    return Coloring(res);
+}
+
+
+Coloring Coloring::pop_back() const
+{
+    vector<int> res = toVector();
+    res.pop_back();
+    return Coloring(res);
+}
+
+Coloring Coloring::set(int index, int value) const
+{
+    vector<int> res = toVector();
+    res[index] = value;
+    return Coloring(res);
 }

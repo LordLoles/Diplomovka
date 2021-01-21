@@ -20,13 +20,13 @@ PathGenerator::PathGenerator(int lengthOfPath, int colorsInPath)
 Path PathGenerator::nextPath()
 {
     //cout << "nextPath start";
-    vector<tuple<int, int, int>> res;
+    vector<array<int, 3>> res;
     vector<int> toFind = vectorToLength(decimalToBase(nextLists, allColorSubsets.size()), length);
     if (toFind.empty()) return Path();
     for (int i = 0; i < length; i++){
         int found = toFind[i];
-        tuple<int, int, int> tp = allColorSubsets.at(found);
-        res.push_back(tp);
+        array<int, 3> elem = allColorSubsets.at(found);
+        res.push_back(elem);
     }
     nextLists++;
     return Path(move(res));

@@ -7,9 +7,9 @@ using namespace std;
 
 Path::Path() { }
 
-Path::Path(const vector<tuple<int, int, int>> &path_to_store) : path(path_to_store) { }
+Path::Path(const vector<array<int, 3>> &path_to_store) : path(path_to_store) { }
 
-Path::Path(vector<tuple<int, int, int>> && path_to_store) : path(path_to_store) { }
+Path::Path(vector<array<int, 3>> && path_to_store) : path(path_to_store) { }
 
 
 void Path::printPath()
@@ -20,12 +20,12 @@ void Path::printPath()
 string Path::to_string()
 {
     string result = "";
-    for (tuple<int, int, int> &list : path)
-        result += (string)"[" + std::to_string(get<0>(list)) + (string)" " + std::to_string(get<1>(list)) + (string)" " + std::to_string(get<2>(list)) + (string)"] ";
+    for (array<int, 3> &list : path)
+        result += (string)"[" + std::to_string(list[0]) + (string)" " + std::to_string(list[1]) + (string)" " + std::to_string(list[2]) + (string)"] ";
     return result;
 }
 
-tuple<int, int, int> Path::at(int index) const
+array<int, 3> Path::at(int index) const
 {
     return path[index];
 }

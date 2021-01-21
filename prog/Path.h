@@ -3,21 +3,22 @@
 
 #include <vector>
 #include <tuple>
+#include <array>
 
 using namespace std;
 
 class Path
 {
     private:
-        vector<tuple<int, int, int>> path;
+        vector<array<int, 3>> path;
 
     public:
         Path();
-        Path(const vector<tuple<int, int, int>> &path_to_store);
-        Path(vector<tuple<int, int, int>> && path_to_store);
+        Path(const vector<array<int, 3>> &path_to_store);
+        Path(vector<array<int, 3>> && path_to_store);
         void printPath();
         string to_string();
-        tuple<int, int, int> at(int index) const;
+        array<int, 3> at(int index) const;
         bool empty();
         int size();
 };

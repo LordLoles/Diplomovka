@@ -38,9 +38,9 @@ void test_at_empty()
 
 void TestPath::test_at_full()
 {
-    if (!get<0>(fullPath.at(0)) == 1 ||
-        !get<2>(fullPath.at(2)) == 5 ||
-        !get<1>(fullPath.at(3)) == 251)
+    if (!fullPath.at(0)[0] == 1 ||
+        !fullPath.at(2)[2] == 14 ||
+        !fullPath.at(3)[0] == 251)
             cout << "should have correct values" << endl;
 }
 

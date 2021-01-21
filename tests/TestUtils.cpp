@@ -75,7 +75,7 @@ void TestUtils::test_digitsToInt()
 void TestUtils::test_getSubsetsOfLength3(int setSize)
 {
     vector<int> setToColors = getSetToLength(setSize);
-    vector<tuple<int, int, int>> pseudoPath = getSubsetsOfLength3(setToColors);
+    vector<array<int, 3>> pseudoPath = getSubsetsOfLength3(setToColors);
     int count = binomialCoefficients(setSize, 3);
     if (pseudoPath.size() != count)
     {

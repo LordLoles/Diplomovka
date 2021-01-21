@@ -6,9 +6,9 @@ using namespace std;
 
 //Returns all subsets of the set "set".
 //Input set really needs to be a set, so the output will be a set again.
-vector<tuple<int, int, int>> getSubsetsOfLength3(vector<int> set)
+vector<array<int, 3>> getSubsetsOfLength3(vector<int> set)
 {
-    vector<tuple<int, int, int>> res = vector<tuple<int, int, int>>();
+    vector<array<int, 3>> res = vector<array<int, 3>>();
     int setLength = set.size();
     int count = 0; //for testing
     for (int i = 0; i < setLength; i++){

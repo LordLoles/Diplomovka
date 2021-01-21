@@ -11,8 +11,7 @@ using namespace std;
 class TestPath
 {
     private:
-        vector<tuple<int, int, int>> input = {{1,2,3}, {5,1,2}, {3,5,14}, {251,15,1244}};
-        Path fullPath = Path(input);
+        Path fullPath = Path({{1,2,3}, {5,1,2}, {3,5,14}, {251,15,1244}});
         Path emptyPath = Path();
 
     public:

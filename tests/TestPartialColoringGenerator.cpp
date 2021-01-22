@@ -1,4 +1,4 @@
-#include "TestWholeColoringGenerator.h"
+#include "TestPartialColoringGenerator.h"
 #include <iostream>
 #include <vector>
 #include <tuple>
@@ -8,90 +8,127 @@
 using namespace std;
 
 
-void TestWholeColoringGenerator::test_empty_path()
+void TestPartialColoringGenerator::test_canIncrement()
 {
-    WholeColoringGenerator coloringGen = WholeColoringGenerator(Path());
-    Coloring col;
+    PartialColoringGenerator gen = PartialColoringGenerator(Path());
+    if (!gen.canIncrement()) cout << "empty should return true" << endl;
 
-    col = coloringGen.nextColoring();
-    if (!col.empty()) {cout << "test_empty_path: coloring should be empty "; col.printColoring();}
-    col = coloringGen.nextColoring();
-    if (!col.empty()) {cout << "test_empty_path: coloring should be empty "; col.printColoring();}
+    gen = PartialColoringGenerator(Path({{0,1,2}}));
+    if (!gen.canIncrement()) cout << "empty should return true" << endl;
+    gen.initialColoring(); //initialColoring() is tested on other place
+    if (!gen.canIncrement()) cout << "should return true on 0" << endl;
+    gen.increment();
+    if (!gen.canIncrement()) cout << "should return true on 1" << endl;
+    gen.increment();
+    if (gen.canIncrement()) cout << "should return false on 2" << endl;
+}
+
+void TestPartialColoringGenerator::test_increment()
+{
+    PartialColoringGenerator gen = PartialColoringGenerator(Path());
+    try 
+    {
+        gen.increment();
+        cout << "should produce exception (Path())" << endl;
+    }
+    catch(exception e) { }
+
+    gen = PartialColoringGenerator(Path({{2,5,17}}));
+    gen.initialColoring(); //initialColoring() is tested on other place
+    if (gen.lastResult.at(0) != 2) cout << "should be 2" << endl;
+    gen.increment();
+    if (gen.lastResult.at(0) != 5) cout << "should be 5" << endl;
+    gen.increment();
+    if (gen.lastResult.at(0) != 17) cout << "should be 17" << endl;
+    try 
+    {
+        gen.increment();
+        cout << "should produce exception (Path({{2,5,17}})" << endl;
+    }
+    catch(exception e) { }
+}
+
+void TestPartialColoringGenerator::test_canBeEnlarged()
+{
+
+}
+
+void TestPartialColoringGenerator::test_enlarge()
+{
+
+}
+
+void TestPartialColoringGenerator::test_shrink()
+{
+
+}
+
+void TestPartialColoringGenerator::test_shrinkUntilCanIncrement()
+{
+
 }
 
 
-void TestWholeColoringGenerator::test_1_sized_path()
+void TestPartialColoringGenerator::test_initialColoring()
 {
-    WholeColoringGenerator coloringGen = WholeColoringGenerator(Path({{0, 1, 2}}));
-    Coloring col;
-    
-    col = coloringGen.nextColoring();
-    if (col.empty()) {cout << "test_1_sized_path: coloring should not be empty "; col.printColoring();}
-    if (col.at(0) != 0) {cout << "test_1_sized_path: should be {0} "; col.printColoring();}
 
-    col = coloringGen.nextColoring();
-    if (col.empty()) {cout << "test_1_sized_path: coloring should not be empty "; col.printColoring();}
-    if (col.at(0) != 1) {cout << "test_1_sized_path: should be {1} "; col.printColoring();}
-    
-    col = coloringGen.nextColoring();
-    if (col.empty()) {cout << "test_1_sized_path: coloring should not be empty "; col.printColoring();}
-    if (col.at(0) != 2) {cout << "test_1_sized_path: should be {2} "; col.printColoring();}
-    
-    col = coloringGen.nextColoring();
-    if (!col.empty()) {cout << "test_1_sized_path: coloring should be empty "; col.printColoring();}
 }
 
-void TestWholeColoringGenerator::test_2_sized_path()
+void TestPartialColoringGenerator::test_nextColoring()
 {
-    WholeColoringGenerator coloringGen = WholeColoringGenerator(Path({{0, 1, 2}, {0, 1, 2}}));
-    Coloring col;
 
-    col = coloringGen.nextColoring();
-    if (col.empty()) {cout << "test_2_sized_path: coloring should not be empty "; col.printColoring();}
-    if (col.at(0) != 0 || col.at(1) != 0) {cout << "test_2_sized_path: should be {0, 0} "; col.printColoring();}
-
-    col = coloringGen.nextColoring();
-    if (col.empty()) {cout << "test_2_sized_path: coloring should not be empty "; col.printColoring();}
-    if (col.at(0) != 0 || col.at(1) != 1) {cout << "test_2_sized_path: should be {0, 1} "; col.printColoring();}
-
-    col = coloringGen.nextColoring();
-    if (col.empty()) {cout << "test_2_sized_path: coloring should not be empty "; col.printColoring();}
-    if (col.at(0) != 0 || col.at(1) != 2) {cout << "test_2_sized_path: should be {0, 2} "; col.printColoring();}
-
-    col = coloringGen.nextColoring();
-    if (col.empty()) {cout << "test_2_sized_path: coloring should not be empty "; col.printColoring();}
-    if (col.at(0) != 1 || col.at(1) != 0) {cout << "test_2_sized_path: should be {1, 0} "; col.printColoring();}
-
-    col = coloringGen.nextColoring();
-    if (col.empty()) {cout << "test_2_sized_path: coloring should not be empty "; col.printColoring();}
-    if (col.at(0) != 1 || col.at(1) != 1) {cout << "test_2_sized_path: should be {1, 1} "; col.printColoring();}
-
-    col = coloringGen.nextColoring();
-    if (col.empty()) {cout << "test_2_sized_path: coloring should not be empty "; col.printColoring();}
-    if (col.at(0) != 1 || col.at(1) != 2) {cout << "test_2_sized_path: should be {1, 2} "; col.printColoring();}
-
-    col = coloringGen.nextColoring();
-    if (col.empty()) {cout << "test_2_sized_path: coloring should not be empty "; col.printColoring();}
-    if (col.at(0) != 2 || col.at(1) != 0) {cout << "test_2_sized_path: should be {2, 0} "; col.printColoring();}
-
-    col = coloringGen.nextColoring();
-    if (col.empty()) {cout << "test_2_sized_path: coloring should not be empty "; col.printColoring();}
-    if (col.at(0) != 2 || col.at(1) != 1) {cout << "test_2_sized_path: should be {2, 1} "; col.printColoring();}
-
-    col = coloringGen.nextColoring();
-    if (col.empty()) {cout << "test_2_sized_path: coloring should not be empty "; col.printColoring();}
-    if (col.at(0) != 2 || col.at(1) != 2) {cout << "test_2_sized_path: should be {2, 2} "; col.printColoring();}
-
-
-    col = coloringGen.nextColoring();
-    if (!col.empty()) {cout << "test_2_sized_path: coloring should be empty "; col.printColoring();}
 }
 
-void TestWholeColoringGenerator::test_all()
+void TestPartialColoringGenerator::test_skipColoring()
 {
-    cout << "Testing ColoringGenerator..." << endl;
+
+}
+
+void TestPartialColoringGenerator::test_isFullColoring()
+{
+
+}
+
+
+void TestPartialColoringGenerator::test_empty_path()
+{
+
+}
+
+void TestPartialColoringGenerator::test_1_sized_path()
+{
+
+}
+
+void TestPartialColoringGenerator::test_2_sized_path()
+{
+
+}
+
+void TestPartialColoringGenerator::test_3_sized_path()
+{
+
+}
+
+
+void TestPartialColoringGenerator::test_all()
+{
+    cout << "Testing PartialColoringGenerator..." << endl;
+
+    test_canIncrement();
+    test_increment();
+    test_canBeEnlarged();
+    test_enlarge();
+    test_shrink();
+    test_shrinkUntilCanIncrement();
+
+    test_initialColoring();
+    test_nextColoring();
+    test_skipColoring();
+    test_isFullColoring();
 
     test_empty_path();
+    test_3_sized_path();
     test_1_sized_path();
     test_2_sized_path();
 }

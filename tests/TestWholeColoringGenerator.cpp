@@ -89,7 +89,7 @@ void TestWholeColoringGenerator::test_2_sized_path()
 
 void TestWholeColoringGenerator::test_all()
 {
-    cout << "Testing ColoringGenerator..." << endl;
+    cout << "Testing WholeColoringGenerator..." << endl;
 
     test_empty_path();
     test_1_sized_path();

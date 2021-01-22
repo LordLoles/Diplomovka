@@ -13,17 +13,18 @@ class PartialColoringGenerator
     private:
         int fullLength;
         Path path;
-        Coloring lastResult;
-        vector<int> colorIndeces;
-
-        bool canIncrement(Coloring col);
-        Coloring increment(Coloring col);
-        bool canBeEnlarged(Coloring col);
-        Coloring enlarge(Coloring col);
-        Coloring shrink(Coloring col);
-        Coloring shrinkUntilCanIncrement(Coloring col);
 
     public:
+        Coloring lastResult;
+        vector<int> colorIndeces;
+        
+        bool canIncrement();
+        void increment();
+        bool canBeEnlarged();
+        void enlarge();
+        void shrink();
+        void shrinkUntilCanIncrement();
+
         PartialColoringGenerator(Path path);
         Coloring initialColoring();
         Coloring nextColoring();

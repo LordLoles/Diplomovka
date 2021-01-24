@@ -37,6 +37,7 @@ int main()
         while (!(coloring.empty()))
         {
             cout << "coloring: ";
+            //TODO novy generator generuje odlisne! pouprav!
             coloring.printColoring();
             if (checkNonRepetitiveness(coloring))
             {

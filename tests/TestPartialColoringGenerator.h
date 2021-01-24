@@ -25,11 +25,6 @@ class TestPartialColoringGenerator
         void test_skipColoring();
         void test_isFullColoring();
 
-        void test_empty_path();
-        void test_1_sized_path();
-        void test_2_sized_path();
-        void test_3_sized_path();
-
         void test_all();
 };
 

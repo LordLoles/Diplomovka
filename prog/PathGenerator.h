@@ -18,8 +18,8 @@ class PathGenerator
     public:
         PathGenerator(int lengthOfPath, int colorsInPath);
         Path nextPath(); //const Path & nextPath(), ked to bude rozumne brat cestu a ulozi si ju popredu, namiesto longlong nextLists;
-        //TODO novy generator - po farbach - kde budu farby 1, kde farby 2, ... (hned vyuzijes, kde maju farby prienik
-        //TODO negeneruj tie cesty, ktore maju farby bez prienikom. cesty s prienikom zahod (ze farba 1 a farba 2 su presne v tych istych zoznamoch - to nechceme)
+        //TODO negeneruj tie cesty, ktore maju farby s prienikom - rovno zahod (ze farba 1 a farba 2 su presne v tych istych zoznamoch - to nechceme)
+        //TODO novy generator - po farbach - kde budu farby 1, kde farby 2, ... (hned vyuzijes, kde maju farby prienik)
 };
 
 #endif

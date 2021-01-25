@@ -33,6 +33,8 @@ void TestNonRepetitiveness::test_nonrepetitiveness_on_last_index()
     if (checkNonRepetitivenessOnLastIndex(testing)) {cout << "test_nonrepetitiveness_on_last_index: should be repetitive on last index, col "; testing.printColoring();}
     testing = Coloring({0, 1, 0, 2, 1, 0, 2});
     if (checkNonRepetitivenessOnLastIndex(testing)) {cout << "test_nonrepetitiveness_on_last_index: should be repetitive on last index, col "; testing.printColoring();}
+    testing = Coloring({0, 0});
+    if (checkNonRepetitivenessOnLastIndex(testing)) {cout << "test_nonrepetitiveness_on_last_index: should be repetitive on last index, col "; testing.printColoring();}
 }
 
 void TestNonRepetitiveness::test_nonrepetitiveness()

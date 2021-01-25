@@ -26,9 +26,9 @@ int main()
     while (!(nowPath.empty()))
     {
         found = false;
-        cout << endl;
+        /*cout << endl;
         cout << "path with lists: ";
-        nowPath.printPath();
+        nowPath.printPath();*/
 
         PartialColoringGenerator coloringGenerator = PartialColoringGenerator(nowPath);
 
@@ -36,8 +36,8 @@ int main()
         //TODO aj coloring by slo na array<int, length>, ale musis si pamatat momentalnu dlzku
         while (!(coloring.empty()))
         {
-            cout << "coloring: ";
-            coloring.printColoring();
+            /*cout << "coloring: ";
+            coloring.printColoring();*/
 
             if (checkNonRepetitivenessOnLastIndex(coloring))
             {
@@ -60,6 +60,7 @@ int main()
         if (!found)
         {
             cout << "COUNTEREXAMPLE! COUNTEREXAMPLE! COUNTEREXAMPLE! COUNTEREXAMPLE! COUNTEREXAMPLE! COUNTEREXAMPLE! " << endl;
+            nowPath.printPath();
         }
         nowPath = pathGenerator.nextPath();
     }

@@ -1,0 +1,4 @@
+Ako presne funguje check nerepetitivnosti? kedy presne mam protipriklad?
+Testy idu aj bez public premennych?
+Preco nechcem cesty, kde ma nejaka farba prienik?
+Ak bude cesta dlzky constexpr, nebude mozne testovat s roznymi dlzkami a farbami.

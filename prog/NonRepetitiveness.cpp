@@ -1,5 +1,6 @@
 #include "NonRepetitiveness.h"
 #include <iostream>
+#include <math.h>
 
 using namespace std;
 
@@ -24,7 +25,8 @@ bool checkEqualityOnIndexWithSize(const Coloring & coloring, int index, int size
 //O(n^2)
 bool checkNonRepetitivenessOnIndex(const Coloring & coloring, int index)
 {
-    for (int i = 1; i <= index/2; i++)
+    int half = ceil(((float)index)/2);
+    for (int i = 1; i <= half; i++)
     {
         if (checkEqualityOnIndexWithSize(coloring, index, i))
             return false;
@@ -32,7 +34,7 @@ bool checkNonRepetitivenessOnIndex(const Coloring & coloring, int index)
     return true;
 }
 
-//Calls checkNonRepetitivenessOnIndex() on last index of given coloring
+//Calls checkNonRepetitivenessOnIndex() with last index of given coloring
 //Checks nonrepetitiveness for all-sized subcolorings ending on last element of given coloring
 //O(n^2)
 bool checkNonRepetitivenessOnLastIndex(const Coloring & coloring)

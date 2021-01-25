@@ -67,13 +67,13 @@ void PartialColoringGenerator::shrinkUntilCanIncrement()
 Coloring PartialColoringGenerator::initialColoring()
 {
     vector<int> initialColor = path.empty() ? vector<int>{} : vector<int>{path.at(0)[0]}; //first color available in path or empty, if path is also empty
-    lastResult = Coloring(initialColor); // get coloring of length 1 with the zero color from path[0]
+    lastResult = Coloring(initialColor); //get coloring of length 1 with the zeroth color from path[0]
     colorIndeces.clear();
     colorIndeces.push_back(0);
     return lastResult;
 }
 
-//generate and returns next coloring
+//generates and returns next coloring
 //examples on 012 colors for every vertex, maximal length 5:
 // --- last coloring is 00, this will return 000
 // --- last coloring is 10120, this will return 10121

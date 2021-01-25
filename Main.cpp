@@ -37,14 +37,25 @@ int main()
         while (!(coloring.empty()))
         {
             cout << "coloring: ";
-            //TODO novy generator generuje odlisne! pouprav!
             coloring.printColoring();
-            if (checkNonRepetitiveness(coloring))
+
+            if (checkNonRepetitivenessOnLastIndex(coloring))
             {
-                found = true;
-                if (coloringGenerator.isFullColoring()) break; //generated whole coloring, that is nonrepetitive, so skipping it
+                if (coloringGenerator.isFullColoring())
+                {
+                    found = true;
+                    break;
+                }
+                else
+                {
+                    coloring = coloringGenerator.nextColoring();
+                }
             }
-            coloring = coloringGenerator.nextColoring();
+            else
+            {
+                //coloring contains repetition
+                coloring = coloringGenerator.skipColoring();
+            }
         }
         if (!found)
         {

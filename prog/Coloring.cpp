@@ -22,6 +22,7 @@ void Coloring::printColoring() const
 
 string Coloring::to_string() const
 {
+    if (coloring.empty()) return "empty";
     string result = "";
     for (const int &vertex : coloring)
         result += std::to_string(vertex) + " ";

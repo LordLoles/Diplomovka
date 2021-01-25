@@ -20,7 +20,7 @@ bool checkEqualityOnIndexWithSize(const Coloring & coloring, int index, int size
     return true;
 }
 
-//Check nonrepetitiveness for all-sized subcolorings ending on index
+//Checks nonrepetitiveness for all-sized subcolorings ending on index
 //O(n^2)
 bool checkNonRepetitivenessOnIndex(const Coloring & coloring, int index)
 {
@@ -32,7 +32,15 @@ bool checkNonRepetitivenessOnIndex(const Coloring & coloring, int index)
     return true;
 }
 
-//Check nonrepetitiveness on whole coloring
+//Calls checkNonRepetitivenessOnIndex() on last index of given coloring
+//Checks nonrepetitiveness for all-sized subcolorings ending on last element of given coloring
+//O(n^2)
+bool checkNonRepetitivenessOnLastIndex(const Coloring & coloring)
+{
+    return checkNonRepetitivenessOnIndex(coloring, coloring.size()-1);
+}
+
+//Checks nonrepetitiveness on whole coloring
 //O(n^3)
 bool checkNonRepetitiveness(const Coloring & coloring)
 {

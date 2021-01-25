@@ -9,7 +9,7 @@
 using namespace std;
 
 
-void TestNonRepetitiveness::test_equality_funtion()
+void TestNonRepetitiveness::test_equality_function()
 {
     Coloring testing = Coloring({0, 1, 0, 0});
     if (checkEqualityOnIndexWithSize(testing, 1, 1)) {cout << "test_equality_on_0100: should not equal, index 1, size 1, col "; testing.printColoring();}
@@ -25,6 +25,14 @@ void TestNonRepetitiveness::test_nonrepetitiveness_on_index()
     if (!checkNonRepetitivenessOnIndex(testing, 1)) {cout << "test_nonrepetitiveness_on_index: should be nonrepetitive, index 1, col "; testing.printColoring();}
     if (!checkNonRepetitivenessOnIndex(testing, 2)) {cout << "test_nonrepetitiveness_on_index: should be nonrepetitive, index 2, col "; testing.printColoring();}
     if (checkNonRepetitivenessOnIndex(testing, 3)) {cout << "test_nonrepetitiveness_on_index: should be repetitive, index 2, col "; testing.printColoring();}
+}
+
+void TestNonRepetitiveness::test_nonrepetitiveness_on_last_index()
+{
+    Coloring testing = Coloring({0, 1, 0, 0});
+    if (checkNonRepetitivenessOnLastIndex(testing)) {cout << "test_nonrepetitiveness_on_last_index: should be repetitive on last index, col "; testing.printColoring();}
+    testing = Coloring({0, 1, 0, 2, 1, 0, 2});
+    if (checkNonRepetitivenessOnLastIndex(testing)) {cout << "test_nonrepetitiveness_on_last_index: should be repetitive on last index, col "; testing.printColoring();}
 }
 
 void TestNonRepetitiveness::test_nonrepetitiveness()
@@ -77,8 +85,9 @@ void TestNonRepetitiveness::test_all(int colors, int maxLength, int repeat)
 {
     cout << "Testing NonRepetitiveness..." << endl;
 
-    test_equality_funtion();
+    test_equality_function();
     test_nonrepetitiveness_on_index();
+    test_nonrepetitiveness_on_last_index();
     test_nonrepetitiveness();
 
 

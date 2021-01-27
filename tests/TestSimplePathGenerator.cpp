@@ -1,4 +1,4 @@
-#include "TestPathGenerator.h"
+#include "TestSimplePathGenerator.h"
 #include <iostream>
 #include <vector>
 #include <tuple>
@@ -8,11 +8,11 @@
 using namespace std;
 
 
-void TestPathGenerator::test_2_colors()
+void TestSimplePathGenerator::test_2_colors()
 {
     try
     {
-        PathGenerator pathGen = PathGenerator(2, 2);
+        SimplePathGenerator pathGen = SimplePathGenerator(2, 2);
         pathGen.nextPath();
         cout << "test_2_colors should have generated an exception!" << endl;
     }
@@ -24,9 +24,9 @@ void TestPathGenerator::test_2_colors()
     { }
 }
 
-void TestPathGenerator::test_3_colors()
+void TestSimplePathGenerator::test_3_colors()
 {
-    PathGenerator pathGen = PathGenerator(5, 3);
+    SimplePathGenerator pathGen = SimplePathGenerator(5, 3);
     Path path;
 
     path = pathGen.nextPath();
@@ -38,9 +38,9 @@ void TestPathGenerator::test_3_colors()
     if (!path.empty()) {cout << "test_3_colors: path should be empty "; path.printPath();}
 }
 
-void TestPathGenerator::test_4_colors()
+void TestSimplePathGenerator::test_4_colors()
 {
-    PathGenerator pathGen = PathGenerator(1, 4);
+    SimplePathGenerator pathGen = SimplePathGenerator(1, 4);
     Path path;
 
     path = pathGen.nextPath();
@@ -58,9 +58,9 @@ void TestPathGenerator::test_4_colors()
     if (!path.empty()) {cout << "test_4_colors: path should be empty "; path.printPath();}
 }
 
-void TestPathGenerator::test_all()
+void TestSimplePathGenerator::test_all()
 {
-    cout << "Testing PathGenerator..." << endl;
+    cout << "Testing SimplePathGenerator..." << endl;
     test_2_colors();
     test_3_colors();
     test_4_colors();

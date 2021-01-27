@@ -1,7 +1,7 @@
-#ifndef TESTPATHGENERATOR_H
-#define TESTPATHGENERATOR_H
+#ifndef TESTSIMPLEPATHGENERATOR_H
+#define TESTSIMPLEPATHGENERATOR_H
 
-#include "../prog/PathGenerator.h"
+#include "../prog/PathGenerators/SimplePathGenerator.h"
 #include <iostream>
 #include <vector>
 #include <tuple>
@@ -9,7 +9,7 @@
 using namespace std;
 
 
-class TestPathGenerator //namespace
+class TestSimplePathGenerator //namespace
 {
     public:
         void test_2_colors();

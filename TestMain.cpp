@@ -1,8 +1,8 @@
 #include "./tests/TestPath.h"
-#include "./tests//TestColoring.h"
+#include "./tests/TestColoring.h"
 #include "./tests/TestUtils.h"
 #include "./tests/TestNonRepetitiveness.h"
-#include "./tests/TestPathGenerator.h"
+#include "./tests/TestSimplePathGenerator.h"
 #include "./tests/TestWholeColoringGenerator.h"
 #include "./tests/TestPartialColoringGenerator.h"
 
@@ -10,7 +10,7 @@ TestPath testPath;
 TestColoring testColoroing;
 TestUtils testUtils;
 TestNonRepetitiveness testNonRepetitiveness;
-TestPathGenerator testNextPathGenerator;
+TestSimplePathGenerator testSimplePathGenerator;
 TestWholeColoringGenerator testWholeColoringGenerator;
 TestPartialColoringGenerator testPartialColoringGenerator;
 
@@ -20,7 +20,7 @@ int main()
     testColoroing.test_all();
     testUtils.test_all();
     testNonRepetitiveness.test_all(10, 200);
-    testNextPathGenerator.test_all();
+    testSimplePathGenerator.test_all();
     testWholeColoringGenerator.test_all();
     testPartialColoringGenerator.test_all();
 

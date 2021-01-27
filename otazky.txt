@@ -1,4 +1,8 @@
 Ako presne funguje check nerepetitivnosti? kedy presne mam protipriklad?
 Testy idu aj bez public premennych?
 Preco nechcem cesty, kde ma nejaka farba prienik?
-Ak bude cesta dlzky constexpr, nebude mozne testovat s roznymi dlzkami a farbami.
+Ak bude cesta dlzky constexpr, nebude mozne testovat s roznymi dlzkami a farbami. (constexpr v konstruktore a testoch?)
+
+Co ak zoznamovost neztazi problem zafarbitelnosti cesty? Hodno uzavenia?
+Dalo by sa nejako odhadovat maximalny pocet farieb na zkalade dlzky cesty (a nejako znizovat tento odhad)?
+Alebo opacne? S poctom farieb odhadnut maximalne relevantnu dlzku cesty?

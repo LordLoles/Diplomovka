@@ -1,10 +1,10 @@
-#include "PathGenerator.h"
+#include "SimplePathGenerator.h"
 #include <iostream>
 
 using namespace std;
 
 
-PathGenerator::PathGenerator(int lengthOfPath, int colorsInPath) 
+SimplePathGenerator::SimplePathGenerator(int lengthOfPath, int colorsInPath) 
     : nextLists(0)
     , length (lengthOfPath)
     , allColorSubsets (Path(getSubsetsOfLength3(getSetToLength(colorsInPath))))
@@ -17,7 +17,7 @@ PathGenerator::PathGenerator(int lengthOfPath, int colorsInPath)
 }
 
 
-Path PathGenerator::nextPath()
+Path SimplePathGenerator::nextPath()
 {
     //cout << "nextPath start";
     vector<array<int, 3>> res;

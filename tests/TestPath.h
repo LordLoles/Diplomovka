@@ -15,11 +15,15 @@ class TestPath
         Path emptyPath = Path();
 
     public:
-        void test_size_1();
-        void test_size_2();
-        void test_empty_1();
-        void test_empty_2();
-        void test_at_full();
+        void test_size();
+        void test_empty();
+        void test_at();
+        void test_to_vector();
+        void test_push_back();
+        void test_pop_back();
+        void test_set();
+        void test_set_2();
+        void test_increment();
         void test_all();
 };
 

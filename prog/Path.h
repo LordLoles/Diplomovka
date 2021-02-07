@@ -7,9 +7,11 @@
 
 using namespace std;
 
+//template<int length>
 class Path
 {
     private:
+        //array<array<int, 3>, length> path;
         vector<array<int, 3>> path;
 
     public:
@@ -21,6 +23,12 @@ class Path
         array<int, 3> at(int index) const;
         bool empty();
         int size();
+        vector<array<int, 3>> to_vector() const;
+        Path push_back(array<int, 3> list) const;
+        Path pop_back() const;
+        Path set(int index, array<int, 3> value) const;
+        Path set(int index, int position, int color) const;
+        Path increment(int index, int position) const;
 };
 
 #endif

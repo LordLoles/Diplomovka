@@ -21,7 +21,6 @@ int main()
     PathGenerator pathGenerator = PathGenerator(lengthOfPath, colorsInPath);
 
     Path nowPath = pathGenerator.nextPath();
-    //TODO pozmen Path na array<int, length> (pole intov dlzky length - bude treba ten constexpr)
 
     while (!(nowPath.empty()))
     {
@@ -33,7 +32,6 @@ int main()
         WholeColoringGenerator coloringGenerator = WholeColoringGenerator(nowPath);
 
         Coloring coloring = coloringGenerator.nextColoring();
-        //TODO aj coloring by slo na array<int, length>, ale musis si pamatat momentalnu dlzku
 
         while (!(coloring.empty()))
         {

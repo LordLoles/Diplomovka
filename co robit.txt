@@ -1,7 +1,8 @@
 TODO komenty
 
-TODO pouzivat constexpr, aby bola path velkost dopredu znama -> potom sa neda testovat Path, neda sa vytvarat nejaky pomocny objekt Path s inou velkostou
-TODO na to vyuzi template - scrennshot mas
+TODO pouzivat constexpr, aby bola path velkost dopredu znama
+	-> potom sa neda testovat Path, neda sa vytvarat nejaky pomocny objekt Path s inou velkostou
+		-> na to vyuzi template - screenshot mas
 
 negenerovat cesty, ktore maju disjunktne farby (napr. 0 vo vrcholoch 1 az 3, 1 len vo vrcholoch 5 az 9)
 skus pri gen cesty, ked su farby disjunktne, ale v jednom vrchole (dvojici) su obe - ci nieco z toho vybuchas (skus nejaky dokaz, pohraj sa na papieri)
@@ -9,6 +10,6 @@ gen ciest ma symetrie
 	1. vymena farieb - nageneruj vsetky permutacie pre dane farby a vrat len ked je lexikograficky (alebo hocijake ine) najlepsia moznost (mozes fixnut prvy 3-zoznam na 012)
 	2. otocenie cesty (neries este, zrychli len 2x)
 	
-z tej vety (ak plati pre k)
+z tej vety (ak plati uz pre k, nie k+1)
 	2k*k <= n*3
 	k <= sqrt(1.5n)

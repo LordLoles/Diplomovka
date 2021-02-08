@@ -23,9 +23,9 @@ void ByColorPathGenerator::setColor(int vertex, int position, int color)
     lastResult = lastResult.set(vertex, position, color); //modify our resulting path
 }
 
-/*
-* Updates 'colorsUsage' so by key 'newColor' you will get also 'vertex' in returning set.
-* Eraseing index 'vertex' from old color key and inserting 'vertex' to 'newColor' key.
+/* 
+* Updates 'colorsUsage' so by key 'newColor' you will get also 'vertex' in returning set
+* Eraseing index 'vertex' from old color key and inserting 'vertex' to 'newColor' key
 */
 void ByColorPathGenerator::updateColorsUsage(int vertex, int position, int newColor)
 {
@@ -53,15 +53,11 @@ void ByColorPathGenerator::reset(int vertex, int position)
 
 /*
 * Returns true, if increment was performed.
-* Retruns false, if the color was reset.
+* Retruns false, if nothing happened.
 */
 bool ByColorPathGenerator::incrementVertexPostion(int vertex, int position)
 {
-    if (isLast(vertex, position))
-    {
-        reset(vertex, position);
-        return false;
-    }
+    if (isLast(vertex, position)) return false;
     else
     {
         lastResult = lastResult.increment(vertex, position);
@@ -76,13 +72,43 @@ bool ByColorPathGenerator::incrementVertexPostion(int vertex, int position)
 */
 bool ByColorPathGenerator::incrementVertex(int vertex)
 {
-    return (incrementVertexPostion(vertex, 2) || incrementVertexPostion(vertex, 1) || incrementVertexPostion(vertex, 0));
+
+    if (!incrementVertexPostion(vertex, 2))
+    {
+        if (!incrementVertexPostion(vertex, 1))
+        {
+            if (!incrementVertexPostion(vertex, 0))
+            {
+                //if nothing was incremented, reset and return false
+                reset(vertex, 0);
+                reset(vertex, 1);
+                reset(vertex, 2);
+                return false;
+            }
+            else
+            {
+                //if 1st color was incremented, set 2nd and 3rd color to subsequent colors
+                int newColor = lastResult.at(vertex).at(0);
+                setColor(vertex, 1, newColor + 1);
+                setColor(vertex, 2, newColor + 2);
+            }
+        }
+        else
+        {
+            //if 2nd color was incremented, set 3rd to subsequent color
+            int newColor = lastResult.at(vertex).at(1);
+            setColor(vertex, 2, newColor + 1);
+        }
+    }
+    //if 3rd color was incremented, nothing else needs to be done
+
+    return true;
 }
 
 void ByColorPathGenerator::increment()
 {
     int vertexPos = length;
-    while(incrementVertex(vertexPos))
+    while(!incrementVertex(vertexPos))
     {
         vertexPos--;
         if (vertexPos == -1)

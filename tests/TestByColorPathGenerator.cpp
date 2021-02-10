@@ -6,7 +6,7 @@
 using namespace std;
 
 
-void test_setColor()
+void TestByColorPathGenerator::test_setColor()
 {
     ByColorPathGenerator byColorPathGenerator = ByColorPathGenerator(3, 5);
     byColorPathGenerator.initialPath();
@@ -19,7 +19,7 @@ void test_setColor()
             byColorPathGenerator.lastResult.at(1).at(2) << "}" << endl;
 }
 
-void test_updateColorsUsage()
+void TestByColorPathGenerator::test_updateColorsUsage()
 {
     ByColorPathGenerator byColorPathGenerator = ByColorPathGenerator(3, 5);
     byColorPathGenerator.initialPath();
@@ -34,7 +34,7 @@ void test_updateColorsUsage()
             byColorPathGenerator.colorsUsage.at(4).size() << endl;
 }
 
-void test_isLast()
+void TestByColorPathGenerator::test_isLast()
 {
     ByColorPathGenerator byColorPathGenerator = ByColorPathGenerator(3, 5);
     byColorPathGenerator.initialPath();
@@ -50,7 +50,7 @@ void test_isLast()
         cout << "test_isLast(): position (1, 0) should have last color, but was " << byColorPathGenerator.lastResult.at(1).at(0) << endl;
 }
 
-void test_reset()
+void TestByColorPathGenerator::test_reset()
 {
     ByColorPathGenerator byColorPathGenerator = ByColorPathGenerator(1, 4);
     byColorPathGenerator.initialPath();
@@ -65,7 +65,7 @@ void test_reset()
         cout << "test_reset(): position (0, 1) should be reset to 1, but was " << byColorPathGenerator.lastResult.at(0).at(1) << endl;
 }
 
-void test_incrementVertexPostion()
+void TestByColorPathGenerator::test_incrementVertexPostion()
 {
     ByColorPathGenerator byColorPathGenerator = ByColorPathGenerator(1, 4);
     byColorPathGenerator.initialPath();
@@ -80,7 +80,7 @@ void test_incrementVertexPostion()
         cout << "test_incrementVertexPostion(): position (0, 1) should be not incremented now, ended with " << byColorPathGenerator.lastResult.at(0).at(1) << endl;
 }
 
-void test_incrementVertex()
+void TestByColorPathGenerator::test_incrementVertex()
 {
     ByColorPathGenerator byColorPathGenerator = ByColorPathGenerator(1, 4);
     byColorPathGenerator.initialPath();
@@ -91,17 +91,17 @@ void test_incrementVertex()
     //TODO
 }
 
-void test_increment()
+void TestByColorPathGenerator::test_increment()
 {
 
 }
 
-void test_initialPath()
+void TestByColorPathGenerator::test_initialPath()
 {
 
 }
 
-void test_nextPath()
+void TestByColorPathGenerator::test_nextPath()
 {
 
 }

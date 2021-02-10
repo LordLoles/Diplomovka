@@ -1,6 +1,7 @@
 #include "ByColorPathGenerator.h"
 #include "PathRelevanceCheck.h"
 #include <iostream>
+#include "PathRelevanceCheck.h"
 
 using namespace std;
 
@@ -137,6 +138,6 @@ Path ByColorPathGenerator::nextPath() //const nejde, lebo nepojde "colorsUsage[i
 {
     increment();
 
-    if (PathRelevanceCheck::isPathRelevant(lastResult, colorsUsage, allColors.size())) return lastResult;
+    if (isPathRelevant(lastResult, colorsUsage, allColors.size())) return lastResult;
     else return nextPath();
 }

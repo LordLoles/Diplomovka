@@ -2,7 +2,7 @@
 #include "./prog/Utils.h"
 #include "./prog/Coloring.h"
 #include "./prog/Path.h"
-#include "./prog/PathGenerator.h"
+#include "./prog/PathGenerators/SimplePathGenerator.h"
 #include "./prog/ColoringGenerators/WholeColoringGenerator.h"
 #include "./prog/NonRepetitiveness.h"
 #include "./prog/Consts.h"
@@ -18,16 +18,16 @@ int main()
 {
     bool found;
 
-    PathGenerator pathGenerator = PathGenerator(lengthOfPath, colorsInPath);
+    SimplePathGenerator pathGenerator = SimplePathGenerator(lengthOfPath, colorsInPath);
 
     Path nowPath = pathGenerator.nextPath();
 
     while (!(nowPath.empty()))
     {
         found = false;
-        cout << endl;
-        cout << "path with lists: ";
-        nowPath.printPath();
+        //cout << endl;
+        //cout << "path with lists: ";
+        //nowPath.printPath();
 
         WholeColoringGenerator coloringGenerator = WholeColoringGenerator(nowPath);
 
@@ -35,8 +35,8 @@ int main()
 
         while (!(coloring.empty()))
         {
-            cout << "coloring: ";
-            coloring.printColoring();
+            //cout << "coloring: ";
+            //coloring.printColoring();
             if (checkNonRepetitiveness(coloring))
             {
                 //this coloring has non-repetitive possibility, so skipping

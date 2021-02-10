@@ -3,6 +3,7 @@
 #include "./prog/Coloring.h"
 #include "./prog/Path.h"
 #include "./prog/PathGenerators/ByColorPathGenerator.h"
+#include "./prog/PathGenerators/SimplePathGenerator.h"
 #include "./prog/ColoringGenerators/PartialColoringGenerator.h"
 #include "./prog/NonRepetitiveness.h"
 #include "./prog/Consts.h"
@@ -18,9 +19,11 @@ int main()
 {
     bool found;
 
-    ByColorPathGenerator pathGenerator = ByColorPathGenerator(lengthOfPath, colorsInPath);
+    SimplePathGenerator pathGenerator = SimplePathGenerator(lengthOfPath, colorsInPath);
 
-    Path nowPath = pathGenerator.initialPath();
+    //Path nowPath = pathGenerator.initialPath();
+    Path nowPath = pathGenerator.nextPath();
+
     //TODO pozmen Path na array<int, length> (pole intov dlzky length - bude treba ten constexpr)
 
     while (!(nowPath.empty()))

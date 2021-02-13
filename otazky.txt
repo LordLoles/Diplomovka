@@ -1,5 +1,6 @@
 co tak generovat aj cesty postupne (ako farbenia - do stromu), ak narazim na lexikograficky nie najlepsiu, mozem preskocit cely podstrom.
-    
+
+template nejde, neviem uz preco :D
 
 
 PPT - co su bloky (pre nerepetitivnost) vysvetli lepsie

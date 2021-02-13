@@ -40,7 +40,7 @@ void ByColorPathGenerator::updateColorsUsage(int vertex, int position, int newCo
 */
 bool ByColorPathGenerator::isLast(int vertex, int position)
 {
-    return lastResult.at(vertex).at(position) == allColors.size();
+    return lastResult.at(vertex).at(position) == (allColors.size() - 3 + position);
 }
 
 /*
@@ -106,6 +106,11 @@ bool ByColorPathGenerator::incrementVertex(int vertex)
     return true;
 }
 
+/*
+* Increments the color on some position on some vertex.
+* Increments the most right one, if can. if can not, goes one position left, and so on.
+* Sets 'lastResult' to empty, if nothing can be incremented.
+*/
 void ByColorPathGenerator::increment()
 {
     int vertexPos = length;
@@ -114,14 +119,19 @@ void ByColorPathGenerator::increment()
         vertexPos--;
         if (vertexPos == -1)
         {
-            //Can not increment more
+            //Can't increment anything
             lastResult = Path();
             //colorsUsage = unordered_map<int, set<int>>();
         }
     }
 }
 
-Path ByColorPathGenerator::initialPath() //const nejde, lebo nepojde "colorsUsage[i] = set"
+
+/*
+* Initialize this path generator
+* Returns the first path.
+*/
+Path ByColorPathGenerator::initialPath() //const nejde, lebo nepojde "colorsUsage[i] = set..."
 {
     vector<array<int, 3>> path;
     for (int i = 0; i < length; i++)

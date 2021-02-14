@@ -9,6 +9,7 @@ using namespace std;
 ByColorPathGenerator::ByColorPathGenerator(int lengthOfPath, int colorsInPath) 
     : allColors(getSetToLength(colorsInPath))
     , length(lengthOfPath)
+    , lastResult(Path())
 {
     if (colorsInPath < 3) throw "At least 3 colors are required.";
 
@@ -113,15 +114,16 @@ bool ByColorPathGenerator::incrementVertex(int vertex)
 */
 void ByColorPathGenerator::increment()
 {
-    int vertexPos = length;
+    int vertexPos = length - 1;
     while(!incrementVertex(vertexPos))
     {
         vertexPos--;
-        if (vertexPos == -1)
+        if (vertexPos < 0)
         {
             //Can't increment anything
-            lastResult = Path();
             //colorsUsage = unordered_map<int, set<int>>();
+            lastResult = Path();
+            return;
         }
     }
 }
@@ -136,12 +138,13 @@ Path ByColorPathGenerator::initialPath() //const nejde, lebo nepojde "colorsUsag
     vector<array<int, 3>> path;
     for (int i = 0; i < length; i++)
         path.push_back({0,1,2});
+    lastResult = Path(path);
 
     vector<int> allVertecesVector = getSetToLength(length);
     for (int i = 0; i < 3; i++)
         colorsUsage[i] = set<int>(allVertecesVector.begin(), allVertecesVector.end());
-
-    return Path(path); //Assuming initial path is relevant and doesn't need a check
+        
+    return lastResult; //Assuming initial path is relevant and doesn't need a check
 }
 
 Path ByColorPathGenerator::nextPath() //const nejde, lebo nepojde "colorsUsage[i] = set"

@@ -13,6 +13,7 @@ ByColorPathGenerator::ByColorPathGenerator(int lengthOfPath, int colorsInPath)
 {
     if (colorsInPath < 3) throw "At least 3 colors are required.";
 
+    colorsUsage = vector<set<int>>(colorsInPath);
     for (int i = 0; i < colorsInPath; i++)
     {
         colorsUsage[i] = set<int>();

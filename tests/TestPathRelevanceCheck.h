@@ -9,7 +9,8 @@ using namespace std;
 class TestPathRelevanceCheck
 {
     public:
-        //TODO
+        void test_hasDisjunctColor();
+        void test_isFirstLexicographically();
         void test_all();
 };
 

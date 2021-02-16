@@ -51,7 +51,7 @@ bool ByColorPathGenerator::isLast(int vertex, int position)
 void ByColorPathGenerator::reset(int vertex, int position)
 {
     updateColorsUsage(vertex, position, position);
-    lastResult = lastResult.set(vertex, position, position);
+    lastResult = lastResult.set(vertex, position, position); //modify our resulting path
 }
 
 /*
@@ -63,7 +63,7 @@ bool ByColorPathGenerator::incrementVertexPostion(int vertex, int position)
     if (isLast(vertex, position)) return false;
     else
     {
-        lastResult = lastResult.increment(vertex, position);
+        lastResult = lastResult.increment(vertex, position); //modify our resulting path
         updateColorsUsage(vertex, position, lastResult.at(vertex).at(position));
         return true;
     }
@@ -145,13 +145,16 @@ Path ByColorPathGenerator::initialPath() //const nejde, lebo nepojde "colorsUsag
     for (int i = 0; i < 3; i++)
         colorsUsage[i] = set<int>(allVertecesVector.begin(), allVertecesVector.end());
         
-    return lastResult; //Assuming initial path is relevant and doesn't need a check
+    return lastResult; //Initial path is relevant and doesn't need a check
 }
 
 Path ByColorPathGenerator::nextPath() //const nejde, lebo nepojde "colorsUsage[i] = set"
 {
-    increment();
-
-    if (isPathRelevant(lastResult, colorsUsage, allColors.size())) return lastResult;
-    else return nextPath();
+    bool pathIsRelevant = false;
+    while (!pathIsRelevant)
+    {
+        increment();
+        pathIsRelevant = isPathRelevant(lastResult, colorsUsage, allColors.size());
+    }
+    return lastResult;
 }

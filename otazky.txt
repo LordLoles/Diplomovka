@@ -1,6 +1,10 @@
 co tak generovat aj cesty postupne (ako farbenia - do stromu), ak narazim na lexikograficky nie najlepsiu, mozem preskocit cely podstrom.
+ked nie je prvy vrchol [0, 1, 2] dostanem StackOverflow, samozrejme. Asi ho teda dostanem aj inokedy, pri vacsich vstupoch...
+Consts -> (5, 6), bez 'noColorsDisjunct()' 10.43s, s 'noColorsDisjunct()' 1m 27.93s, bez oboch 17.7s (takze lexikohrafickost pomaha)
 
 template nejde, neviem uz preco :D
+
+
 
 
 PPT - co su bloky (pre nerepetitivnost) vysvetli lepsie

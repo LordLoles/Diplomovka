@@ -4,20 +4,9 @@ TODO pouzivat constexpr, aby bola path velkost dopredu znama
 	-> potom sa neda testovat Path, neda sa vytvarat nejaky pomocny objekt Path s inou velkostou
 		-> na to vyuzi template - screenshot mas
 
-negenerovat cesty, ktore maju disjunktne farby (napr. 0 vo vrcholoch 1 az 3, 1 len vo vrcholoch 5 az 9)
 skus pri gen cesty, ked su farby disjunktne, ale v jednom vrchole (dvojici) su obe - ci nieco z toho vybuchas (skus nejaky dokaz, pohraj sa na papieri)
 gen ciest ma symetrie
-	1. vymena farieb - nageneruj vsetky permutacie pre dane farby a vrat len ked je lexikograficky (alebo hocijake ine) najlepsia moznost (mozes fixnut prvy 3-zoznam na 012)
-					 - negeneruj nic. ani lexikograficky najlepsie na porovnanie netreba generovat, ale:
-					 - sprav si hashmapu<farba(int), bool> (staci len pole -> na pozicii 'i' bude predsa farba 'i'),
-					   ze ci som uz farbu videl a je spravne umiestnena; a lokalnu premennu, ze aka farba ma lexikograficky nasledovat.
-					   postupne prechadzam kazdym vrcholom a kazdou farbou v 3-zozname (zlava doprava)
-					   pridem na farbu 'c', pozrem do hashmapy ci som ju uz videl. 
-							- ak hej, idem dalej.
-							- ak nie, pozriem aka farba ma lexikograficky nasledovat (lokalna premenna)
-								- ak je to 'c', super, zaznacim do mapy, inkrementujem lokalnu premennu a idem dalej
-								- ak to nie je 'c', nejde o lexikograficky najlepsiu moznost.
-																				
+	1. vymena farieb - hotovo																		
 	2. otocenie cesty (neries este, zrychli len 2x)
 	
 z tej vety (ak plati uz pre k, nie k+1)

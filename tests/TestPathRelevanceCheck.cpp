@@ -27,6 +27,10 @@ void TestPathRelevanceCheck::test_hasDisjunctColor()
     colorsUsage = {{0,2}, {0,4}, {1,3,4}};
     if (!hasDisjunctColor(colorsUsage))
         cout << "test_hasDisjunctColor() 4: should have disjunct colors" << endl;
+
+    colorsUsage = {{0,1}, {0,1}, {0,2}, {1,2}, {2}};
+    if (!hasDisjunctColor(colorsUsage))
+        cout << "test_hasDisjunctColor() 4: should have disjunct colors" << endl;
 }
 
 void TestPathRelevanceCheck::test_isFirstLexicographically()
@@ -37,6 +41,10 @@ void TestPathRelevanceCheck::test_isFirstLexicographically()
 
     path = Path({{0,1,2}, {0,1,3}, {2,4,5}});
     if (!isFirstLexicographically(path, 6))
+        {cout << "test_isFirstLexicographically(): should be lex. first - "; path.printPath();}
+
+    path = Path({{0,1,2}, {0,1,3}, {2,3,4}});
+    if (!isFirstLexicographically(path, 5))
         {cout << "test_isFirstLexicographically(): should be lex. first - "; path.printPath();}
 
     path = Path({{0,2,3}, {0,1,2}});

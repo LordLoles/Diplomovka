@@ -154,7 +154,7 @@ Path ByColorPathGenerator::nextPath() //const nejde, lebo nepojde "colorsUsage[i
     while (!pathIsRelevant)
     {
         increment();
-        pathIsRelevant = isPathRelevant(lastResult, colorsUsage, allColors.size());
+        pathIsRelevant = isPathRelevant(lastResult, colorsUsage);
     }
     return lastResult;
 }

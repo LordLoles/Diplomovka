@@ -1,24 +1,19 @@
-Consts -> (5, 6), bez 'noColorsDisjunct()' 10.43s, s 'noColorsDisjunct()' 1m 27.93s, bez oboch 17.7s (takze lexikohrafickost pomaha)
-teraz cca 12s
-ale opacne podmienky - 9s
-s heuristikami - 10s
-co tak generovat aj cesty postupne (ako farbenia - do stromu), ak narazim na lexikograficky nie najlepsiu, mozem preskocit cely podstrom.
-
-
 template nejde, neviem uz preco :D
-
-
 
 
 
 PPT - co su bloky (pre nerepetitivnost) vysvetli lepsie
 
-​[9:20 AM] Lukoťka Robert	
-1. Ta zlozitost samozrejme nie je pri probleme o cest. Pre cestu je to bud ano alebo nie.., t.j. cas O(1). Ta zlozitost to je az ked hovorime o grafoch.
 
-2. V uvode by bolo dobre povedat, ze chceme overit tu hypotezu pre co najdlhsie cesty (pripadne aj spomenut jednoduchsie verzie, napr. ked su iba 4 farby)
+​[9:20 AM] Lukoťka Robert
+1. Ta zlozitost samozrejme nie je pri probleme o cest. Pre cestu je to bud ano alebo 
+nie.., t.j. cas O(1). Ta zlozitost to je az ked hovorime o grafoch.
+
+2. V uvode by bolo dobre povedat, ze chceme overit tu hypotezu pre co najdlhsie 
+cesty (pripadne aj spomenut jednoduchsie verzie, napr. ked su iba 4 farby)
 
 3. Vase zlozitosti su uplne zle
 ​Trivialny pocet cies nie je 2^n
 ​ale 2^(n nad 3).3^n.n^3
 O tom "vyuziti" sa porozpravame live.
+	- pozri na Scholar, najdi si dobry priklad

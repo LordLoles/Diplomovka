@@ -4,39 +4,9 @@
 using namespace std;
 
 /*
-//O(n + m)
-bool areDisjoint(set<int> set1, set<int> set2)
-{
-    set<int>:: iterator it;
-    for( it = set2.begin(); it != set2.end(); ++it)
-    {
-        int elem = *it;
-        if (set1.find(elem) != set1.end())
-            return false;
-    }
-    return true;
-}
-
-//O(n^3) !!!
-//TODO da sa nejaky alg na lepsiu casovu zlozitost
-bool hasDisjunctColor(vector<set<int>> colorsUsage)
-{
-    for (int color1 = 0; color1 < colorsUsage.size(); color1++) //O(n)
-    {
-        set<int> colorUsage1 = colorsUsage[color1];
-        for (int color2 = color1; color2 < colorsUsage.size(); color2++) //O(n)
-        {
-            set<int> colorUsage2 = colorsUsage[color2];
-            if (areDisjoint(colorUsage1, colorUsage2)) return true; //O(n + n) = O(n)
-        }
-    }
-    return false;
-}*/
-
-/*
 * Returns true, if some two colors are on disjunct verteces.
-* Time O(n + m), n is path size, m is count of colors
-* Space O(m^2)
+* Time O(n + k^2), n is path size, k is count of colors
+* Space O(k^2)
 */
 bool hasDisjunctColor(Path path, vector<set<int>> colorsUsage)
 {
@@ -147,7 +117,7 @@ bool noColorsDisjunct(Path path, vector<set<int>> colorsUsage)
 bool isFirstLexicographically(Path path, int colorsInPath)
 {
     //Heuristic - first vertex needs to be {0, 1, 2}
-    if (path.at(0) != array<int, 3>{0, 1, 2}) return false;
+    //if (path.at(0) != array<int, 3>{0, 1, 2}) return false; //is already in 'increment()' in 'By
 
     //TODO prebehni cestu, narataj farby, nech sa nemusi posielat argument 'colorsInPath'... alebo rovno vytvor vector bez pociatocnej velkosti
     vector<bool> colorsSeen = vector<bool>(colorsInPath); //at position 'i' is information, whether we have seen color 'i' already
@@ -174,6 +144,7 @@ bool isFirstLexicographically(Path path, int colorsInPath)
             }
         }
     }
+    //TODO otoc cestu a skus, ci nie je este lepsia
 
     return true;
 }

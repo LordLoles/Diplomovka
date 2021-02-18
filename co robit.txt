@@ -12,3 +12,8 @@ gen ciest ma symetrie
 z tej vety (ak plati uz pre k, nie k+1)
 	2k*k <= n*3
 	k <= sqrt(1.5n)
+
+Zlozitost
+f(n) - kolko ciest je vygenerovanych 
+g(n) - kolko farbeni sa vygeneruje
+O*(((k nad 3)^n)) + (f(n) . 3^n) + (g(n) . n^3)

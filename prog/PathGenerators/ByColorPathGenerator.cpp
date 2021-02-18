@@ -119,7 +119,7 @@ void ByColorPathGenerator::increment()
     while(!incrementVertex(vertexPos))
     {
         vertexPos--;
-        if (vertexPos < 0)
+        if (vertexPos < 1) //Don't increment first vertex, as it needs to be {0,1,2}
         {
             //Can't increment anything
             //colorsUsage = unordered_map<int, set<int>>();

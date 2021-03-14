@@ -1,7 +1,7 @@
 #ifndef TESTBYCOLORPATHGENERATOR_H
 #define TESTBYCOLORPATHGENERATOR_H
 
-#include "../prog/PathGenerators/ByColorPathGenerator.h"
+#include "../prog/PathGenerators/SimpleWithMemoryPathGenerator.h"
 
 using namespace std;
 

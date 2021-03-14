@@ -8,7 +8,7 @@ using namespace std;
 
 void TestByColorPathGenerator::test_setColor()
 {
-    ByColorPathGenerator byColorPathGenerator = ByColorPathGenerator(3, 5);
+    SimpleWithMemoryPathGenerator byColorPathGenerator = SimpleWithMemoryPathGenerator(3, 5);
     byColorPathGenerator.initialPath();
 
     byColorPathGenerator.setColor(1, 1, 4);
@@ -21,7 +21,7 @@ void TestByColorPathGenerator::test_setColor()
 
 void TestByColorPathGenerator::test_updateColorsUsage()
 {
-    ByColorPathGenerator byColorPathGenerator = ByColorPathGenerator(3, 5);
+    SimpleWithMemoryPathGenerator byColorPathGenerator = SimpleWithMemoryPathGenerator(3, 5);
     byColorPathGenerator.initialPath();
 
     byColorPathGenerator.updateColorsUsage(1, 1, 4);
@@ -36,7 +36,7 @@ void TestByColorPathGenerator::test_updateColorsUsage()
 
 void TestByColorPathGenerator::test_isLast()
 {
-    ByColorPathGenerator byColorPathGenerator = ByColorPathGenerator(3, 5);
+    SimpleWithMemoryPathGenerator byColorPathGenerator = SimpleWithMemoryPathGenerator(3, 5);
     byColorPathGenerator.initialPath();
 
     if (byColorPathGenerator.isLast(1,2) ||
@@ -61,7 +61,7 @@ void TestByColorPathGenerator::test_isLast()
 
 void TestByColorPathGenerator::test_reset()
 {
-    ByColorPathGenerator byColorPathGenerator = ByColorPathGenerator(1, 4);
+    SimpleWithMemoryPathGenerator byColorPathGenerator = SimpleWithMemoryPathGenerator(1, 4);
     byColorPathGenerator.initialPath();
 
     byColorPathGenerator.reset(0, 2);
@@ -76,7 +76,7 @@ void TestByColorPathGenerator::test_reset()
 
 void TestByColorPathGenerator::test_incrementVertexPostion()
 {
-    ByColorPathGenerator byColorPathGenerator = ByColorPathGenerator(1, 4);
+    SimpleWithMemoryPathGenerator byColorPathGenerator = SimpleWithMemoryPathGenerator(1, 4);
     byColorPathGenerator.initialPath();
 
     if (!byColorPathGenerator.incrementVertexPostion(0, 0))
@@ -88,7 +88,7 @@ void TestByColorPathGenerator::test_incrementVertexPostion()
 
 void TestByColorPathGenerator::test_incrementVertex()
 {
-    ByColorPathGenerator byColorPathGenerator = ByColorPathGenerator(1, 4);
+    SimpleWithMemoryPathGenerator byColorPathGenerator = SimpleWithMemoryPathGenerator(1, 4);
     byColorPathGenerator.initialPath();
 
     if (!byColorPathGenerator.incrementVertex(0))
@@ -129,7 +129,7 @@ void TestByColorPathGenerator::test_incrementVertex()
 
 void TestByColorPathGenerator::test_increment()
 {
-    ByColorPathGenerator byColorPathGenerator = ByColorPathGenerator(2, 4);
+    SimpleWithMemoryPathGenerator byColorPathGenerator = SimpleWithMemoryPathGenerator(2, 4);
     byColorPathGenerator.initialPath();
 
     byColorPathGenerator.increment();
@@ -172,27 +172,27 @@ void TestByColorPathGenerator::test_increment()
 
 void TestByColorPathGenerator::test_initialPath()
 {
-    ByColorPathGenerator byColorPathGenerator = ByColorPathGenerator(2, 4);
+    SimpleWithMemoryPathGenerator byColorPathGenerator = SimpleWithMemoryPathGenerator(2, 4);
     byColorPathGenerator.initialPath();
     Path res = byColorPathGenerator.lastResult;
     if (res.size() != 2 || res.at(0) != array<int, 3>{0, 1, 2} || res.at(1) != array<int, 3>{0, 1, 2})
         {cout << "test_initialPath(): should have been initialized to {{0, 1, 2}, {0, 1, 2}}, but was "; res.printPath();}
 
-    byColorPathGenerator = ByColorPathGenerator(1, 4);
+    byColorPathGenerator = SimpleWithMemoryPathGenerator(1, 4);
     byColorPathGenerator.initialPath();
     res = byColorPathGenerator.lastResult;
     if (res.size() != 1 || res.at(0) != array<int, 3>{0, 1, 2})
         {cout << "test_initialPath(): should have been initialized to {{0, 1, 2}}, but was "; res.printPath();}
 
 
-    byColorPathGenerator = ByColorPathGenerator(1, 3);
+    byColorPathGenerator = SimpleWithMemoryPathGenerator(1, 3);
     byColorPathGenerator.initialPath();
     res = byColorPathGenerator.lastResult;
     if (res.size() != 1 || res.at(0) != array<int, 3>{0, 1, 2})
         {cout << "test_initialPath(): should have been initialized to {{0, 1, 2}} again, but was "; res.printPath();}
 
 
-    byColorPathGenerator = ByColorPathGenerator(3, 5);
+    byColorPathGenerator = SimpleWithMemoryPathGenerator(3, 5);
     byColorPathGenerator.initialPath();
     res = byColorPathGenerator.lastResult;
     if (res.size() != 3 || res.at(0) != array<int, 3>{0, 1, 2} || res.at(1) != array<int, 3>{0, 1, 2} || res.at(2) != array<int, 3>{0, 1, 2})

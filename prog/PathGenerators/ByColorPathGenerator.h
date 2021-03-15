@@ -15,8 +15,6 @@ class ByColorPathGenerator
     private:
         int length;
         vector<int> allColors;
-        int fullVertecesCount;
-        bool colorsDisjunct;
 
 
     public:
@@ -24,12 +22,18 @@ class ByColorPathGenerator
         vector<set<int>> colorsUsage;
 
         ByColorPathGenerator(int lengthOfPath, int colorsInPath);
+        
+        bool isColorDisjunct(int color);
 
+        int colorsInPath();
+        int colorAtPos(int vertex, int color);
+        int freePosInVertex(int vertex);
         bool isFullVertex(int vertex);
         bool isFullPath();
 
-        void nextNotFullRelevantPath();
-        void nextFullRelevantPath();
+        bool generateNextColor(int color);
+        bool nextFullPathGenerator(int color);
+        bool nextFullPath();
 
         Path initialPath();
         Path nextPath();

@@ -5,8 +5,9 @@
 #include "./tests/TestSimplePathGenerator.h"
 #include "./tests/TestWholeColoringGenerator.h"
 #include "./tests/TestPartialColoringGenerator.h"
-#include "./tests/TestByColorPathGenerator.h"
+#include "./tests/TestSimpleWithMemoryPathGenerator.h"
 #include "./tests/TestPathRelevanceCheck.h"
+#include "./tests/TestByColorPathGenerator.h"
 
 TestPath testPath;
 TestColoring testColoroing;
@@ -15,8 +16,9 @@ TestNonRepetitiveness testNonRepetitiveness;
 TestSimplePathGenerator testSimplePathGenerator;
 TestWholeColoringGenerator testWholeColoringGenerator;
 TestPartialColoringGenerator testPartialColoringGenerator;
-TestByColorPathGenerator testByColorPathGenerator;
+TestSimpleWithMemoryPathGenerator testSimpleWithMemoryPathGenerator;
 TestPathRelevanceCheck testPathRelevanceCheck;
+TestByColorPathGenerator testByColorPathGenerator;
 
 int main()
 {
@@ -27,8 +29,9 @@ int main()
     testSimplePathGenerator.test_all();
     testWholeColoringGenerator.test_all();
     testPartialColoringGenerator.test_all();
-    testByColorPathGenerator.test_all();
+    testSimpleWithMemoryPathGenerator.test_all();
     testPathRelevanceCheck.test_all();
+    testByColorPathGenerator.test_all();
 
     cout << "Testing ended" << endl;
     return 0;

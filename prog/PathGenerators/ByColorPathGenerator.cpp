@@ -28,7 +28,7 @@ ByColorPathGenerator::ByColorPathGenerator(int lengthOfPath, int colorsInPath)
 
 
 /*
-* Returns false, if the given 'color' is on vertex with every other color (with number lesser to 'color').
+* Returns false, if the given 'color' is on verteces with every other color (those colors with number lesser than 'color').
 * Returns true otherwise.
 * O(n + k)
 */
@@ -66,7 +66,7 @@ int ByColorPathGenerator::colorsInPath()
 * Returns -1, if the color is not present on vertex.
 * O(1)
 */
-int ByColorPathGenerator::colorAtPos(int vertex, int color)
+int ByColorPathGenerator::colorsPosition(int vertex, int color)
 {
     array<int, 3> list = lastResult.at(vertex);
     return (list.at(0) == color ? 0 : (list.at(1) == color ? 1 : (list.at(2) == color ? 2 : -1)));
@@ -79,12 +79,11 @@ int ByColorPathGenerator::colorAtPos(int vertex, int color)
 */
 int ByColorPathGenerator::freePosInVertex(int vertex)
 {
-    array<int, 3> list = lastResult.at(vertex);
-    return (list.at(0) == -1 ? 0 : (list.at(1) == -1 ? 1 : (list.at(2) == -1 ? 2 : -1)));
+    return colorsPosition(vertex, -1);
 }
 
 /*
-* returns true, whether the vertex at given position is filled with 3 colors.
+* returns true, if the vertex at given position is filled with 3 colors.
 * O(1)
 */
 bool ByColorPathGenerator::isFullVertex(int vertex)
@@ -93,11 +92,26 @@ bool ByColorPathGenerator::isFullVertex(int vertex)
 }
 
 /*
-* returns true, whether every vertex of 'lastResult' is filled with 3 colors.
+* returns true, if every vertex of 'lastResult' is filled with 3 colors.
 */
 bool ByColorPathGenerator::isFullPath()
 {
-    throw new exception("da sa spravit v O(1), ak toto vidis, tak dorob!");
+    return getFirstNotFullVertex() == -1;
+}
+
+/*
+* Returns the position of first not full vertex.
+* Returns -1 if the path is full.
+* O(n)
+* TODO O(1)
+*/
+int ByColorPathGenerator::getFirstNotFullVertex()
+{
+    for (int i = 0; i < length; i++)
+    {
+        if (!isFullVertex(i)) return i;
+    }
+    return -1;
 }
 
 /*
@@ -110,18 +124,31 @@ bool ByColorPathGenerator::isFullPath()
 */
 bool ByColorPathGenerator::generateNextColor(int color)
 {
+    bool inserted = false;
+
     //Store usage of given color
     set<int> colorUsage = colorsUsage.at(color);
 
+    //Make color lexicographically first, if it's not already - this happens on the color addition
+    int firstNotFullVertex = getFirstNotFullVertex();
+    int firstVertexWithThisColor = colorUsage.empty() ? length : *colorUsage.begin(); //minimal element in set<int>, or 'length', if no vertex has this color
+    if (firstNotFullVertex < firstVertexWithThisColor) //color is not lexicographically first
+    {
+        colorUsage.insert(firstNotFullVertex);
+        colorsUsage.at(color) = colorUsage;
+        int pos = freePosInVertex(firstNotFullVertex);
+        lastResult = lastResult.set(firstNotFullVertex, pos, color);
+        return true; //we can return, as next color was added
+    }
+
     //Generate new 'colorUsage' record and alter 'lastResult' correspondingly
-    //TODO lexikografickost a disjunktnost
     for (int vertex = length - 1; vertex >= 0; vertex--)
     {
         if (colorUsage.count(vertex))
         {
             colorUsage.erase(vertex);
-            int pos = colorAtPos(vertex, color);
-            lastResult.set(vertex, pos, -1);
+            int pos = colorsPosition(vertex, color);
+            lastResult = lastResult.set(vertex, pos, -1);
         }
         else
         {
@@ -129,23 +156,25 @@ bool ByColorPathGenerator::generateNextColor(int color)
             {
                 colorUsage.insert(vertex);
                 int pos = freePosInVertex(vertex);
-                lastResult.set(vertex, pos, color);
+                lastResult = lastResult.set(vertex, pos, color);
+                inserted = true;
                 break;
             }
         }
-        if (vertex == 0)
-        {
-            //we haven't found place to insert color - the color was fully geenrated
-            //lastResult doesn't contain 'color' right now, no need to alter it even more
-            if (colorsUsage.at(color) == colorUsage) cout << "TODO Uz sa rovnaju -> colorsUsage.at(color) == colorUsage"; //TODO opytaj sa ci treba nasledujuci riadok, alebo otesuj
-            colorsUsage.at(color) = colorUsage; //colorUsage is emptied now, no need to call 'set<int>()'.
-            return false;
-        }
     }
 
+    if (!inserted)
+    {
+        //we haven't found place to insert color - the color was fully geenrated, so return false
+        //lastResult doesn't contain 'color' any more, no need to alter it
+        colorsUsage.at(color) = colorUsage; //colorUsage is emptied now, no need to call 'set<int>()'.
+        return false;
+    }
+
+    //TODO disjunktnost
+
     //Save new usage of color
-    if (colorsUsage.at(color) == colorUsage) cout << "TODO Uz sa rovnaju -> colorsUsage.at(color) == colorUsage"; //TODO opytaj sa ci treba nasledujuci riadok, alebo otesuj
-    colorsUsage.at(color) = colorUsage; //maybe not needed
+    colorsUsage.at(color) = colorUsage;
 
     return true;
 }
@@ -159,15 +188,16 @@ bool ByColorPathGenerator::generateNextColor(int color)
 */
 bool ByColorPathGenerator::nextFullPathGenerator(int color)
 {
-    if (color >= colorsInPath()) return;
+    if (color >= colorsInPath()) return false;
 
     while(true)
     {
-        bool isFullPath = nextFullPathGenerator(color + 1);
-        if (isFullPath) return true;
+        bool isPathFull = nextFullPathGenerator(color + 1);
+        if (isPathFull) return true;
 
         bool colorFinished = !generateNextColor(color);
         if (colorFinished) return false;
+        if (isFullPath()) return true;
     }
 }
 
@@ -196,5 +226,5 @@ Path ByColorPathGenerator::nextPath()
     if (nextFullPath())
         return lastResult;
 
-    else Path();
+    else return Path();
 }

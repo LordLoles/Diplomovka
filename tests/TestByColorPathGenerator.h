@@ -1,7 +1,10 @@
 #ifndef TESTBYCOLORPATHGENERATOR_H
 #define TESTBYCOLORPATHGENERATOR_H
 
-#include "../prog/PathGenerators/SimpleWithMemoryPathGenerator.h"
+#include "../prog/PathGenerators/ByColorPathGenerator.h"
+#include <iostream>
+#include <vector>
+#include <tuple>
 
 using namespace std;
 
@@ -9,17 +12,10 @@ using namespace std;
 class TestByColorPathGenerator
 {
     public:
-    
-        void test_setColor();
-        void test_updateColorsUsage();
-        void test_isLast();
-        void test_reset();
-        void test_incrementVertexPostion();
-        void test_incrementVertex();
-        void test_increment();
-        void test_initialPath();
-        void test_nextPath();
-
+        void test_isColorDisjunct();
+        void test_getFirstNotFullVertex();
+        void test_generateNextColor();
+        void test_nextFullPath();
         void test_all();
 };
 

@@ -15,6 +15,7 @@ class ByColorPathGenerator
     private:
         int length;
         vector<int> allColors;
+        int colorBeingGenerated;
 
 
     public:

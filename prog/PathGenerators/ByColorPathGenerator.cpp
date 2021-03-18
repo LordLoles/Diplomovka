@@ -9,6 +9,7 @@ using namespace std;
 ByColorPathGenerator::ByColorPathGenerator(int lengthOfPath, int colorsInPath) 
     : allColors(getSetToLength(colorsInPath))
     , length(lengthOfPath)
+    , colorBeingGenerated(0)
 {
     if (colorsInPath < 3) throw "At least 3 colors are required.";
 
@@ -28,13 +29,13 @@ ByColorPathGenerator::ByColorPathGenerator(int lengthOfPath, int colorsInPath)
 
 
 /*
-* Returns false, if the given 'color' is on verteces with every other color (those colors with number lesser than 'color').
+* Returns false, if the given 'color' is on verteces with every other color (only those colors with number lesser than 'color').
 * Returns true otherwise.
 * O(n + k)
 */
 bool ByColorPathGenerator::isColorDisjunct(int color)
 {
-    vector<bool> seen = vector<bool>(color - 1);
+    vector<bool> seen = vector<bool>(color);
     int colorsSeen = 0;
     set<int> vertecesToCheck = colorsUsage.at(color);
     for (int i : vertecesToCheck)
@@ -42,7 +43,7 @@ bool ByColorPathGenerator::isColorDisjunct(int color)
         for (int j = 0; j < 3; j++)
         {
             int colorNow = lastResult.at(i).at(j);
-            if (colorNow != -1 && colorNow != color && !seen.at(colorNow))
+            if (colorNow != -1 && colorNow < color && !seen.at(colorNow))
             {
                 seen.at(colorNow) = true;
                 colorsSeen++;
@@ -50,7 +51,7 @@ bool ByColorPathGenerator::isColorDisjunct(int color)
         }
     }
 
-    return colorsSeen != (color - 1);
+    return colorsSeen != color;
 }
 
 /*
@@ -132,7 +133,7 @@ bool ByColorPathGenerator::generateNextColor(int color)
     //Make color lexicographically first, if it's not already - this happens on the color addition
     int firstNotFullVertex = getFirstNotFullVertex();
     int firstVertexWithThisColor = colorUsage.empty() ? length : *colorUsage.begin(); //minimal element in set<int>, or 'length', if no vertex has this color
-    if (firstNotFullVertex < firstVertexWithThisColor) //color is not lexicographically first
+    if ((firstNotFullVertex != -1) && (firstNotFullVertex < firstVertexWithThisColor)) //path is not full && color is not lexicographically first
     {
         colorUsage.insert(firstNotFullVertex);
         colorsUsage.at(color) = colorUsage;
@@ -188,16 +189,42 @@ bool ByColorPathGenerator::generateNextColor(int color)
 */
 bool ByColorPathGenerator::nextFullPathGenerator(int color)
 {
-    if (color >= colorsInPath()) return false;
+    if (color >= colorsInPath())
+    {
+        colorBeingGenerated--;
+        return false;
+    }
+    
 
-    while(true)
+    //lets continue from color, we have ended previously, so pass the smaller colors
+    if (color < colorBeingGenerated)
     {
         bool isPathFull = nextFullPathGenerator(color + 1);
         if (isPathFull) return true;
 
+        //if this color is not on any vertex and it was passed (previous if), this color was previously fully generated
+        if (colorsUsage.at(color).empty())
+        {
+            colorBeingGenerated--;
+            return false;
+        }
+    }
+    
+
+    while(true)
+    {
         bool colorFinished = !generateNextColor(color);
-        if (colorFinished) return false;
         if (isFullPath()) return true;
+
+        colorBeingGenerated++;
+        bool isPathFull = nextFullPathGenerator(color + 1);
+        if (isPathFull) return true;
+
+        if (colorFinished)
+        {
+            colorBeingGenerated--;
+            return false;
+        }
     }
 }
 

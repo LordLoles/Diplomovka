@@ -12,9 +12,9 @@ using namespace std;
 class TestByColorPathGenerator
 {
     public:
-        void test_isColorDisjunct();
-        void test_getFirstNotFullVertex();
         void test_generateNextColor();
+        void test_getFirstNotFullVertex();
+        void test_isColorDisjunct();
         void test_nextFullPath();
         void test_all();
 };

@@ -55,6 +55,21 @@ bool ByColorPathGenerator::isColorDisjunct(int color)
 }
 
 /*
+* Deletes given color from 'lastResult' and from 'colorsUsage'.
+*/
+void ByColorPathGenerator::deleteColor(int color)
+{
+    set<int> vertecesToCheck = colorsUsage.at(color);
+    for (int vertex : vertecesToCheck)
+    {
+        int pos = colorsPosition(vertex, color);
+        lastResult.set(vertex, pos, -1);
+    }
+    colorsUsage.at(color) = set<int>();
+}
+
+
+/*
 * Returns the count of colors in this path
 */
 int ByColorPathGenerator::colorsInPath()
@@ -214,17 +229,22 @@ bool ByColorPathGenerator::nextFullPathGenerator(int color)
     while(true)
     {
         bool colorFinished = !generateNextColor(color);
-        if (isFullPath()) return true;
-
-        colorBeingGenerated++;
-        bool isPathFull = nextFullPathGenerator(color + 1);
-        if (isPathFull) return true;
-
         if (colorFinished)
         {
             colorBeingGenerated--;
             return false;
         }
+        if (isColorDisjunct(color))
+        {
+            deleteColor(color);
+            colorBeingGenerated--;
+            return false;
+        }
+        if (isFullPath()) return true;
+
+        colorBeingGenerated++;
+        bool isPathFull = nextFullPathGenerator(color + 1);
+        if (isPathFull) return true;
     }
 }
 

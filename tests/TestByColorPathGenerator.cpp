@@ -167,39 +167,25 @@ void TestByColorPathGenerator::test_nextFullPath()
         {cout << "test_nextFullPath() 0: There should not be any more full paths, but was generated "; byColorPathGenerator.lastResult.printPath();}
 
 
-    byColorPathGenerator = ByColorPathGenerator(1, 5);
+    byColorPathGenerator = ByColorPathGenerator(2, 4);
 
     isFull = byColorPathGenerator.nextFullPath();
-    if (!isFull || byColorPathGenerator.lastResult.at(0) != array<int, 3>{0, 1, 2})
-        {cout << "test_nextFullPath() 1: Full path should be {0, 1, 2}, but was "; byColorPathGenerator.lastResult.printPath();}
+    if (!isFull || byColorPathGenerator.lastResult.at(0) != array<int, 3>{0, 1, 2} || byColorPathGenerator.lastResult.at(1) != array<int, 3>{0, 1, 2})
+        {cout << "test_nextFullPath() 1: Full path should be {0, 1, 2} {0, 1, 2}, but was "; byColorPathGenerator.lastResult.printPath();}
 
     isFull = byColorPathGenerator.nextFullPath();
-    if (!isFull || byColorPathGenerator.lastResult.at(0) != array<int, 3>{0, 1, 3})
-        {cout << "test_nextFullPath() 1: Full path should be {0, 1, 3}, but was "; byColorPathGenerator.lastResult.printPath();}
+    if (isFull)
+        {cout << "test_nextFullPath() 1: There should not be any more full paths, but was generated "; byColorPathGenerator.lastResult.printPath();}
+
+
+    byColorPathGenerator = ByColorPathGenerator(3, 4);
 
     isFull = byColorPathGenerator.nextFullPath();
-    if (!isFull || byColorPathGenerator.lastResult.at(0) != array<int, 3>{0, 1, 4})
-        {cout << "test_nextFullPath() 1: Full path should be {0, 1, 4}, but was "; byColorPathGenerator.lastResult.printPath();}
+    if (!isFull || byColorPathGenerator.lastResult.at(0) != array<int, 3>{0, 1, 2} || 
+        byColorPathGenerator.lastResult.at(1) != array<int, 3>{0, 1, 2} ||
+        byColorPathGenerator.lastResult.at(2) != array<int, 3>{0, 1, 2})
+        {cout << "test_nextFullPath() 1: Full path should be {0, 1, 2} {0, 1, 2} {0, 1, 2}, but was "; byColorPathGenerator.lastResult.printPath();}
 
-    isFull = byColorPathGenerator.nextFullPath();
-    if (!isFull || byColorPathGenerator.lastResult.at(0) != array<int, 3>{0, 2, 3})
-        {cout << "test_nextFullPath() 1: Full path should be {0, 2, 3}, but was "; byColorPathGenerator.lastResult.printPath();}
-
-    isFull = byColorPathGenerator.nextFullPath();
-    if (!isFull || byColorPathGenerator.lastResult.at(0) != array<int, 3>{0, 2, 4})
-        {cout << "test_nextFullPath() 1: Full path should be {0, 2, 4}, but was "; byColorPathGenerator.lastResult.printPath();}
-
-    isFull = byColorPathGenerator.nextFullPath();
-    if (!isFull || byColorPathGenerator.lastResult.at(0) != array<int, 3>{0, 3, 4})
-        {cout << "test_nextFullPath() 1: Full path should be {0, 3, 4}, but was "; byColorPathGenerator.lastResult.printPath();}
-
-    isFull = byColorPathGenerator.nextFullPath();
-    if (!isFull || byColorPathGenerator.lastResult.at(0) != array<int, 3>{1, 2, 3})
-        {cout << "test_nextFullPath() 1: Full path should be {1, 2, 3}, but was "; byColorPathGenerator.lastResult.printPath();}
-
-    isFull = byColorPathGenerator.nextFullPath();
-    isFull = byColorPathGenerator.nextFullPath();
-    isFull = byColorPathGenerator.nextFullPath();
     isFull = byColorPathGenerator.nextFullPath();
     if (isFull)
         {cout << "test_nextFullPath() 1: There should not be any more full paths, but was generated "; byColorPathGenerator.lastResult.printPath();}

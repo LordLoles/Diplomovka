@@ -2,7 +2,7 @@
 #include "./prog/Utils.h"
 #include "./prog/Coloring.h"
 #include "./prog/Path.h"
-#include "./prog/PathGenerators/ByColorPathGenerator.h"
+#include "./prog/PathGenerators/SimpleWithMemoryPathGenerator.h"
 #include "./prog/ColoringGenerators/PartialColoringGenerator.h"
 #include "./prog/NonRepetitiveness.h"
 #include "./prog/Consts.h"
@@ -18,7 +18,7 @@ int main()
 {
     bool found;
 
-    ByColorPathGenerator pathGenerator = ByColorPathGenerator(lengthOfPath, colorsInPath);
+    SimpleWithMemoryPathGenerator pathGenerator = SimpleWithMemoryPathGenerator(lengthOfPath, colorsInPath);
 
     //Path nowPath = pathGenerator.initialPath();
     Path nowPath = pathGenerator.initialPath();
@@ -27,15 +27,14 @@ int main()
 
     while (!(nowPath.empty()))
     {
-        cout << endl;
-        cout << "path with lists: ";
-        nowPath.printPath();
-
         found = false;
+        /*cout << endl;
+        cout << "path with lists: ";
+        nowPath.printPath();*/
 
         PartialColoringGenerator coloringGenerator = PartialColoringGenerator(nowPath);
-        Coloring coloring = coloringGenerator.initialColoring();
 
+        Coloring coloring = coloringGenerator.initialColoring();
         //TODO aj coloring by slo na array<int, length>, ale musis si pamatat momentalnu dlzku
         while (!(coloring.empty()))
         {

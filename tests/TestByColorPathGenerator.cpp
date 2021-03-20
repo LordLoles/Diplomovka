@@ -154,6 +154,24 @@ void TestByColorPathGenerator::test_isColorDisjunct()
         {cout << "test_isColorDisjunct(): Color 3 should be disjunct on path "; byColorPathGenerator.lastResult.printPath();}
 }
 
+void TestByColorPathGenerator::test_deleteColorBeingGenerated()
+{
+    ByColorPathGenerator byColorPathGenerator = ByColorPathGenerator(2, 4);
+    byColorPathGenerator.nextFullPath();
+
+    byColorPathGenerator.deleteColorBeingGenerated();
+    if (byColorPathGenerator.lastResult.at(0) != array<int, 3>{0, 1, -1} || byColorPathGenerator.lastResult.at(1) != array<int, 3>{0, 1, -1})
+        {cout << "test_deleteColor(): Path should be {0, 1, -1} {0, 1, -1}, but was "; byColorPathGenerator.lastResult.printPath();}
+
+    byColorPathGenerator.deleteColorBeingGenerated();
+    if (byColorPathGenerator.lastResult.at(0) != array<int, 3>{0, -1, -1} || byColorPathGenerator.lastResult.at(1) != array<int, 3>{0, -1, -1})
+        {cout << "test_deleteColor(): Path should be {0, -1, -1} {0, -1, -1}, but was "; byColorPathGenerator.lastResult.printPath();}
+
+    byColorPathGenerator.deleteColorBeingGenerated();
+    if (byColorPathGenerator.lastResult.at(0) != array<int, 3>{-1, -1, -1} || byColorPathGenerator.lastResult.at(1) != array<int, 3>{-1, -1, -1})
+        {cout << "test_deleteColor(): Path should be {-1, -1, -1} {-1, -1, -1}, but was "; byColorPathGenerator.lastResult.printPath();}
+}
+
 void TestByColorPathGenerator::test_nextFullPath()
 {
     ByColorPathGenerator byColorPathGenerator = ByColorPathGenerator(1, 3);
@@ -198,5 +216,6 @@ void TestByColorPathGenerator::test_all()
     test_generateNextColor();
     test_getFirstNotFullVertex();
     test_isColorDisjunct();
+    test_deleteColorBeingGenerated();
     test_nextFullPath();
 }

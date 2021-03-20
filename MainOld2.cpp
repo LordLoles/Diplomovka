@@ -22,15 +22,17 @@ int main()
 
     //Path nowPath = pathGenerator.initialPath();
     Path nowPath = pathGenerator.initialPath();
+    int paths = 0;
 
     //TODO pozmen Path na array<int, length> (pole intov dlzky length - bude treba ten constexpr)
 
     while (!(nowPath.empty()))
     {
-        found = false;
-        /*cout << endl;
+        /*found = false;
+        cout << endl;
         cout << "path with lists: ";
         nowPath.printPath();*/
+        paths++;
 
         PartialColoringGenerator coloringGenerator = PartialColoringGenerator(nowPath);
 
@@ -66,4 +68,5 @@ int main()
         }
         nowPath = pathGenerator.nextPath();
     }
+    cout << "MainOld2: Paths count " << paths << endl;
 }

@@ -63,11 +63,19 @@ void ByColorPathGenerator::deleteColor(int color)
     for (int vertex : vertecesToCheck)
     {
         int pos = colorsPosition(vertex, color);
-        lastResult.set(vertex, pos, -1);
+        lastResult = lastResult.set(vertex, pos, -1);
     }
     colorsUsage.at(color) = set<int>();
 }
 
+/*
+* Calls 'deleteColor(colorBeingGenerated)' and decrements 'colorBeingGenerated'.
+*/
+void ByColorPathGenerator::deleteColorBeingGenerated()
+{
+    deleteColor(colorBeingGenerated);
+    colorBeingGenerated--;
+}
 
 /*
 * Returns the count of colors in this path
@@ -209,8 +217,15 @@ bool ByColorPathGenerator::nextFullPathGenerator(int color)
         colorBeingGenerated--;
         return false;
     }
-    
 
+    /*
+    if (colorBeingGenerated < 0)
+    {
+        cout << "colorBeingGenerated is below zero... this should not happen..." << endl <<
+        "Is the generator running just once? If no, use constructor to start generating from begining." << endl;
+        return false;
+    }*/
+    
     //lets continue from color, we have ended previously, so pass the smaller colors
     if (color < colorBeingGenerated)
     {
@@ -225,7 +240,6 @@ bool ByColorPathGenerator::nextFullPathGenerator(int color)
         }
     }
     
-
     while(true)
     {
         bool colorFinished = !generateNextColor(color);
@@ -236,9 +250,7 @@ bool ByColorPathGenerator::nextFullPathGenerator(int color)
         }
         if (isColorDisjunct(color))
         {
-            deleteColor(color);
-            colorBeingGenerated--;
-            return false;
+            continue;
         }
         if (isFullPath()) return true;
 

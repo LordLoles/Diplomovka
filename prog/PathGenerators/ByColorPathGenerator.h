@@ -26,6 +26,7 @@ class ByColorPathGenerator
 
         bool isColorDisjunct(int color);
         void deleteColor(int color);
+        void deleteColorBeingGenerated();
 
         int colorsInPath();
         int colorsPosition(int vertex, int color);

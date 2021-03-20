@@ -17,19 +17,20 @@ using namespace std;
 int main()
 {
     bool found;
+    int paths = 0;
 
     ByColorPathGenerator pathGenerator = ByColorPathGenerator(lengthOfPath, colorsInPath);
 
-    //Path nowPath = pathGenerator.initialPath();
     Path nowPath = pathGenerator.initialPath();
 
     //TODO pozmen Path na array<int, length> (pole intov dlzky length - bude treba ten constexpr)
 
     while (!(nowPath.empty()))
     {
-        cout << endl;
+        /*cout << endl;
         cout << "path with lists: ";
-        nowPath.printPath();
+        nowPath.printPath();*/
+        paths++;
 
         found = false;
 
@@ -67,4 +68,5 @@ int main()
         }
         nowPath = pathGenerator.nextPath();
     }
+    cout << "Paths count " << paths << endl;
 }

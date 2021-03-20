@@ -15,6 +15,7 @@ class TestByColorPathGenerator
         void test_generateNextColor();
         void test_getFirstNotFullVertex();
         void test_isColorDisjunct();
+        void test_deleteColorBeingGenerated();
         void test_nextFullPath();
         void test_all();
 };

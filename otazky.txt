@@ -1,12 +1,5 @@
 template nejde, neviem uz preco :D
 
-kedze mame lexikografickost, pocet farieb staci zadat vysoke cislo a ono sa tie 
-	nepotrebne farby aj tak nepouziju. Takze pocet farieb je dost zbytocny parameter 
-	(len musi byt dost vysoky).
-
-
-
-
 
 PPT - co su bloky (pre nerepetitivnost) vysvetli lepsie
 

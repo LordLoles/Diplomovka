@@ -3,6 +3,37 @@ TODO komenty
 TODO pouzivat constexpr, aby bola path velkost dopredu znama
 	-> potom sa neda testovat Path, neda sa vytvarat nejaky pomocny objekt Path s inou velkostou
 		-> na to vyuzi template - screenshot mas
+		
+		
+TODO pozri lexikografickost aj medzi dvomi farbami(obrazok - lex farieb) a zahod (continue) hned.
+
+TODO ak je jedna farba len 2-krat pouzita (v trojzoznamoch), musi byt vzdialenost medzi nimi mensia ako polovica cesty (inak neovplyvni nerepetitivnost)
+	zosveobecnenie - ak je medzera dlhsia ako polovica cesty, moze byt na tych dvoch poziciach nejako (dost husto) ta farba a vieme 
+	Ako na to?
+		napis si suffixy, pre ktore to funguje (rucne, na papier)
+			(napr. (4 znamena trojzoznam so 4 (kedze BUNV generujeme farbu 4)) 
+			( / znamena dost vela vrcholov (aby platila nadpolovicnost)) 
+			4 / x 4 x 4 -> je dobry, lebo posledne stvorky mozeme vybrat oboje, 
+			x-ka dame rozlicne, a ak vieme, ze "4 / x" je bez repeteticie (pustali 
+			sme predosle), tak aj toto bude (to "4 x 4" neprida repeticiu) a mozeme 
+			celu csetu vynechat
+		(ani nemusis pisat sufixy, mozes ukazat, ze pre suffix dlzky x 
+		(pre dlzku 1, 2, 3, 4 by to malo vyjst a malo by to aj stacit, viac netreba) 
+		to isto funguje vzdy (mozeme ho zredukovat, teda zahodit cestu - lebo cestu 
+		dlzky o jedno menej, sme uz kontrolovali)
+		
+		v algoritme prejdi cestu, najdi najdlhsiu medzeru medzi danou farbou 
+		(ktora sa generuje) (O(n) asi) a pozri na ten suffix (ci taky mas ulozeny, 
+		alebo taky dlhy je v pohode). ak sa to da zredukovat (je taky suffix), mozes 
+		cestu preskocit, lebo pre tu kratsiu (tuto zredukovanu) sme to uz skusali a 
+		vysla nerepetitivna.
+		
+TODO (asi uz netreba robit) ak to nebude dost rychle, tak vyskusaj (zas aj rucne, 
+	pre dlzky cesty do 4, mozno 5) ci nie je repeticia, ak prvy zoznam bude 
+	jednozoznam/dvojzoznam (skus obi dve).
+	to nam pomoze pri tych suffixoch, kde je tvar suffixu, ze je tam farba 4 prva, 
+	a potom nejakych par farbieb
+	
 
 skus pri gen cesty, ked su farby disjunktne, ale v jednom vrchole (dvojici) su obe - ci nieco z toho vybuchas (skus nejaky dokaz, pohraj sa na papieri)
 gen ciest ma symetrie

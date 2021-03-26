@@ -55,6 +55,80 @@ bool ByColorPathGenerator::isColorDisjunct(int color)
 }
 
 /*
+* Returns true, if given color is lexicographically sooner, than other colors on vertex of color's first appearance.
+* Function is applicable only for color, thats first appearence is on the same vertex as some other's color's first appearence.
+* 
+* Example on path [x, x, x] [1, 2, x] [x, 2, x] [x, 1, x] (x is anything expect 1, 2):
+*   for color 2 this retruns false, as color 2 is present on next verteces lexicographically sooner, 
+*   than color 1 (color 1 is on vertex 1 - first appearence of colors 1 and 2, thus we are checking it)
+* Example on path [x, 1, x] [1, 2, x] [x, 2, x] [x, 1, x] (x is anything expect 1, 2):
+*   for color 2 this retruns true, as there is no color starting on the same vertex as color 2 (not assuming color x).
+*/
+bool ByColorPathGenerator::checkWholeColorLex(int color)
+{
+    int vertex = getFirstAppearance(color);
+    for (int i = 0; i < 3; i++)
+    {
+        int colorNow = lastResult.at(vertex).at(i);
+        if (colorNow != -1 && colorNow != color && isFirstAppearance(colorNow, vertex))
+        {
+            checkWholeColorsLex(color, colorNow, vertex);
+        }
+    }
+}
+
+/*
+* Returns true, if given color1 is lexicographically sooner, than color2 from given vertex forth.
+* Colors are swapped, if color2 < color1.
+* Function assumes, that the colors on verteces of 'lastResult' are lexicographicall (for instance [2, 3, 5]).
+* 
+* Example on path [x, x, x] [1, 2, x] [x, 2, x] [x, 1, x] (x is anything expect 1, 2):
+*   for colors 1, 2 (and 2, 1), vertex 1 this retruns false, as color 2 is present on next verteces lexicographically sooner, than color 1.
+* Example on path [x, 1, x] [1, 2, x] [x, 2, x] [x, 1, x] (x is anything expect 1, 2):
+*   for color 1, 2 (and 2, 1), vertex 1 this is the same as prpevious example, as given vertex is 1.
+*   
+*/
+bool ByColorPathGenerator::checkWholeColorsLex(int color1, int color2, int vertex)
+{
+    //swap colors, so color1 is lesser than color2
+    if (color2 < color1)
+    {
+        int tmp = color1;
+        color1 = color2;
+        color2 = tmp;
+    }
+
+    //check path from vertex forth
+    for (int i = vertex + 1; i < length; i++)
+    {
+        int pos1 = colorsPosition(i, color1);
+        int pos2 = colorsPosition(i, color2);
+
+        if (pos1 != -1)
+        {
+            if (pos2 != -1)
+            {
+                //vertex contains both colors, so continue
+                continue;
+            }
+            else
+            {
+                //vertex contains only color1 and we haven't returned before, thus return true
+                return true;
+            }
+        }
+        else if (pos2 != -1)
+        {
+            //we are in vertex, that contains color2, but no color1 and we haven't returned before, thus return false
+            return false;
+        }
+        //else { //we are in vertex that doesn't contain color1 nor color2, so continue}
+    }
+    return true; //colors are on identical verteces
+}
+
+
+/*
 * Deletes given color from 'lastResult' and from 'colorsUsage'.
 */
 void ByColorPathGenerator::deleteColor(int color)
@@ -104,6 +178,33 @@ int ByColorPathGenerator::colorsPosition(int vertex, int color)
 int ByColorPathGenerator::freePosInVertex(int vertex)
 {
     return colorsPosition(vertex, -1);
+}
+
+/*
+* Returns true, if the given color is not present sooner than on given vertex (so it is color's first appearance on given vertex).
+* Retruns false otherwise.
+* Function does not check presence of given color on given vertex, or even on whole path.
+*
+* O(n)
+*/
+bool ByColorPathGenerator::isFirstAppearance(int color, int vertex)
+{
+    return getFirstAppearance(color) < vertex;
+}
+
+/*
+* Returns index of the most-left vertex (first), on which the given color is present.
+* Returns -1, if the color is not present in 'lastResult'.
+*
+* O(n)
+*/
+int ByColorPathGenerator::getFirstAppearance(int color)
+{
+    for (int i = 0; i < length; i++)
+    {
+        if (colorsPosition(i, color) != -1) return i;
+    }
+    return -1;
 }
 
 /*

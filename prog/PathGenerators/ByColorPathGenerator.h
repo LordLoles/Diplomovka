@@ -25,12 +25,16 @@ class ByColorPathGenerator
         ByColorPathGenerator(int lengthOfPath, int colorsInPath);
 
         bool isColorDisjunct(int color);
+        bool checkWholeColorLex(int color);
+        bool checkWholeColorsLex(int color1, int color2, int vertex);
         void deleteColor(int color);
         void deleteColorBeingGenerated();
 
         int colorsInPath();
         int colorsPosition(int vertex, int color);
         int freePosInVertex(int vertex);
+        bool isFirstAppearance(int color, int vertex);
+        int getFirstAppearance(int color);
         bool isFullVertex(int vertex);
         bool isFullPath();
         int getFirstNotFullVertex();

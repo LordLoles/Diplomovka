@@ -213,9 +213,15 @@ void TestByColorPathGenerator::test_nextFullPath()
 void TestByColorPathGenerator::test_all()
 {
     cout << "Testing ByColorPathGenerator..." << endl;
-    test_generateNextColor();
-    test_getFirstNotFullVertex();
+    
     test_isColorDisjunct();
+    test_checkWholeColorLex();
+    test_checkWholeColorsLex();
     test_deleteColorBeingGenerated();
+
+    test_getFirstAppearance();
+    test_getFirstNotFullVertex();
+
+    test_generateNextColor();
     test_nextFullPath();
 }

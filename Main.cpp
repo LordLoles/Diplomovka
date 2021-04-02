@@ -69,4 +69,5 @@ int main()
         nowPath = pathGenerator.nextPath();
     }
     cout << "Paths count " << paths << endl;
+    cout << "Colors used " << pathGenerator.colorsUsed() << endl;
 }

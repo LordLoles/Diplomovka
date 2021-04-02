@@ -1,5 +1,9 @@
 template nejde, neviem uz preco :D
 
+generatoru trva strasne dlho uz aj pre jednu farbu nagenerovat vsetky jej moznosti.
+treba pridat nejaku optimalizaciu.
+pridavam kontrolu, ci zostavajuce farby stacia na zaplnenie cesty O(n).
+
 
 PPT - co su bloky (pre nerepetitivnost) vysvetli lepsie
 

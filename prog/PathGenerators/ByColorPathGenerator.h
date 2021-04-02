@@ -16,6 +16,7 @@ class ByColorPathGenerator
         int length;
         vector<int> allColors;
         int colorBeingGenerated;
+        int maxColorUsed = 0;
 
 
     public:
@@ -24,7 +25,11 @@ class ByColorPathGenerator
 
         ByColorPathGenerator(int lengthOfPath, int colorsInPath);
 
+        int colorsUsed(); // just for fun, curiousity
+
         bool isColorDisjunct(int color);
+        bool canBeFilledVertex(int vertex, int remainingColors);
+        bool canBeFilled(int color);
         bool checkWholeColorLex(int color);
         bool checkWholeColorsLex(int color1, int color2, int vertex);
         void deleteColor(int color);
@@ -39,6 +44,7 @@ class ByColorPathGenerator
         bool isFullPath();
         int getFirstNotFullVertex();
 
+        bool generateFillingColors(int color);
         bool generateNextColor(int color);
         bool nextFullPathGenerator(int color);
         bool nextFullPath();

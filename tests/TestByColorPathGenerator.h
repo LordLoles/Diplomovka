@@ -13,6 +13,7 @@ class TestByColorPathGenerator
 {
     public:
         void test_isColorDisjunct();
+        void test_canBeFilled();
         void test_checkWholeColorLex();
         void test_checkWholeColorsLex();
         void test_deleteColorBeingGenerated();
@@ -20,6 +21,7 @@ class TestByColorPathGenerator
         void test_getFirstAppearance();
         void test_getFirstNotFullVertex();
 
+        void test_generateFillingColors();
         void test_generateNextColor();
         void test_nextFullPath();
 

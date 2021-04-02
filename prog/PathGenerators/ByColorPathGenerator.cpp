@@ -27,6 +27,14 @@ ByColorPathGenerator::ByColorPathGenerator(int lengthOfPath, int colorsInPath)
     lastResult = Path(emptyPath);
 }
 
+/*
+* Returns the number of colors used at this point of generation.
+*/
+int ByColorPathGenerator::colorsUsed()
+{
+    return maxColorUsed + 1; //don't forget the zero
+}
+
 
 /*
 * Returns false, if the given 'color' is on verteces with every other color (only those colors with number lesser than 'color').
@@ -55,7 +63,41 @@ bool ByColorPathGenerator::isColorDisjunct(int color)
 }
 
 /*
-* Returns true, if given color is lexicographically sooner, than other colors on vertex of color's first appearance.
+* Returns true, if the given 'vertex' of 'lastResult' can be fully filled with 'remainingColors'.
+* Returns false otherwise.
+* O(1)
+*/
+bool ByColorPathGenerator::canBeFilledVertex(int vertex, int remainingColors)
+{
+    int freePos = freePosInVertex(vertex);
+    return ((freePos == -1) || //vertex is already full
+        ((3 - freePos) <= remainingColors)); //there are less empty positions, than colors left
+}
+
+/*
+* Returns true, if the path 'lastResult' can be fully filled with remaining colors (colorsInPath() - 'color').
+* Returns false, if there is at least one vertex, that can not be filled with remaining colors.
+* Given 'color' is also assumed in computation.
+* 
+* Example on path [-1, -1, -1] [0, 2, -1], with 3 colors in path
+*   canBeFilled(0) returns true, as both vertexes can be filled with 3 (= colorsInPath() - 'color') colors.
+*   canBeFilled(1) returns false, as vertex 0 can not be filled with 2 (= colorsInPath() - 'color') colors.
+*
+* O(n)
+*/
+bool ByColorPathGenerator::canBeFilled(int color)
+{
+    int remainingColors = colorsInPath() - color;
+
+    for (int i = 0; i < length; i++)
+    {
+        if (!canBeFilledVertex(i, remainingColors)) return false;
+    }
+    return true;
+}
+
+/*
+* Returns true, if given color is lexicographically sooner, than smaller colors on vertex of color's first appearance.
 * Function is applicable only for color, thats first appearence is on the same vertex as some other's color's first appearence.
 * 
 * Example on path [x, x, x] [1, 2, x] [x, 2, x] [x, 1, x] (x is anything expect 1, 2):
@@ -63,6 +105,8 @@ bool ByColorPathGenerator::isColorDisjunct(int color)
 *   than color 1 (color 1 is on vertex 1 - first appearence of colors 1 and 2, thus we are checking it)
 * Example on path [x, 1, x] [1, 2, x] [x, 2, x] [x, 1, x] (x is anything expect 1, 2):
 *   for color 2 this retruns true, as there is no color starting on the same vertex as color 2 (not assuming color x).
+*
+* O(n)
 */
 bool ByColorPathGenerator::checkWholeColorLex(int color)
 {
@@ -70,23 +114,27 @@ bool ByColorPathGenerator::checkWholeColorLex(int color)
     for (int i = 0; i < 3; i++)
     {
         int colorNow = lastResult.at(vertex).at(i);
-        if (colorNow != -1 && colorNow != color && isFirstAppearance(colorNow, vertex))
+        if (colorNow != -1 && colorNow < color && isFirstAppearance(colorNow, vertex))
         {
-            checkWholeColorsLex(color, colorNow, vertex);
+            bool lex = checkWholeColorsLex(colorNow, color, vertex);
+            if (!lex) return false;
         }
     }
+    return true;
 }
 
 /*
-* Returns true, if given color1 is lexicographically sooner, than color2 from given vertex forth.
-* Colors are swapped, if color2 < color1.
-* Function assumes, that the colors on verteces of 'lastResult' are lexicographicall (for instance [2, 3, 5]).
+* Returns true, if the bigger color is lexicographically sooner, than the smaller one, going from given vertex forth.
+* Colors order is not relevant - they are swapped, if color2 < color1.
+* Function assumes, that the colors on verteces of 'lastResult' are lexicographical (for instance [2, 3, 5]).
 * 
 * Example on path [x, x, x] [1, 2, x] [x, 2, x] [x, 1, x] (x is anything expect 1, 2):
 *   for colors 1, 2 (and 2, 1), vertex 1 this retruns false, as color 2 is present on next verteces lexicographically sooner, than color 1.
+*
 * Example on path [x, 1, x] [1, 2, x] [x, 2, x] [x, 1, x] (x is anything expect 1, 2):
-*   for color 1, 2 (and 2, 1), vertex 1 this is the same as prpevious example, as given vertex is 1.
-*   
+*   for color 1, 2 (and 2, 1), vertex 1 this is the same as previous example, as given vertex is 1.
+*
+* O(n)
 */
 bool ByColorPathGenerator::checkWholeColorsLex(int color1, int color2, int vertex)
 {
@@ -189,7 +237,7 @@ int ByColorPathGenerator::freePosInVertex(int vertex)
 */
 bool ByColorPathGenerator::isFirstAppearance(int color, int vertex)
 {
-    return getFirstAppearance(color) < vertex;
+    return getFirstAppearance(color) >= vertex;
 }
 
 /*
@@ -240,12 +288,43 @@ int ByColorPathGenerator::getFirstNotFullVertex()
 }
 
 /*
+* Generates given color in 'lastResult' on poistions, where it is not possible for the remaining colors to make the path full.
+*
+* Returns true, if at least one color was added.
+* Returns false, if 'lastResult' was unchanged.
+*
+* O(n)
+*/
+bool ByColorPathGenerator::generateFillingColors(int color)
+{
+    set<int> colorUsage = colorsUsage.at(color);
+    bool canBeFull = canBeFilled(color + 1);
+
+    if (!canBeFull)
+    {
+        int remainingColors = colorsInPath() - (color + 1); //not counting with this 'color'
+        for (int i = 0; i < length; i++)
+        {
+            if (!canBeFilledVertex(i, remainingColors) && (!colorUsage.count(i)))
+            {
+                colorsUsage.at(color).insert(i);
+                int pos = freePosInVertex(i);
+                lastResult = lastResult.set(i, pos, color);
+            }
+        }
+    }
+    return !canBeFull;
+}
+
+/*
 * Generates next color's positions of given 'color' and modifies 'lastResult' to contain it.
 * Algorithm creates the next possible deployment by vector 'colorsUsage'.
 * Function preserves lexicographicity of colors in 'lastResult'.
 * 
 * Retruns true, if next color was generated
 * Returns false, if the color was fully generated, and so 'lastResult' does not contain given color.
+*
+* O(n + log(k))
 */
 bool ByColorPathGenerator::generateNextColor(int color)
 {
@@ -296,8 +375,6 @@ bool ByColorPathGenerator::generateNextColor(int color)
         return false;
     }
 
-    //TODO disjunktnost
-
     //Save new usage of color
     colorsUsage.at(color) = colorUsage;
 
@@ -344,12 +421,14 @@ bool ByColorPathGenerator::nextFullPathGenerator(int color)
     while(true)
     {
         bool colorFinished = !generateNextColor(color);
+        if (maxColorUsed < color) maxColorUsed = color; //just to know the max count of colors used on this length
         if (colorFinished)
         {
             colorBeingGenerated--;
             return false;
         }
-        if (isColorDisjunct(color))
+        generateFillingColors(color); //when the color has not finished, fill spots that needs this color, so path can be full
+        if (isColorDisjunct(color) || !checkWholeColorLex(color))
         {
             continue;
         }

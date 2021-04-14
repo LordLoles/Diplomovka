@@ -4,8 +4,17 @@ TODO pouzivat constexpr, aby bola path velkost dopredu znama
 	-> potom sa neda testovat Path, neda sa vytvarat nejaky pomocny objekt Path s inou velkostou
 		-> na to vyuzi template - screenshot mas
 		
-		
-TODO pozri lexikografickost aj medzi dvomi farbami(obrazok - lex farieb) a zahod (continue) hned.
+TODO ak je pri volnych poziciach nejaka farba len raz k dispozicii, dalsia generovana farba musi byt pri tejto farbe (lebo by inak bola disjunktna) (napr. 123, 3__, 124 - farba 4 musi byt s trojkov)
+
+TODO parametrizacia - vytvor do suboru vsetky moznosti s farbami 1,2 a tie potom nacitat v programe a dokoncovat (zacat rovno farbou 3) 
+	- vyber, ktore riadky tohto suboru bude ratat ktory program
+
+TODO pouzi valgrind na program (nainstalovany vo WSL), len si skompiluj Main.exe cez linux bash, lebo cez windows nejde
+
+TODO zisti nazov softweru na urcenie, ktory riadok kodu je najpomalsi (nejaky profiler)
+performance profiler
+
+TODO prepinac "-D_GLIBCXX_DEBUG" pre c++ - program pojde pomaly, no najde chyby
 
 TODO ak je jedna farba len 2-krat pouzita (v trojzoznamoch), musi byt vzdialenost medzi nimi mensia ako polovica cesty (inak neovplyvni nerepetitivnost)
 	zosveobecnenie - ak je medzera dlhsia ako polovica cesty, moze byt na tych dvoch poziciach nejako (dost husto) ta farba a vieme 

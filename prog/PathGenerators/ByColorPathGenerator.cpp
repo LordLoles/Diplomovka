@@ -430,6 +430,8 @@ bool ByColorPathGenerator::nextFullPathGenerator(int color)
         generateFillingColors(color); //when the color has not finished, fill spots that needs this color, so path can be full
         if (isColorDisjunct(color) || !checkWholeColorLex(color))
         {
+            cout << "zahadzujem ";
+            lastResult.printPath();
             continue;
         }
         if (isFullPath()) return true;

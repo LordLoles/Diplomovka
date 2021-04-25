@@ -13,14 +13,18 @@ PartialColoringGenerator::PartialColoringGenerator(Path path_to_work_on)
     , colorIndeces()
 { }
 
-//returns if the coloring's last color can be change to next color from corresponding path tuple
-//returns true, if the coloring is empty
+/*
+* returns if the coloring's last color can be change to next color from corresponding path tuple
+* returns true, if the coloring is empty
+*/
 bool PartialColoringGenerator::canIncrement()
 {
     return (lastResult.empty() || colorIndeces.at(lastResult.size() - 1) < 2);
 }
 
-//increments the last color of coloring lastResult with respect to colors in path
+/*
+* increments the last color of coloring lastResult with respect to colors in path
+*/
 void PartialColoringGenerator::increment()
 {
     int pos = lastResult.size() - 1;
@@ -30,14 +34,18 @@ void PartialColoringGenerator::increment()
     lastResult = lastResult.set(pos, color);
 }
 
-//returns if the coloring is not at its max length, thus can be enlarged
+/*
+* returns if the coloring is not at its max length, thus can be enlarged
+*/
 bool PartialColoringGenerator::canBeEnlarged()
 {
     //return lastResult.size() < fullLength;
     return !isFullColoring();
 }
 
-//makes next coloring one vertex longer with the first color available (from path)
+/*
+* makes next coloring one vertex longer with the first color available (from path)
+*/
 void PartialColoringGenerator::enlarge()
 {
     if (isFullColoring()) throw out_of_range ("Path " + path.to_string() + " was used for every vertex, cant enlarge beyond it."); //TODO zbytocny if? odstran aj test (try-catch)
@@ -46,15 +54,19 @@ void PartialColoringGenerator::enlarge()
     lastResult = lastResult.push_back(color);
 }
 
-//makes next coloring one vertex shorter
+/*
+* makes next coloring one vertex shorter
+*/
 void PartialColoringGenerator::shrink()
 {
     colorIndeces.pop_back();
     lastResult = lastResult.pop_back();
 }
 
-//performs shrink() until canIncrement() holds false
-//saved result is either shrinked as much as can and can be incremented subsequently, or empty coloring, if it can not be increment any more
+/*
+* performs shrink() until canIncrement() holds false
+* saved result is either shrinked as much as can and can be incremented subsequently, or empty coloring, if it can not be increment any more
+*/
 void PartialColoringGenerator::shrinkUntilCanIncrement()
 {
     while (!canIncrement())
@@ -63,7 +75,9 @@ void PartialColoringGenerator::shrinkUntilCanIncrement()
     }
 }
 
-//initialise this generator and returns its first coloring
+/*
+* initialise this generator and returns its first coloring
+*/
 Coloring PartialColoringGenerator::initialColoring()
 {
     vector<int> initialColor = path.empty() ? vector<int>{} : vector<int>{path.at(0)[0]}; //first color available in path or empty, if path is also empty
@@ -73,11 +87,13 @@ Coloring PartialColoringGenerator::initialColoring()
     return lastResult;
 }
 
-//generates and returns next coloring
-//examples on 012 colors for every vertex, maximal length 5:
-// --- last coloring is 00, this will return 000
-// --- last coloring is 10120, this will return 10121
-// --- last coloring is 10122, this will return 102
+/*
+* generates and returns next coloring
+* examples on 012 colors for every vertex, maximal length 5:
+*  --- last coloring is 00, this will return 000
+*  --- last coloring is 10120, this will return 10121
+*  --- last coloring is 10122, this will return 102
+*/
 Coloring PartialColoringGenerator::nextColoring()
 {
     if (canBeEnlarged()) enlarge();
@@ -87,12 +103,14 @@ Coloring PartialColoringGenerator::nextColoring()
     return lastResult;
 }
 
-//skips whole subtree under lastly generater coloring
-//returns first coloring from the next subtree
-//examples on 012 colors for every vertex, maximal length 5:
-// --- last coloring is 00, this will return 01
-// --- last coloring is 102, this will return 11
-// --- last coloring is 10122, this will return 102
+/*
+* skips whole subtree under lastly generater coloring
+* returns first coloring from the next subtree
+* examples on 012 colors for every vertex, maximal length 5:
+*  --- last coloring is 00, this will return 01
+*  --- last coloring is 102, this will return 11
+*  --- last coloring is 10122, this will return 102
+*/
 Coloring PartialColoringGenerator::skipColoring()
 {
     shrinkUntilCanIncrement();

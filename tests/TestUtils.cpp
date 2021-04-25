@@ -3,6 +3,7 @@
 #include <tuple>
 #include <stdlib.h>
 #include <time.h>
+#include <set>
 #include "../prog/Path.h"
 #include "TestUtils.h"
 
@@ -84,6 +85,24 @@ void TestUtils::test_getSubsetsOfLength3(int setSize)
     }
 }
 
+void TestUtils::test_stringTo3Vector()
+{
+    string pathString = "{0 5 -1} {22 -4 6} {9 10 11}";
+    Path path = Path(stringTo3Vector(pathString));
+    if (path.at(0) != array<int, 3>{0, 5, -1} || path.at(1) != array<int, 3>{22, -4, 6} || path.at(2) != array<int, 3>{9, 10, 11})
+        {cout << "test_stringTo3Vector(): parsed path should be {0 5 -1} {22 -4 6} {9 10 11}, but was "; path.printPath();}
+}
+
+void TestUtils::test_getColorsUsage()
+{
+    Path path = Path({{1, 2, 3}, {-1, 2, 5}, {2, -1, -1}});
+    vector<set<int>> colorsUsage = getColorsUsage(path, 7);
+
+    if (colorsUsage.at(0) != set<int>{} || colorsUsage.at(1) != set<int>{0} || colorsUsage.at(2) != set<int>{0, 1, 2} || 
+        colorsUsage.at(3) != set<int>{0} || colorsUsage.at(4) != set<int>{} || colorsUsage.at(5) != set<int>{1} || colorsUsage.at(6) != set<int>{})
+        {cout << "test_getColorsUsage(): colorsUsage should be {} {0} {0, 1, 2} {0} {} {1} {}, but was not" << endl;}
+}
+
 void TestUtils::test_all(int repeat)
 {
     cout << "Testing Utils..." << endl;
@@ -91,6 +110,8 @@ void TestUtils::test_all(int repeat)
     test_vectorToLength_2();
     test_decimalToBase();
     test_digitsToInt();
+    test_stringTo3Vector();
+    test_getColorsUsage();
 
     srand(40087711);
 

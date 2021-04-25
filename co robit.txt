@@ -4,9 +4,10 @@ TODO pouzivat constexpr, aby bola path velkost dopredu znama
 	-> potom sa neda testovat Path, neda sa vytvarat nejaky pomocny objekt Path s inou velkostou
 		-> na to vyuzi template - screenshot mas
 		
-TODO ak je pri volnych poziciach nejaka farba len raz k dispozicii, dalsia generovana farba musi byt pri tejto farbe (lebo by inak bola disjunktna) (napr. 123, 3__, 124 - farba 4 musi byt s trojkov)
+TODO ak je pri volnych poziciach nejaka farba len raz k dispozicii, dalsia generovana farba musi byt pri tejto farbe (lebo by inak bola disjunktna) (napr. 123, 3__, 124 - farba 4 musi byt s trojkou)
 
-TODO parametrizacia - vytvor do suboru vsetky moznosti s farbami 1,2 a tie potom nacitat v programe a dokoncovat (zacat rovno farbou 3) 
+TODO parametrizacia - vytvor do suboru vsetky moznosti s farbami 1,2 a tie potom nacitat v 
+programe a dokoncovat (zacat rovno farbou 3) 
 	- vyber, ktore riadky tohto suboru bude ratat ktory program
 
 TODO pouzi valgrind na program (nainstalovany vo WSL), len si skompiluj Main.exe cez linux bash, lebo cez windows nejde

@@ -1,0 +1,67 @@
+Kapitola 1 odstranit podkapitoly a zbytocne odseky.
+
+Kapitola 1.1. prva veta. Asi lepsie je toto vztahovat nie len na
+definiciu grafu ale aj na ine zakladne pojmy.
+Posledny riadok 1.1. Oznacenie (x, y) by som nepouzival (pokial
+nehovorime o orientovanych grafoch).
+1.2.1 Skontrolujte, ktore z definicii v praci n aozaj potreujete.
+
+Kapitola 1.3. Definujte dlzku cesty. Na rozdiel od vacsiny definicii,
+ktore by v podstate v tej praci aninemuseli byt, lebo su jednoznacne a
+vseobecne zname, dlzka cesty moze byt aj pocet vrcholov cesty, aj
+pocet hran cesty.
+Kapitola 1.3. Ako striedavu postupnost definujte iba sled. Ostatne
+veci mozete definovat ako sled, ktory splna cosi navyse. Potrebujete
+vobec tieto definicie? (okrem cesty)?
+
+Kapitola 1.5. Kostrovy les: v tejto definicii nieco hcyba. Nezda sa mi
+ze by ste toto co i len trochu potrebovali. Je uplne ok nemat
+absolutne vsetky definicie. Aj je nieco vseobecne zname a nie je v tom
+ziaden zadrhel (v literature sa pouziva konzistentna notacia),
+nemusite to definovat, a je lepsie vsetky taketo veci vybavit odkazom
+napr na Diestela.
+
+Kapitola 1.7. Regularne farbenie, takyto pojem (s takouto definiciou)
+mi nic nehovori. V pripade, ze potrebujete hovorit aj o farbeniach,
+kde nemusia mat susedne vrcholy rozne farby, mate dve moznosti (pisem
+terminologiu po anglicky, ale hadam nebude problem to prelozit).
+Proper colouring vs colouring, toto zvyrazni, ze nejake farbenie ma
+vlastnost, ze susedne vrcholy maju rozne farby. Druha moznost je
+Colouring vs Inproper colouring. To svyraznuje naopak. Sapozrejme,
+pohodlnejsie je pouzivat jednoducho farbenie, a tento pojem by ste si
+mali vyhradit na to, co pouzivate castejsie.
+
+Kapitola 1.7.1. prva veta treba napisat, ze P je cesta, to ze to
+sugestivne oznacite nepostacuje.
+Nerepetitívnost ́farbenia je speciálnym prípadom farbenia ->
+Nerepetitivne farbenie je specialnym pripadom farbenia. Ked o tych
+cestach hovorite a citujete Thueho, uz vyslovte vysledok presne, nie
+hmlisto. Pripadne si to nechajte na neskor.
+
+Od 1.7.2 preskakujem, kedze je tam moc TODO.
+
+
+
+Veta 2.2. je velmi nie up to date. Pozrite tento dost novy survey. Tam
+sa dozviete aktualny stav
+https://arxiv.org/pdf/2009.02001.pdf
+Mimochodom, mate tu aj dokazy vety 2.3. Mozno by nebolo zle mat
+strucne v praci jeden z dokazov.
+
+
+
+
+Kapitola 3
+
+
+
+
+Kapitola 4
+
+Ovorovanie verepetitivnosti v O(n^3) rozhodne nie je zanedbatelne,
+kedze sa to robi pre kazde priradenie zoznamov a kazde farbenie...
+
+strana 25 dole 2^(k nad 3) myslim ma byt iba (k nad 3).
+
+29 TODO -> Prebereme nazivo...
+

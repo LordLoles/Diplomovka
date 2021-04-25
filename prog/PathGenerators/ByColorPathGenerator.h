@@ -12,11 +12,11 @@ using namespace std;
 
 class ByColorPathGenerator
 {
-    private:
+    protected:
         int length;
         vector<int> allColors;
         int colorBeingGenerated;
-        int maxColorUsed = 0;
+        int maxColorUsed = -1;
 
 
     public:
@@ -25,7 +25,7 @@ class ByColorPathGenerator
 
         ByColorPathGenerator(int lengthOfPath, int colorsInPath);
 
-        int colorsUsed(); // just for fun, curiousity
+        int colorsUsed(); // just for curiousity
 
         bool isColorDisjunct(int color);
         bool canBeFilledVertex(int vertex, int remainingColors);

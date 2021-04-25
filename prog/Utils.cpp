@@ -1,5 +1,7 @@
 #include "Utils.h"
 #include <iostream>
+#include <string>
+#include <sstream>
 
 using namespace std;
 
@@ -65,14 +67,6 @@ vector<int> vectorToLength(vector<int> a, int length)
     return res;
 }
 
-//Prints vector of integers.
-void printVector(vector <int> const &a)
-{
-    for(int i=0; i < a.size(); i++)
-        cout << a.at(i) << ' ';
-    cout << endl;
-}
-
 //Converts digits of number stored in vector "digits" to int with those numbers on respective positions.
 int digitsToInt(vector<int> digits)
 {
@@ -86,4 +80,66 @@ int digitsToInt(vector<int> digits)
     }
     reverse(digits.begin(), digits.end());
     return result;
+}
+
+//Prints vector of integers.
+void printVector(vector <int> const &a)
+{
+    for(int i=0; i < a.size(); i++)
+        cout << a.at(i) << ' ';
+    cout << endl;
+}
+
+//Convertes string in form "{a b c} {d e f} {g h i}" to vector<array<int, 3>>.
+vector<array<int, 3>> stringTo3Vector(string pathString)
+{
+    stringstream lineStream(pathString);
+    string segment;
+    vector<string> seglist;
+    vector<array<int, 3>> pathFromFile = vector<array<int, 3>>();
+
+    while(getline(lineStream, segment, '{'))
+    {
+        if (segment.size() == 0) continue;
+        string vertex; 
+        getline(stringstream(segment), vertex, '}');
+        stringstream vertexStream(vertex);
+
+        string number1s;
+        getline(vertexStream, number1s, ' ');
+        string number2s;
+        getline(vertexStream, number2s, ' ');
+        string number3s;
+        getline(vertexStream, number3s, ' ');
+
+        pathFromFile.push_back(array<int, 3>{stoi(number1s), stoi(number2s), stoi(number3s)});
+    }
+
+    return pathFromFile;
+}
+
+//Convertes string in form "{a b c} {d e f} {g h i}" to Path.
+Path stringToPath(string pathString)
+{
+    return Path(stringTo3Vector(pathString));
+}
+
+//Returns array, where on index i is a set of verteces, that the color i is on.
+vector<set<int>> getColorsUsage(Path path, int colorsInPath)
+{
+    vector<set<int>> colorsUsage = vector<set<int>>(colorsInPath);
+    for (int i = 0; i < colorsInPath; i++)
+    {
+        colorsUsage[i] = set<int>();
+    }
+
+    for (int i = 0; i < path.size(); i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            int color = path.at(i).at(j);
+            if (color >= 0) colorsUsage[color].insert(i);
+        }
+    }
+    return colorsUsage;
 }

@@ -1,5 +1,11 @@
 template nejde, neviem uz preco :D
 
+mame rovnicu
+2*k*k <= 3*n
+k <= sqrt(1.5n)
+ked tam dam dlzklu cesty 6, vyjde mi, ze k <= 3, takze je len jedna relevatna cesta?
+ked tam dam dlzklu cesty 5, vyjde mi, ze k <= 2.73, takze nie je ziadna relevatna cesta?
+ked tam dam dlzklu cesty 11, vyjde mi, ze k <= 4.06, takze az tu zacina vypocet?
 
 
 PPT - co su bloky (pre nerepetitivnost) vysvetli lepsie

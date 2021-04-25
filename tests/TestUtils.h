@@ -18,6 +18,9 @@ class TestUtils //namespace
         void test_decimalToBase();
         void test_digitsToInt();
         void test_getSubsetsOfLength3(int setSize);
+        void test_stringTo3Vector();
+        void test_getColorsUsage();
+
         void test_all(int repeat = 3);
 };
 

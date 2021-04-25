@@ -288,7 +288,8 @@ int ByColorPathGenerator::getFirstNotFullVertex()
 }
 
 /*
-* Generates given color in 'lastResult' on poistions, where it is not possible for the remaining colors to make the path full.
+* Generates given color in 'lastResult' on poistions, where it is not possible for 
+* the next (remaining) colors to make the path full.
 *
 * Returns true, if at least one color was added.
 * Returns false, if 'lastResult' was unchanged.
@@ -369,7 +370,7 @@ bool ByColorPathGenerator::generateNextColor(int color)
 
     if (!inserted)
     {
-        //we haven't found place to insert color - the color was fully geenrated, so return false
+        //we haven't found place to insert color -> the color was fully generated, so return false
         //lastResult doesn't contain 'color' any more, no need to alter it
         colorsUsage.at(color) = colorUsage; //colorUsage is emptied now, no need to call 'set<int>()'.
         return false;
@@ -387,6 +388,8 @@ bool ByColorPathGenerator::generateNextColor(int color)
 * 
 * Returns true, if the path is full.
 * Returns false, if there is no possibility for next full path.
+*
+* O(2^k(n + log(k)))
 */
 bool ByColorPathGenerator::nextFullPathGenerator(int color)
 {
@@ -395,22 +398,14 @@ bool ByColorPathGenerator::nextFullPathGenerator(int color)
         colorBeingGenerated--;
         return false;
     }
-
-    /*
-    if (colorBeingGenerated < 0)
-    {
-        cout << "colorBeingGenerated is below zero... this should not happen..." << endl <<
-        "Is the generator running just once? If no, use constructor to start generating from begining." << endl;
-        return false;
-    }*/
     
-    //lets continue from color, we have ended previously, so pass the smaller colors
+    //lets continue from color, we have ended previously, so skip the smaller colors
     if (color < colorBeingGenerated)
     {
         bool isPathFull = nextFullPathGenerator(color + 1);
         if (isPathFull) return true;
 
-        //if this color is not on any vertex and it was passed (previous if), this color was previously fully generated
+        //if this color is not on any vertex and it was skipped (pre-previous if), this color was previously fully generated
         if (colorsUsage.at(color).empty())
         {
             colorBeingGenerated--;
@@ -430,8 +425,8 @@ bool ByColorPathGenerator::nextFullPathGenerator(int color)
         generateFillingColors(color); //when the color has not finished, fill spots that needs this color, so path can be full
         if (isColorDisjunct(color) || !checkWholeColorLex(color))
         {
-            cout << "zahadzujem ";
-            lastResult.printPath();
+            /*cout << "zahadzujem ";
+            lastResult.printPath();*/
             continue;
         }
         if (isFullPath()) return true;

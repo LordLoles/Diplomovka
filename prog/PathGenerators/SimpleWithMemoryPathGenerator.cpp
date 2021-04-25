@@ -27,8 +27,8 @@ void SimpleWithMemoryPathGenerator::setColor(int vertex, int position, int color
 }
 
 /* 
-* Updates 'colorsUsage' so by key 'newColor' you will get also 'vertex' in returning set
-* Eraseing index 'vertex' from old color key and inserting 'vertex' to 'newColor' key
+* Updates 'colorsUsage' (so with colorsUsage['newColor'] you will also get 'vertex' in returning set)
+* Erasing index 'vertex' from old color key and inserting 'vertex' to 'newColor' key
 */
 void SimpleWithMemoryPathGenerator::updateColorsUsage(int vertex, int position, int newColor)
 {

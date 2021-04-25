@@ -17,29 +17,21 @@ using namespace std;
 int main()
 {
     bool found;
-
     SimplePathGenerator pathGenerator = SimplePathGenerator(lengthOfPath, colorsInPath);
-
     Path nowPath = pathGenerator.nextPath();
 
     while (!(nowPath.empty()))
     {
         found = false;
-        //cout << endl;
-        //cout << "path with lists: ";
-        //nowPath.printPath();
 
         WholeColoringGenerator coloringGenerator = WholeColoringGenerator(nowPath);
-
         Coloring coloring = coloringGenerator.nextColoring();
 
         while (!(coloring.empty()))
         {
-            //cout << "coloring: ";
-            //coloring.printColoring();
             if (checkNonRepetitiveness(coloring))
             {
-                //this coloring has non-repetitive possibility, so skipping
+                //this coloring is non-repetitive, so skipping whole path
                 found = true;
                 break;
             }
@@ -47,7 +39,7 @@ int main()
         }
         if (!found)
         {
-            cout << "COUNTEREXAMPLE! COUNTEREXAMPLE! COUNTEREXAMPLE! COUNTEREXAMPLE! COUNTEREXAMPLE! COUNTEREXAMPLE! " << endl;
+            cout << "COUNTEREXAMPLE!" << endl;
         }
         nowPath = pathGenerator.nextPath();
     }

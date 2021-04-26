@@ -44,15 +44,17 @@ int ByColorPathGenerator::colorsUsed()
 bool ByColorPathGenerator::isColorDisjunct(int color)
 {
     vector<bool> seen = vector<bool>(color);
+
     int colorsSeen = 0;
     set<int> vertecesToCheck = colorsUsage.at(color);
     for (int i : vertecesToCheck)
     {
         for (int j = 0; j < 3; j++)
         {
-            int colorNow = lastResult.at(i).at(j);
-            if (colorNow != -1 && colorNow < color && !seen.at(colorNow))
+            int colorNow = lastResult.at(i).at(j);\
+            if ((colorNow != -1) && (colorNow < color) && (!seen.at(colorNow)))
             {
+
                 seen.at(colorNow) = true;
                 colorsSeen++;
             }

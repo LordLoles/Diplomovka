@@ -34,7 +34,8 @@ bool ByColorContinuingPathGenerator::nextFullPathGenerator(int color)
     }
     
     //lets continue from color, we have ended previously, so skip the smaller colors
-    if (color < colorBeingGenerated)
+    //skip also those, that we are not supposed to change
+    if (color < colorBeingGenerated || color < startingColor)
     {
         bool isPathFull = nextFullPathGenerator(color + 1);
         if (isPathFull) return true;
@@ -45,10 +46,13 @@ bool ByColorContinuingPathGenerator::nextFullPathGenerator(int color)
             colorBeingGenerated--;
             return false;
         }
+
+        if (color < startingColor) return false;
     }
     
     while(true)
     {
+        //cout << "farba " << color << endl;
         bool colorFinished = !generateNextColor(color);
         if (maxColorUsed < color) maxColorUsed = color; //just to know the max count of colors used on this length
         if (colorFinished)
@@ -59,15 +63,18 @@ bool ByColorContinuingPathGenerator::nextFullPathGenerator(int color)
         generateFillingColors(color); //when the color has not finished, fill spots that needs this color, so path can be full
         if (isColorDisjunct(color) || !checkWholeColorLex(color))
         {
-            /*cout << "zahadzujem ";
-            lastResult.printPath();*/
             continue;
         }
-        if (isFullPath()) return true;
+        if (isFullPath())
+        {
+            return true;
+        }
 
         colorBeingGenerated++;
         bool isPathFull = nextFullPathGenerator(color + 1);
-        if (isPathFull) return true;
+        if (isPathFull) {
+            return true;
+        }
     }
 }
 
@@ -79,7 +86,7 @@ bool ByColorContinuingPathGenerator::nextFullPathGenerator(int color)
 */
 bool ByColorContinuingPathGenerator::nextFullPath()
 {
-    return nextFullPathGenerator(startingColor);
+    return nextFullPathGenerator(0);
 }
 
 /*

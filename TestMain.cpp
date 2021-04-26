@@ -9,6 +9,7 @@
 #include "./tests/TestPathRelevanceCheck.h"
 #include "./tests/TestByColorPathGenerator.h"
 #include "./tests/TestByColorCappedColorsPathGenerator.h"
+#include "./tests/TestByColorContinuingPathGenerator.h"
 
 TestPath testPath;
 TestColoring testColoroing;
@@ -21,6 +22,7 @@ TestSimpleWithMemoryPathGenerator testSimpleWithMemoryPathGenerator;
 TestPathRelevanceCheck testPathRelevanceCheck;
 TestByColorPathGenerator testByColorPathGenerator;
 TestByColorCappedColorsPathGenerator testByColorCappedColorsPathGenerator;
+TestByColorContinuingPathGenerator testByColorContinuingPathGenerator;
 
 int main()
 {
@@ -35,6 +37,7 @@ int main()
     testPathRelevanceCheck.test_all();
     testByColorPathGenerator.test_all();
     testByColorCappedColorsPathGenerator.test_all();
+    testByColorContinuingPathGenerator.test_all();
 
     cout << "Testing ended" << endl;
     return 0;

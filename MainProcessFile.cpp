@@ -11,44 +11,62 @@
 #include <vector>
 #include <string>
 #include <tuple>
+#include <chrono>
 
 using namespace std;
 
-constexpr int processorsCount = 4; //to how many part should be the file splitted
+constexpr int processorsCount = 10000; //how many part should be the file splitted to
 constexpr int thisProcessorNumber = 0; //which lines will this code process
 
 
 int main()
 {
-    ifstream file("PathsStarts.txt");
+    ifstream file;
+    file.open("PathsStarts.txt");
 
-    if (!file.is_open())
+    /*if (!file.is_open())
     {
-        cout << "Unable to open file";
+        std::cout << "Unable to open file" << endl;
         return 0;
-    }
+    }*/
+
+    auto startTime = chrono::high_resolution_clock::now();
+    auto partTime = startTime;
+    auto stopTime = startTime;
+    chrono::milliseconds durationPart;
+    chrono::milliseconds durationWhole;
 
     bool found;
     int lines = 0;
-    int paths;
+    int paths = 0;
+    int pathsAll = 0;
     int colorsUsed = 0;
     string line;
 
     while (getline(file, line))
     {
         lines++;
+        if (((lines) % 1000) == 0)
+        {
+            stopTime = chrono::high_resolution_clock::now();
+            durationPart = chrono::duration_cast<chrono::milliseconds>(stopTime - partTime);
+            durationWhole = chrono::duration_cast<chrono::milliseconds>(stopTime - startTime);
+            partTime = stopTime;
+            std::cout << "line " << lines << ", partTime " << durationPart.count() << ", wholeTime " << durationWhole.count() << endl;
+        }
         if (((lines-1) % processorsCount) != thisProcessorNumber) continue;
         
-        /*cout << endl;
-        cout << "parsing line: " << line << endl;*/
-        
-        paths = 0;
-        ByColorContinuingPathGenerator pathGenerator = ByColorContinuingPathGenerator(lengthOfPath, 2, colorsInPath, stringToPath(line));
-        Path nowPath = pathGenerator.initialPath();
+        /*std::cout << endl;
+        std::cout << "parsing line: " << line << endl;*/
 
+        paths = 0;
+        Path pathFromLine = stringToPath(line);
+        ByColorContinuingPathGenerator pathGenerator = ByColorContinuingPathGenerator(pathFromLine.size(), 2, colorsInPath, pathFromLine);
+        Path nowPath = pathGenerator.initialPath();
+        
         while (!(nowPath.empty()))
         {
-            /*cout << "path with lists: ";
+            /*std::cout << "path with lists: ";
             nowPath.printPath();*/
             paths++;
 
@@ -60,7 +78,7 @@ int main()
             //TODO aj coloring by slo na array<int, length>, ale musis si pamatat momentalnu dlzku
             while (!(coloring.empty()))
             {
-                /*cout << "coloring: ";
+                /*std::cout << "coloring: ";
                 coloring.printColoring();*/
 
                 if (checkNonRepetitivenessOnLastIndex(coloring))
@@ -83,16 +101,24 @@ int main()
             }
             if (!found)
             {
-                cout << "COUNTEREXAMPLE! COUNTEREXAMPLE! COUNTEREXAMPLE! COUNTEREXAMPLE! COUNTEREXAMPLE! COUNTEREXAMPLE! " << endl;
+                std::cout << "COUNTEREXAMPLE! COUNTEREXAMPLE! COUNTEREXAMPLE! COUNTEREXAMPLE! COUNTEREXAMPLE! COUNTEREXAMPLE! " << endl;
                 nowPath.printPath();
             }
             nowPath = pathGenerator.nextPath();
         }
 
         if (colorsUsed < pathGenerator.colorsUsed()) colorsUsed = pathGenerator.colorsUsed();
+        pathsAll += paths;
     }
 
     file.close();
-    cout << "Paths count " << paths << endl;
-    cout << "Colors used " << colorsUsed << endl;
+    
+    stopTime = chrono::high_resolution_clock::now();
+    durationPart = chrono::duration_cast<chrono::milliseconds>(stopTime - partTime);
+    durationWhole = chrono::duration_cast<chrono::milliseconds>(stopTime - startTime);
+    std::cout << "line " << lines << ", partTime " << durationPart.count() << ", wholeTime " << durationWhole.count() << endl;
+    
+    std::cout << "Lines checked " << lines/processorsCount << endl;
+    std::cout << "Paths count " << pathsAll << endl;
+    std::cout << "Colors used " << colorsUsed << endl;
 }

@@ -58,10 +58,5 @@ Kapitola 3
 
 Kapitola 4
 
-Ovorovanie verepetitivnosti v O(n^3) rozhodne nie je zanedbatelne,
-kedze sa to robi pre kazde priradenie zoznamov a kazde farbenie...
 
-strana 25 dole 2^(k nad 3) myslim ma byt iba (k nad 3).
-
-29 TODO -> Prebereme nazivo...
 

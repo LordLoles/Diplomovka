@@ -13,6 +13,16 @@ performance profiler
 
 TODO prepinac "-D_GLIBCXX_DEBUG" pre c++ - program pojde pomaly, no najde chyby
 
+TODO sprav odhad na dlzku cesty 11
+
+TODO lexikografice usporiadanie mozes zmazat, prip. nahrad len porovnanim trojic jednoducho - na tomto nestoji praca
+
+TODO lexikografickost na polohu farieb - definuj polohu farieb cez postupnost nul a jednotiek
+
+TODO veta 3.5 ukaz, ze ak to plati, tak vyhodnocuju cesty nerep. rovnako
+
+TODO popis, ze spojenie lex pre prve vyskyty a lex pre pozicie farieb dava dokopy definovanu lexikografickost
+
 TODO ak je jedna farba len 2-krat pouzita (v trojzoznamoch), musi byt vzdialenost medzi nimi mensia ako polovica cesty (inak neovplyvni nerepetitivnost)
 	zosveobecnenie - ak je medzera dlhsia ako polovica cesty, moze byt na tych dvoch poziciach nejako (dost husto) ta farba a vieme 
 	Ako na to?

@@ -15,14 +15,20 @@
 
 using namespace std;
 
-constexpr int processorsCount = 500; //how many part should be the file splitted to
-constexpr int thisProcessorNumber = 0; //which lines will this code process
+constexpr int processorsCount = 120; //how many part should be the file splitted to
+constexpr int thisProcessorNumber = 1; //which lines will this code process
 
 
 int main()
 {
     ifstream file;
     file.open("PathsStarts.txt");
+    string resultFileName = "Proc" + to_string(thisProcessorNumber) + "of" + to_string(processorsCount) + "Result.txt";
+    ofstream fileResult;
+    fileResult.open(resultFileName);
+
+    std::cout << "thisProcessorNumber " << thisProcessorNumber << " out of " << processorsCount << endl;
+    fileResult << "thisProcessorNumber " << thisProcessorNumber << " out of " << processorsCount << endl;
 
     /*if (!file.is_open())
     {
@@ -53,6 +59,7 @@ int main()
             durationWhole = chrono::duration_cast<chrono::milliseconds>(stopTime - startTime);
             partTime = stopTime;
             std::cout << "line " << lines << ", partTime " << durationPart.count() << ", wholeTime " << durationWhole.count() << endl;
+            fileResult << "line " << lines << ", partTime " << durationPart.count() << ", wholeTime " << durationWhole.count() << endl;
         }
         if (((lines-1) % processorsCount) != thisProcessorNumber) continue;
         
@@ -63,11 +70,11 @@ int main()
         Path pathFromLine = stringToPath(line);
         ByColorContinuingPathGenerator pathGenerator = ByColorContinuingPathGenerator(pathFromLine.size(), 2, colorsInPath, pathFromLine);
         Path nowPath = pathGenerator.initialPath();
-        
+
         while (!(nowPath.empty()))
         {
-            /*std::cout << "path with lists: ";
-            nowPath.printPath();*/
+            //std::cout << "path with lists: ";
+            //nowPath.printPath();
             paths++;
 
             found = false;
@@ -78,8 +85,8 @@ int main()
             //TODO aj coloring by slo na array<int, length>, ale musis si pamatat momentalnu dlzku
             while (!(coloring.empty()))
             {
-                /*std::cout << "coloring: ";
-                coloring.printColoring();*/
+                //std::cout << "coloring: ";
+                //coloring.printColoring();
 
                 if (checkNonRepetitivenessOnLastIndex(coloring))
                 {
@@ -101,6 +108,8 @@ int main()
             }
             if (!found)
             {
+                fileResult << "COUNTEREXAMPLE! COUNTEREXAMPLE! COUNTEREXAMPLE! COUNTEREXAMPLE! COUNTEREXAMPLE! COUNTEREXAMPLE! " << endl;
+                fileResult << nowPath.to_string() << endl;
                 std::cout << "COUNTEREXAMPLE! COUNTEREXAMPLE! COUNTEREXAMPLE! COUNTEREXAMPLE! COUNTEREXAMPLE! COUNTEREXAMPLE! " << endl;
                 nowPath.printPath();
             }
@@ -111,7 +120,6 @@ int main()
         pathsAll += paths;
     }
 
-    file.close();
     
     stopTime = chrono::high_resolution_clock::now();
     durationPart = chrono::duration_cast<chrono::milliseconds>(stopTime - partTime);
@@ -121,4 +129,12 @@ int main()
     std::cout << "Lines checked " << lines/processorsCount << endl;
     std::cout << "Paths count " << pathsAll << endl;
     std::cout << "Colors used " << colorsUsed << endl;
+
+    fileResult << "line " << lines << ", partTime " << durationPart.count() << ", wholeTime " << durationWhole.count() << endl;
+    fileResult << "Lines checked " << lines/processorsCount << endl;
+    fileResult << "Paths count " << pathsAll << endl;
+    fileResult << "Colors used " << colorsUsed << endl;
+
+    file.close();
+    fileResult.close();
 }

@@ -15,8 +15,8 @@
 
 using namespace std;
 
-constexpr int processorsCount = 120; //how many part should be the file splitted to
-constexpr int thisProcessorNumber = 1; //which lines will this code process
+constexpr int processorsCount = 10000; //how many part should be the file splitted to
+constexpr int thisProcessorNumber = 9; //which lines will this code process
 
 
 int main()
@@ -24,11 +24,11 @@ int main()
     ifstream file;
     file.open("PathsStarts.txt");
     string resultFileName = "Proc" + to_string(thisProcessorNumber) + "of" + to_string(processorsCount) + "Result.txt";
-    ofstream fileResult;
-    fileResult.open(resultFileName);
+    //ofstream fileResult;
+    //fileResult.open(resultFileName);
 
     std::cout << "thisProcessorNumber " << thisProcessorNumber << " out of " << processorsCount << endl;
-    fileResult << "thisProcessorNumber " << thisProcessorNumber << " out of " << processorsCount << endl;
+    //fileResult << "thisProcessorNumber " << thisProcessorNumber << " out of " << processorsCount << endl;
 
     /*if (!file.is_open())
     {
@@ -59,10 +59,11 @@ int main()
             durationWhole = chrono::duration_cast<chrono::milliseconds>(stopTime - startTime);
             partTime = stopTime;
             std::cout << "line " << lines << ", partTime " << durationPart.count() << ", wholeTime " << durationWhole.count() << endl;
-            fileResult << "line " << lines << ", partTime " << durationPart.count() << ", wholeTime " << durationWhole.count() << endl;
+            //fileResult << "line " << lines << ", partTime " << durationPart.count() << ", wholeTime " << durationWhole.count() << endl;
         }
         if (((lines-1) % processorsCount) != thisProcessorNumber) continue;
         
+        if (lines < 20000) std::cout << "linexxx " << lines << endl;
         /*std::cout << endl;
         std::cout << "parsing line: " << line << endl;*/
 
@@ -108,8 +109,8 @@ int main()
             }
             if (!found)
             {
-                fileResult << "COUNTEREXAMPLE! COUNTEREXAMPLE! COUNTEREXAMPLE! COUNTEREXAMPLE! COUNTEREXAMPLE! COUNTEREXAMPLE! " << endl;
-                fileResult << nowPath.to_string() << endl;
+                //fileResult << "COUNTEREXAMPLE! COUNTEREXAMPLE! COUNTEREXAMPLE! COUNTEREXAMPLE! COUNTEREXAMPLE! COUNTEREXAMPLE! " << endl;
+                //fileResult << nowPath.to_string() << endl;
                 std::cout << "COUNTEREXAMPLE! COUNTEREXAMPLE! COUNTEREXAMPLE! COUNTEREXAMPLE! COUNTEREXAMPLE! COUNTEREXAMPLE! " << endl;
                 nowPath.printPath();
             }
@@ -130,11 +131,11 @@ int main()
     std::cout << "Paths count " << pathsAll << endl;
     std::cout << "Colors used " << colorsUsed << endl;
 
-    fileResult << "line " << lines << ", partTime " << durationPart.count() << ", wholeTime " << durationWhole.count() << endl;
-    fileResult << "Lines checked " << lines/processorsCount << endl;
-    fileResult << "Paths count " << pathsAll << endl;
-    fileResult << "Colors used " << colorsUsed << endl;
+    //fileResult << "line " << lines << ", partTime " << durationPart.count() << ", wholeTime " << durationWhole.count() << endl;
+    //fileResult << "Lines checked " << lines/processorsCount << endl;
+    //fileResult << "Paths count " << pathsAll << endl;
+    //fileResult << "Colors used " << colorsUsed << endl;
 
     file.close();
-    fileResult.close();
+    //fileResult.close();
 }

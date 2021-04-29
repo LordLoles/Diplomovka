@@ -33,7 +33,7 @@ bool hasDisjunctColor(Path path, vector<set<int>> colorsUsage)
 
     //1st heuristic
     //example on path {0,1,2}, {2,3,4}, {1,4,5} -> on each vertex there are 3 pairs of colors, so 9 pairs on whole path
-    //now count all possible pairs (sum) for 6 colors - there are 15 ossibilities
+    //now count all possible pairs (sum) for 6 colors - there are 15 possibilities
     //because (9 < 15), we can not fulfil the condition, that all colors needs to be with every color on some vertex, to avoid disjunction
 
     // '3 * path.size()' means, that on vertex we will consider 3 pairs (0th color with 1st, 0th with 2nd, 1st with 2nd), that can affect disjunction of colors,

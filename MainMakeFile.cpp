@@ -19,11 +19,11 @@ int main()
     ofstream file ;
     file.open("PathsStarts.txt", ios::trunc);
 
-    if (!file.is_open())
+    /*if (!file.is_open())
     {
-        cout << "Unable to open file";
+        cout << "Unable to open file" << endl;
         return 0;
-    }
+    }*/
 
     bool found;
     int paths = 0;
@@ -34,7 +34,6 @@ int main()
     {
         paths++;
         file << nowPath.to_string() << "\n";
-        //nowPath.printPath();
         nowPath = pathGenerator.nextPath();
     }
 

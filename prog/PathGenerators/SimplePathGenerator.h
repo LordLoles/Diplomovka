@@ -13,11 +13,12 @@ class SimplePathGenerator
     private:
         int length;
         long long nextLists; //next indeces of color lists (allColorSubsets) to be used in nextPath() in decimal
-        Path allColorSubsets; //all possible lists of colors (triplets) that will be used on verteces  -------not really a Path -> just to store it nicely-------
+        Path allColorSubsets; //all possible lists of colors (triplets) that will be used on verteces
+                              //-------not really a Path -> just to store it nicely-------
 
     public:
         SimplePathGenerator(int lengthOfPath, int colorsInPath);
-        Path nextPath(); //const Path & nextPath(), ked to bude rozumne brat cestu a ulozi si ju popredu, namiesto longlong nextLists;
+        Path nextPath();
 };
 
 #endif

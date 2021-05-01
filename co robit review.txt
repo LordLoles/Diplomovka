@@ -1,20 +1,13 @@
 
-
-Veta 2.2. je velmi nie up to date. Pozrite tento dost novy survey. Tam
-sa dozviete aktualny stav
-https://arxiv.org/pdf/2009.02001.pdf
-Mimochodom, mate tu aj dokazy vety 2.3. Mozno by nebolo zle mat
-strucne v praci jeden z dokazov.
+Definicie do 12: skontrolujte, co naozaj pouzivate.
 
 
+Definicia 26. Definoval by som napr. "Zakladnu (Kanonicku) postupnost
+zoznamovej cesty" (1, 2, 3)(2, 4, 6)(1, 2, 4), t.j. mame namiesto
+mnozin usporiadane 3-ice, pricom prvky v tych 3-iciach su zoradene.
+Teraz mozeme definovat lexikograficke usporiadanie zoznamovych ciest
+ako lexikograficke usporiadanie ich zakladnych postupnosti.
 
-
-Kapitola 3
-
-
-
-
-Kapitola 4
-
-
+Vo vasich vetach potom mozete hovorit, nech P je zoznamova cesta a
+nech (a_1, b_1, c_1)(a_2, b_2, c_2) atd je jej kanonicka postupnost.
 

@@ -1,9 +1,10 @@
 import os
 import time
 
-processorsCountFromCPPFile = 120
-processorFirst = 7
-processorsLast = 8
+processorsCountFromCPPFile = 4
+lengthOfPath = 11
+processorFirst = 0
+processorsLast = 4
 
 
 for thisProcessorNumber in range (processorFirst, processorsLast):
@@ -18,7 +19,7 @@ for thisProcessorNumber in range (processorFirst, processorsLast):
             fout.write(line)
     fin.close()
     fout.close()
-    command = "g++ -static -O3 ./MainProcessFileForPy.cpp ./prog/*.cpp ./prog/ColoringGenerators/*.cpp ./prog/PathGenerators/*.cpp -o MainProcessFileExes/length10/MainProcessFileProc" + str(thisProcessorNumber) + "of" + str(processorsCountFromCPPFile) + ".exe"
+    command = "g++ -static -O3 ./MainProcessFileForPy.cpp ./prog/*.cpp ./prog/ColoringGenerators/*.cpp ./prog/PathGenerators/*.cpp -o MainProcessFileExes/length" + str(lengthOfPath) + "/MainProcessFileProc" + str(thisProcessorNumber) + "of" + str(processorsCountFromCPPFile) + ".exe"
     print("compiling " + str(thisProcessorNumber) + " of " + str(processorsLast-1))
     os.system(command)
 

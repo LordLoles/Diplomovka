@@ -2,12 +2,12 @@
 Definicie do 12: skontrolujte, co naozaj pouzivate.
 
 
-Definicia 26. Definoval by som napr. "Zakladnu (Kanonicku) postupnost
-zoznamovej cesty" (1, 2, 3)(2, 4, 6)(1, 2, 4), t.j. mame namiesto
-mnozin usporiadane 3-ice, pricom prvky v tych 3-iciach su zoradene.
-Teraz mozeme definovat lexikograficke usporiadanie zoznamovych ciest
-ako lexikograficke usporiadanie ich zakladnych postupnosti.
+Kapitola vysledky je vo vseobecnosti fajn, nie som si isty Vasou
+konkretnou situaciou. Podla mna mate vysledky uvedene v
+predchadzajucej kapitole a su na mieste kde davaju zmysel. Takze by
+som to nechal ako to je. S tym, ze mozno by som ten zaver urobil
+trosku menej neskodny (t.j. nie pol strany ale strana).
 
-Vo vasich vetach potom mozete hovorit, nech P je zoznamova cesta a
-nech (a_1, b_1, c_1)(a_2, b_2, c_2) atd je jej kanonicka postupnost.
+Hypotezu sme potvrdili/dokazali pre cesty s dlzkou nanajvys 10. Obe
+slova su vhodne.
 

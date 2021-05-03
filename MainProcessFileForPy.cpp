@@ -15,8 +15,8 @@
 
 using namespace std;
 
-constexpr int processorsCount = 120; //how many part should be the file splitted to
-constexpr int thisProcessorNumber = 7; //which lines will this code process
+constexpr int processorsCount = 4; //how many part should be the file splitted to
+constexpr int thisProcessorNumber = 3; //which lines will this code process
 
 int main()
 {

@@ -1,0 +1,57 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "process",
+			"label": "C/C++: g++.exe build active file",
+			"command": "D:\\MinGW-w64\\i686-8.1.0-posix-dwarf-rt_v6-rev0\\mingw32\\bin\\g++.exe",
+			"args": [
+				"-g",
+				"${workspaceFolder}\\prog\\**.cpp",
+				"${workspaceFolder}\\prog\\ColoringGenerators\\**.cpp",
+				"${workspaceFolder}\\prog\\PathGenerators\\**.cpp",
+				"${workspaceFolder}\\tests\\**.cpp",
+				"${file}",
+				"-o",
+				"${workspaceFolder}\\${fileBasenameNoExtension}.exe"
+			],
+			"options": {
+				"cwd": "D:\\MinGW-w64\\i686-8.1.0-posix-dwarf-rt_v6-rev0\\mingw32\\bin"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"detail": "compiler: D:\\MinGW-w64\\i686-8.1.0-posix-dwarf-rt_v6-rev0\\mingw32\\bin\\g++.exe",
+		},
+		{
+			"type": "process",
+			"label": "C/C++ -O3 g++ build active file",
+			"command": "D:\\MinGW-w64\\i686-8.1.0-posix-dwarf-rt_v6-rev0\\mingw32\\bin\\g++.exe",
+			"args": [
+				"-O3",
+				"${workspaceFolder}\\prog\\**.cpp",
+				"${workspaceFolder}\\prog\\ColoringGenerators\\**.cpp",
+				"${workspaceFolder}\\prog\\PathGenerators\\**.cpp",
+				"${workspaceFolder}\\tests\\**.cpp",
+				"${file}",
+				"-o",
+				"${workspaceFolder}\\${fileBasenameNoExtension}.exe"
+			],
+			"options": {
+				"cwd": "D:\\MinGW-w64\\i686-8.1.0-posix-dwarf-rt_v6-rev0\\mingw32\\bin"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"detail": "compiler: D:\\MinGW-w64\\i686-8.1.0-posix-dwarf-rt_v6-rev0\\mingw32\\bin\\g++.exe",
+		}
+	]
+}
